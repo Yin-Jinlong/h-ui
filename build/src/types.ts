@@ -1,4 +1,4 @@
-import {ModuleFormat, Plugin} from 'rollup'
+import {ModuleFormat} from 'rollup'
 
 /**
  * 输出选项
@@ -9,7 +9,7 @@ export declare interface OutputOption {
      */
     format: ModuleFormat,
     /**
-     * 输出目录，可以是相对路径，也可以是绝对路径
+     * 输出目录，相对于dist
      */
     dir: string
     /**
@@ -19,7 +19,10 @@ export declare interface OutputOption {
     /**
      * 是否生成sourceMap，默认为false
      */
-    sourceMap?: boolean | 'inline' | 'hidden',
+    sourceMap?: boolean | 'inline' | 'hidden'
+    /**
+     * 模块化，保持目录结构
+     */
     module?: boolean
 }
 
@@ -40,10 +43,6 @@ export declare interface BuildOptions {
      */
     deleteBeforeBuild?: boolean
     /**
-     * 是否保留模块
-     */
-    preserveModules?: boolean
-    /**
      * 输出选项
      */
     output: OutputOption | OutputOption[]
@@ -51,4 +50,8 @@ export declare interface BuildOptions {
      * 报告输出文件详情，位置大小等，默认为true
      */
     reportOutFileInfo?: boolean
+    /**
+     * 编译scss文件输出目录，相对于dist
+     */
+    cssDir?: string
 }
