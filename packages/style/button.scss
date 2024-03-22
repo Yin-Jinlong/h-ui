@@ -12,24 +12,8 @@
   }
 }
 
-@include c(button) {
-  @include gen-colors(primary);
-  background-color    : transparent;
-  border              : 0 none transparent;
-  border-radius       : get-css(radius, normal);
-  -moz-user-select    : none;
-  -webkit-user-select : none;
-  user-select         : none;
 
-  &:hover {
-    background : get-css(color, white--1);
-  }
-
-  &:active {
-    background : get-css(color, white--3);
-  }
-
-
+@mixin btn-type() {
   &[data-type='primary'] {
     background-color : var(--btn-color);
     color            : white;
@@ -71,8 +55,9 @@
     }
 
   }
+}
 
-
+@mixin btn-size() {
   &[data-size='small'] {
     padding : get-css(padding, small) get-css(padding, normal);
   }
@@ -88,6 +73,9 @@
   &[data-size='xlarge'] {
     padding : get-css(padding, xlarge) get-css(padding, 4xl);
   }
+}
+
+@mixin btn-border() {
 
   &[data-border='true'] {
     border : 1px solid var(--btn-color--1);
@@ -106,13 +94,51 @@
     }
   }
 
-  &[data-shadow='true'] {
-    box-shadow : color-mix(in srgb, var(--btn-color-2) 50%, transparent 50%) 0 0 10px;
+}
+
+@mixin btn-shadow($shadow) {
+
+  &[data-shadow='true'], &[data-shadow='always'] {
+    box-shadow : $shadow;
 
     &[data-type='primary'] {
-      box-shadow : color-mix(in srgb, var(--btn-color--2) 50%, transparent 50%) 0 0 10px;
+      box-shadow : $shadow;
     }
   }
+
+  &[data-shadow='hover'] {
+    &:hover {
+      box-shadow : $shadow;
+    }
+  }
+
+  @content
+}
+
+
+@include c(button) {
+  @include gen-colors(primary);
+  background-color    : transparent;
+  border              : 0 none transparent;
+  border-radius       : get-css(radius, normal);
+  -moz-user-select    : none;
+  -webkit-user-select : none;
+  user-select         : none;
+
+  &:hover {
+    background : get-css(color, white--1);
+  }
+
+  &:active {
+    background : get-css(color, white--3);
+  }
+
+  @include btn-type;
+  @include btn-size;
+  @include btn-border;
+
+  $shadow             : color-mix(in srgb, var(--btn-color--2) 50%, transparent 50%) 0 0 10px;
+  @include btn-shadow($shadow);
 
   & + & {
     margin-left : 12px;

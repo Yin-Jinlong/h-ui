@@ -16,9 +16,14 @@
 import {onMounted, ref, watch} from "vue"
 import {DefinedNamedColor} from "../../../types"
 import {genColor} from "./color-tool"
-import {buttonProps} from "./button";
+import {HButtonProps} from "./button";
 
-const props = defineProps(buttonProps)
+const props = withDefaults(defineProps<HButtonProps>(), {
+    type: '',
+    border: false,
+    shadow: false,
+    size: 'default'
+})
 const btn = ref<HTMLButtonElement>()
 
 
