@@ -1,0 +1,27 @@
+@import './tools/fns';
+
+@include c(card) {
+  background-color : #FFF;
+  border-radius    : 10px;
+  box-shadow       : 2px 2px 20px 0 rgba(0, 0, 0, 0.25);
+  margin           : 2em;
+  min-width        : 200px;
+  padding          : get-css(padding, xlarge);
+  width            : max-content;
+
+  & > div:not(:first-child) {
+    margin-top : get-css(padding, xlarge);
+  }
+
+}
+
+@include c(card-header) {
+  border-bottom : #222 solid 2px;
+  font-size     : 20px;
+  font-weight   : 900;
+}
+
+@include c(card-content) {
+  box-sizing : border-box;
+  width      : 100%;
+}
