@@ -12,11 +12,14 @@ import commonjs from "@rollup/plugin-commonjs"
 import terser from "@rollup/plugin-terser"
 
 import {clean} from "./build-tool"
+import {deepAssign} from "h-ui/utils"
 import {color, convertSize, convertTime, out, outln, OutputOption, rollupProcessPlugin} from "h-ui-build-tool"
 
 import config from './build.config'
+import * as process from "process";
 
 const startTime = performance.now()
+const {stdout} = process
 
 /**
  * 进度插件
@@ -28,8 +31,8 @@ function processPlugin(): Plugin {
      * 清空行，并到行开头
      */
     function lineStart() {
-        readline.clearLine(process.stdout, 0)
-        readline.cursorTo(process.stdout, 0)
+        readline.clearLine(stdout, 0)
+        readline.cursorTo(stdout, 0)
     }
 
     /**
@@ -39,20 +42,20 @@ function processPlugin(): Plugin {
      * @param size 文件大小
      */
     function outFileSize(f: string, size: number) {
-        let w = process.stdout.columns
+        let w = stdout.columns
         let sizeStr = convertSize(size)
         let sizeStrLen = sizeStr.size.toString().length + sizeStr.unit.length
         // 如果空间不够了则换行
         if (w - f.length % w < sizeStrLen + 1)
             outln()
-        readline.cursorTo(process.stdout, w - sizeStrLen)
+        readline.cursorTo(stdout, w - sizeStrLen)
         outln(color.emphasize(sizeStr.size), sizeStr.unit)
     }
 
     let count = 0
     return rollupProcessPlugin({
         transform(id: string) {
-            let w = process.stdout.columns
+            let w = stdout.columns
             let head = `transform(${++count}) `
             let content = id
             let rw = w - head.length
@@ -70,7 +73,7 @@ function processPlugin(): Plugin {
             files.forEach(f => {
                 let {size} = fs.statSync(f)
                 sizeAll += size
-                if (config.reportOutFileInfo !== false) {
+                if (config.reportOutFileInfo) {
                     out(color.path(f))
                     outFileSize(f, size)
                 }
@@ -119,7 +122,7 @@ async function build() {
             resolve(),
             commonjs(),
             processPlugin(),
-            (config.minify ?? true) ? terser() : undefined
+            config.minify ? terser() : undefined
         ]
     })
 
@@ -145,7 +148,7 @@ async function build() {
 }
 
 async function genPackageJson() {
-    let packageJson: Record<string, any> = Object.assign({}, (await import('./package.json')).default)
+    let packageJson: Record<string, any> = deepAssign({}, (await import('./package.json')).default)
     delete packageJson.scripts
     delete packageJson.devDependencies
     delete packageJson.dependencies['h-ui-build-tool']

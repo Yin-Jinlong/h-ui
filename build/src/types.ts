@@ -62,3 +62,18 @@ export declare interface BuildOptions {
         minify?: boolean
     }
 }
+
+export function buildOptions(options: BuildOptions): BuildOptions {
+    return {
+        name: options.name,
+        dist: options.dist,
+        output: options.output,
+        minify: options.minify ?? true,
+        deleteBeforeBuild: options.deleteBeforeBuild ?? true,
+        reportOutFileInfo: options.reportOutFileInfo ?? true,
+        css: {
+            dir: options.css?.dir ?? 'style/css',
+            minify: options.css?.minify ?? true
+        }
+    }
+}

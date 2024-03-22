@@ -1,6 +1,6 @@
-import {BuildOptions} from 'h-ui-build-tool'
+import {buildOptions} from 'h-ui-build-tool'
 
-const options: BuildOptions = {
+export default buildOptions({
     name: 'h-ui',
     dist: '../dist',
     output: [
@@ -20,6 +20,4 @@ const options: BuildOptions = {
             dir: 'lib'
         }
     ]
-}
-
-export default options
+})
