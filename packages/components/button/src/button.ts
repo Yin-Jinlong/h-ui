@@ -7,7 +7,7 @@ import {ExtractPropTypes} from "vue";
 type ButtonType = '' | 'primary' | 'text' | 'plain'
 type ButtonSize = 'default' | 'small' | 'large' | 'xlarge'
 
-export const buttonProps = {
+const buttonProps = {
     type: {
         type: String as () => ButtonType,
         require: true
@@ -18,7 +18,7 @@ export const buttonProps = {
         require: false
     },
     color: {
-        type: String as () => DefinedNamedColor,
+        type: String as () => DefinedNamedColor | string,
         default: undefined,
         require: false
     },
@@ -38,3 +38,7 @@ export type HButtonProps = ExtractPropTypes<typeof buttonProps>
 
 export type HButtonSize = HButtonProps['size']
 export type HButtonType = HButtonProps['type']
+
+export {
+    buttonProps
+}
