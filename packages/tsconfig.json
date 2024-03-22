@@ -17,6 +17,11 @@
     "./*.ts",
     "./package.json",
     "./**/*.ts",
-    "./**/*.vue",
+    "./**/*.vue"
+  ],
+  "references": [
+    {
+      "path": "../build/tsconfig.json"
+    }
   ]
 }
