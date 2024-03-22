@@ -1,0 +1,30 @@
+@function get-css($type,$name) {
+  @return var(--h-#{$type}-#{$name})
+}
+
+@function color-setL($color,$light) {
+  @return change-color($color, $lightness : $light)
+}
+
+@function color-addL($color,$light) {
+  $l : lightness($color) + $light;
+  @if $l > 100% {
+    $l : 100%;
+  }
+  @return change-color($color, $lightness : $l)
+}
+
+@function color-subL($color,$light) {
+  $l : lightness($color) - $light;
+  @if $l < 0 {
+    $l : 0;
+  }
+  @return change-color($color, $lightness : $l)
+}
+
+@mixin c($classname) {
+  $cn : 'h-'+$classname;
+  .#{$cn} {
+    @content
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "paths": {
+      "components": ["./components"],
+      "components/*": ["./components/*"],
+      "h-ui-build-tool": ["../build"],
+      "h-ui/style/*": ["./style/*"],
+      "h-ui/utils": ["./utils"]
+    }
+  },
+  "include": [
+    "./*.ts",
+    "./package.json",
+    "./**/*.ts",
+    "./**/*.vue",
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist/es",
+    "baseUrl": ".",
+    "rootDir": ".",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+  },
+  "include": [
+    "./index.ts",
+    "./package.json",
+    "./components/*.ts",
+    "./components/**/*.ts",
+    "./components/**/*.vue",
+    "./types/*.ts",
+    "./utils/*.ts"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@ui": ["../packages"],
+      "@ui/*": ["../packages/*"],
+      "@pages/*": ["./src/pages/*"]
+    }
+  },
+  "include": ["./src/*.ts", "./src/**/*.ts", "./src/**/*.vue"]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "h-ui-packages",
+  "version": "1.0.0",
+  "description": "web ui库",
+  "author": "Yin-Jinlong",
+  "type": "module",
+  "scripts": {
+    "dev": "cd .. && pnpm -C play dev",
+    "build": "pnpm run build:dist && pnpm run build:css && pnpm run build:types",
+    "build:types": "vue-tsc --declaration --emitDeclarationOnly --p tsconfig.types.json",
+    "build:dist": "build dist",
+    "build:css": "build style"
+  },
+  "license": "LGPL-3.0-or-later",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/chroma-js": "^2.4.4",
+    "@types/node": "^20.11.28",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "chalk": "^5.3.0",
+    "rollup": "^4.13.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "sass": "^1.72.0",
+    "terser": "^5.29.2",
+    "tsc": "^2.0.4",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.5",
+    "vue-tsc": "^2.0.6"
+  },
+  "dependencies": {
+    "chroma-js": "^2.4.2",
+    "h-ui": "link:..\\dist",
+    "h-ui-build-tool": "link:..\\build",
+    "h-ui/style/src": "link:.\\style",
+    "vue": "^3.4.21"
+  }
+}

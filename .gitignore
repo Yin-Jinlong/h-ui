@@ -1,0 +1,15 @@
+### IDE ###
+.vscode/
+.idea/
+
+### Project-Manager ###
+.gradle/
+node_modules/
+
+### out ###
+out/
+*build*/
+gen/
+dist/
+
+!/build/

@@ -1,0 +1,14 @@
+{
+  "name": "h-ui",
+  "version": "1.0.0",
+  "description": "氢 ui库",
+  "author": "Yin-Jinlong",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm -C play dev",
+    "build": "pnpm -C packages build",
+    "build:types": "pnpm -C packages build:types",
+    "postinstall": "pnpm -C build build"
+  },
+  "license": "LGPL-3.0-or-later"
+}
