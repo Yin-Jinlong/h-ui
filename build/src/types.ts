@@ -47,11 +47,18 @@ export declare interface BuildOptions {
      */
     output: OutputOption | OutputOption[]
     /**
+     * 压缩js代码，默认为true
+     */
+    minify?: boolean
+    /**
      * 报告输出文件详情，位置大小等，默认为true
      */
     reportOutFileInfo?: boolean
-    /**
-     * 编译scss文件输出目录，相对于dist
-     */
-    cssDir?: string
+    css?: {
+        /**
+         * 编译scss文件输出目录，相对于dist
+         */
+        dir?: string,
+        minify?: boolean
+    }
 }

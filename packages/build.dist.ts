@@ -9,6 +9,7 @@ import postcss from "rollup-plugin-postcss"
 import typescript from "rollup-plugin-typescript2"
 import resolve from "@rollup/plugin-node-resolve"
 import commonjs from "@rollup/plugin-commonjs"
+import terser from "@rollup/plugin-terser"
 
 import {clean} from "./build-tool"
 import {color, convertSize, convertTime, out, outln, OutputOption, rollupProcessPlugin} from "h-ui-build-tool"
@@ -113,13 +114,12 @@ async function build() {
             }),
             typescript({
                 check: false,
-                tsconfigOverride:{
-
-                }
+                tsconfigOverride: {}
             }),
             resolve(),
             commonjs(),
-            processPlugin()
+            processPlugin(),
+            (config.minify ?? true) ? terser() : undefined
         ]
     })
 
