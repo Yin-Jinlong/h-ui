@@ -22,6 +22,19 @@
   @return change-color($color, $lightness : $l)
 }
 
+@mixin dark-theme() {
+  html[dark] {
+    @content
+  }
+}
+
+// 设置css变量值，带命名前缀
+@mixin css-var($name,$value) {
+  $var   : --h-#{$name};
+  #{$var}: $value;
+}
+
+// 类选择器
 @mixin c($classname) {
   $cn : 'h-'+$classname;
   .#{$cn} {

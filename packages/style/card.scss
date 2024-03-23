@@ -1,9 +1,10 @@
 @import './tools/fns';
 
 @include c(card) {
-  background-color : #FFF;
+  background-color : get-css(background, simple-1);
   border-radius    : 10px;
-  box-shadow       : 2px 2px 20px 0 rgba(0, 0, 0, 0.25);
+  box-shadow       : 2px 2px 5px 0 rgba(128, 128, 128, 0.15);
+  border           : #{get-css(border, color)} solid 1px;
   margin           : 2em;
   min-width        : 200px;
   padding          : get-css(padding, xlarge);
@@ -16,7 +17,7 @@
 }
 
 @include c(card-header) {
-  border-bottom : #222 solid 2px;
+  border-bottom : #{get-css(border,color-simple)} solid 2px;
   font-size     : 20px;
   font-weight   : 900;
 }
@@ -24,4 +25,10 @@
 @include c(card-content) {
   box-sizing : border-box;
   width      : 100%;
+}
+
+@include dark-theme {
+  @include c(card) {
+
+  }
 }

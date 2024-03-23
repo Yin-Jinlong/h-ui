@@ -5,6 +5,10 @@
         </template>
         <template #default>
             <label>
+                <span>暗色</span>
+                <input v-model="dark" type="checkbox">
+            </label>
+            <label>
                 <span>边框</span>
                 <input v-model="border" type="checkbox">
             </label>
@@ -72,9 +76,9 @@ div + div {
 </style>
 
 <script lang="ts" setup>
-import {HButton, HButtonSize, HButtonType, HCard} from '@ui'
+import {HButton, HButtonShadowType, HButtonSize, HButtonType, HCard} from '@ui'
 import {DefinedNamedColor} from "h-ui/types"
-import {ref} from "vue"
+import {ref, watch} from "vue"
 
 const sizes: HButtonSize[] = ['small', 'default', 'large', 'xlarge']
 const types: HButtonType[] = ['primary', 'plain', 'text']
@@ -82,14 +86,22 @@ const typeTexts: string[] = ['主要', '普通', '文字']
 const colors: (string | DefinedNamedColor)[] = ['primary', 'success', 'warning', 'danger', 'info', 'emphasize', '#39e']
 const colorTexts: string[] = ['主要', '成功', '警告', '危险', '信息', '强调', '自定义']
 
+const dark = ref(false)
 const border = ref(false)
 const shadow = ref<string>('off')
 
-function convertShadow() {
+function convertShadow(): boolean | HButtonShadowType {
     if (shadow.value === 'off') {
         return false
     }
-    return shadow.value
+    return shadow.value as HButtonShadowType
 }
+
+watch(dark, (v) => {
+    if (v)
+        document.documentElement.setAttribute('dark', '')
+    else
+        document.documentElement.removeAttribute('dark')
+})
 
 </script>

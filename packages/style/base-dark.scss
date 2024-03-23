@@ -1,0 +1,10 @@
+@use './tools/fns' as *;
+@use './theme/dark' as theme;
+
+html[dark] {
+
+  @include theme.background;
+  @include theme.text;
+  @include theme.border;
+
+}

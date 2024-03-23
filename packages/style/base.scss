@@ -1,5 +1,6 @@
-@use 'var' as *;
+@use './var' as *;
 @use './tools/fns' as *;
+@use './theme/light' as theme;
 
 * {
   margin  : 0;
@@ -77,34 +78,51 @@
 
 @mixin color-adds($name,$base,$count:5,$v:5%) {
   @for $i from 1 to $count+1 {
-    --h-color-#{$name}-#{$i} : #{color-addL($base, $i * $v)};
+    @include css-var(color-#{$name}-#{$i}, color-addL($base, $i * $v));
   }
 }
 
 @mixin color-subs($name,$base,$count:5,$v:5%) {
   @for $i from 1 to $count+1 {
-    --h-color-#{$name}--#{$i} : #{color-subL($base, $i * $v)};
+    @include css-var(color-#{$name}--#{$i}, color-subL($base, $i * $v));
   }
 }
 
 :root {
   @each $name, $color in $colors {
-    --h-color-#{$name}   : #{$color};
-    @include color-adds($name, $color,6);
+    @include css-var(color-#{$name}, $color);
+    @include color-adds($name, $color, 6);
     @include color-subs($name, $color);
   }
 
   @each $name, $color in $light-colors {
-    --h-color-#{$name}   : #{$color};
+    @include css-var(color-#{$name}, $color);
     @include color-subs($name, $color);
   }
 
+  @each $name, $color in $dark-colors {
+    @include css-var(color-#{$name}, $color);
+    @include color-adds($name, $color);
+  }
+
   @each $name, $size in $paddings {
-    --h-padding-#{$name}: #{$size};
+    @include css-var(padding-#{$name}, $size);
   }
 
   @each $name, $size in $radius {
-    --h-radius-#{$name}: #{$size};
+    @include css-var(radius-#{$name}, $size);
   }
 
+  @include theme.background;
+  @include theme.text;
+  @include theme.border;
+
+}
+
+body {
+  background                 : get-css(background, simple);
+  transition-property        : background-color, color;
+  transition-duration        : 0.2s;
+  transition-timing-function : ease-out;
+  color                      : get-css(text, color);
 }

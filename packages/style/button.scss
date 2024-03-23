@@ -29,9 +29,9 @@
   }
 
   &[data-type='text'] {
-    background-color : white;
-    color            : var(--btn-color);
-    padding          : 0;
+    background : transparent;
+    color      : var(--btn-color);
+    padding    : 0;
 
     &:hover {
       color : var(--btn-color-1);
@@ -44,6 +44,7 @@
   }
 
   &[data-type='plain'] {
+    color            : get-css(color, black-1);
     background-color : var(--btn-color-6);
 
     &:hover {
@@ -121,6 +122,7 @@
   background-color    : transparent;
   border              : 0 none transparent;
   border-radius       : get-css(radius, normal);
+  color               : inherit;
   -moz-user-select    : none;
   -webkit-user-select : none;
   user-select         : none;
@@ -137,11 +139,32 @@
   @include btn-size;
   @include btn-border;
 
-  $shadow             : color-mix(in srgb, var(--btn-color--2) 50%, transparent 50%) 0 0 10px;
+  $shadow             : color-mix(in srgb, var(--btn-color--2) 60%, transparent) 0 0 5px;
   @include btn-shadow($shadow);
 
   & + & {
     margin-left : 12px;
   }
 
+}
+
+@include dark-theme {
+
+  @include c(button) {
+    &:hover {
+      background : get-css(color, black-3);
+    }
+
+    &:active {
+      background : get-css(color, black-4);
+    }
+
+    @include btn-type;
+    @include btn-size;
+    @include btn-border;
+
+    $shadow : color-mix(in srgb, var(--btn-color--2) 70%, transparent) 0 0 5px;
+    @include btn-shadow($shadow);
+
+  }
 }
