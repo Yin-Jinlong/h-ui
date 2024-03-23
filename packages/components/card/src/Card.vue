@@ -5,10 +5,10 @@
              data-fill-width>
             <slot name="header"/>
         </div>
-        <div class="card-content">
+        <div class="h-card-content">
             <slot name="default"/>
         </div>
-        <div class="card-footer"
+        <div class="h-card-footer"
              data-empty-hide>
             <slot name="footer"/>
         </div>
