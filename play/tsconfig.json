@@ -8,7 +8,12 @@
       "@pages/*": ["./src/pages/*"]
     }
   },
-  "include": ["./src/*.ts", "./src/**/*.ts", "./src/**/*.vue"],
+  "include": [
+    "./*.d.ts",
+    "./src/*.ts",
+    "./src/**/*.ts",
+    "./src/**/*.vue"
+  ],
   "references": [
     {
       "path": "../packages/tsconfig.types.json"

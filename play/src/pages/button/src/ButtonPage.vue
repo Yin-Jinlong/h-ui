@@ -10,7 +10,7 @@
             </label>
             <label>
                 <span>暗色</span>
-                <input v-model="dark" type="checkbox">
+                <input v-model="dark" type="checkbox" @click="changeTheme">
             </label>
             <label>
                 <span>边框</span>
@@ -84,7 +84,7 @@ div + div {
 <script lang="ts" setup>
 import {HButton, HButtonShadowType, HButtonSize, HButtonType, HCard} from '@ui'
 import {DefinedNamedColor} from "h-ui/types"
-import {ref, watch} from "vue"
+import {ref} from "vue"
 
 const sizes: HButtonSize[] = ['small', 'default', 'large', 'xlarge']
 const types: HButtonType[] = ['primary', 'plain', 'text']
@@ -104,11 +104,41 @@ function convertShadow(): boolean | HButtonShadowType {
     return shadow.value as HButtonShadowType
 }
 
-watch(dark, (v) => {
-    if (v)
-        document.documentElement.setAttribute('dark', '')
-    else
-        document.documentElement.removeAttribute('dark')
-})
+function changeTheme(e: MouseEvent) {
+    const x = e.clientX;
+    const y = e.clientY;
+    const endRadius = Math.hypot(
+        Math.max(x, innerWidth - x),
+        Math.max(y, innerHeight - y)
+    )
+
+    // @ts-ignore
+    const transition = document.startViewTransition(() => {
+        const root = document.documentElement
+        let isDark = root.hasAttribute('dark')
+        if (isDark)
+            root.removeAttribute('dark')
+        else
+            root.setAttribute('dark', '')
+    })
+
+    transition.ready.then(() => {
+        const clipPath = [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`,
+        ];
+        document.documentElement.animate(
+            {
+                clipPath: clipPath,
+            },
+            {
+                duration: 400,
+                easing: "ease-out",
+                pseudoElement: "::view-transition-new(root)",
+            }
+        )
+    })
+
+}
 
 </script>
