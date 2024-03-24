@@ -1,4 +1,4 @@
-import {DefinedNamedColor} from "../../../types"
+import {DefinedNamedColor, Disable} from "../../../types"
 
 /**
  * 按钮样式
@@ -7,7 +7,7 @@ type ButtonType = '' | 'primary' | 'text' | 'plain'
 type ButtonSize = 'default' | 'small' | 'large' | 'xlarge'
 type ButtonShadowType = boolean | 'always' | 'hover'
 
-declare interface ButtonProps {
+declare interface ButtonProps extends Disable {
     type?: ButtonType
     size?: ButtonSize
     color?: DefinedNamedColor | string

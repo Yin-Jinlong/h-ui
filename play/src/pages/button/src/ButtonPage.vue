@@ -5,6 +5,10 @@
         </template>
         <template #default>
             <label>
+                <span>禁用</span>
+                <input v-model="disabled" type="checkbox">
+            </label>
+            <label>
                 <span>暗色</span>
                 <input v-model="dark" type="checkbox">
             </label>
@@ -38,6 +42,7 @@
                         :key="type"
                         :border="border"
                         :color="color"
+                        :disabled="disabled"
                         :shadow="convertShadow()"
                         :type="type">
                     {{ i === 0 ? typeTexts[ti] : colorTexts[i] }}
@@ -54,6 +59,7 @@
                 <h-button v-for="size in sizes"
                           :key="size"
                           :border="border"
+                          :disabled="disabled"
                           :shadow="convertShadow()"
                           :size="size"
                           :type="type">按钮
@@ -86,6 +92,7 @@ const typeTexts: string[] = ['主要', '普通', '文字']
 const colors: (string | DefinedNamedColor)[] = ['primary', 'success', 'warning', 'danger', 'info', 'emphasize', '#39e']
 const colorTexts: string[] = ['主要', '成功', '警告', '危险', '信息', '强调', '自定义']
 
+const disabled = ref(false)
 const dark = ref(false)
 const border = ref(false)
 const shadow = ref<string>('off')

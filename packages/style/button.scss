@@ -18,11 +18,11 @@
     background-color : var(--btn-color);
     color            : white;
 
-    &:hover {
+    &:hover:not([data-disabled=true]) {
       background : var(--btn-color-1);
     }
 
-    &:active {
+    &:active:not([data-disabled=true]) {
       background : var(--btn-color--1);
     }
 
@@ -33,12 +33,12 @@
     color      : var(--btn-color);
     padding    : 0;
 
-    &:hover {
-      color : var(--btn-color-1);
+    &:hover:not([data-disabled=true]) {
+      color : var(--btn-color--2);
     }
 
-    &:active {
-      color : var(--btn-color--2);
+    &:active:not([data-disabled=true]) {
+      color : var(--btn-color--4);
     }
 
   }
@@ -47,11 +47,11 @@
     color            : get-css(color, black-1);
     background-color : var(--btn-color-6);
 
-    &:hover {
+    &:hover:not([data-disabled=true]) {
       background-color : var(--btn-color-5);
     }
 
-    &:active {
+    &:active:not([data-disabled=true]) {
       background-color : var(--btn-color-4);
     }
 
@@ -89,8 +89,12 @@
     &[data-type='text'] {
       border-color : var(--btn-color-3);
 
-      &:active {
-        border-color : var(--btn-color--1);
+      &:hover:not([data-disabled=true]) {
+        border-color : var(--btn-color-1);
+      }
+
+      &:active:not([data-disabled=true]) {
+        border-color : var(--btn-color--3);
       }
     }
   }
@@ -108,7 +112,7 @@
   }
 
   &[data-shadow='hover'] {
-    &:hover {
+    &:hover:not([data-disabled=true]) {
       box-shadow : $shadow;
     }
   }
@@ -122,6 +126,7 @@
   background-color    : transparent;
   border              : 0 none transparent;
   border-radius       : get-css(radius, normal);
+  box-sizing          : border-box;
   color               : inherit;
   -moz-user-select    : none;
   -webkit-user-select : none;
@@ -141,6 +146,11 @@
 
   $shadow             : color-mix(in srgb, var(--btn-color--2) 60%, transparent) 0 0 5px;
   @include btn-shadow($shadow);
+
+  &[data-disabled=true] {
+    cursor  : not-allowed;
+    opacity : 0.5;
+  }
 
   & + & {
     margin-left : 12px;
