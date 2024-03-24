@@ -76,6 +76,11 @@
   display : none;
 }
 
+[data-break-line] {
+  white-space : break-spaces;
+  word-break  : break-word;
+}
+
 @mixin color-adds($name,$base,$count:5,$v:5%) {
   @for $i from 1 to $count+1 {
     @include css-var(color-#{$name}-#{$i}, color-addL($base, $i * $v));
@@ -121,8 +126,8 @@
 
 body {
   background                 : get-css(background, simple);
-  transition-property        : background-color, color;
-  transition-duration        : 0.2s;
-  transition-timing-function : ease-out;
   color                      : get-css(text, color);
+  transition-duration        : 0.2s;
+  transition-property        : background-color, color;
+  transition-timing-function : ease-out;
 }

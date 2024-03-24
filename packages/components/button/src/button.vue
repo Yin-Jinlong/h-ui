@@ -6,6 +6,7 @@
             :data-size="size"
             :data-type="type"
             class="h-button"
+            data-break-line
             data-pointer
             data-transition>
         <slot/>

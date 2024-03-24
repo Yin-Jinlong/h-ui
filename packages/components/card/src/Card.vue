@@ -1,6 +1,7 @@
 <template>
     <div class="h-card">
         <div class="h-card-header"
+             data-break-line
              data-empty-hide
              data-fill-width>
             <slot name="header"/>
