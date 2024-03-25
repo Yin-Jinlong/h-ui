@@ -3,9 +3,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@/": ["./src/"],
       "@ui": ["../packages"],
       "@ui/*": ["../packages/*"],
-      "@pages/*": ["./src/pages/*"]
+      "@pages/*": ["./src/pages/*"],
+      "@/components": ["./src/components"],
+
     }
   },
   "include": [

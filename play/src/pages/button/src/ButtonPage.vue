@@ -9,10 +9,6 @@
                 <input v-model="disabled" type="checkbox">
             </label>
             <label>
-                <span>暗色</span>
-                <input v-model="dark" type="checkbox" @click="changeTheme">
-            </label>
-            <label>
                 <span>边框</span>
                 <input v-model="border" type="checkbox">
             </label>
@@ -93,7 +89,6 @@ const colors: (string | DefinedNamedColor)[] = ['primary', 'success', 'warning',
 const colorTexts: string[] = ['主要', '成功', '警告', '危险', '信息', '强调', '自定义']
 
 const disabled = ref(false)
-const dark = ref(false)
 const border = ref(false)
 const shadow = ref<string>('off')
 
@@ -102,43 +97,6 @@ function convertShadow(): boolean | HButtonShadowType {
         return false
     }
     return shadow.value as HButtonShadowType
-}
-
-function changeTheme(e: MouseEvent) {
-    const x = e.clientX;
-    const y = e.clientY;
-    const endRadius = Math.hypot(
-        Math.max(x, innerWidth - x),
-        Math.max(y, innerHeight - y)
-    )
-
-    // @ts-ignore
-    const transition = document.startViewTransition(() => {
-        const root = document.documentElement
-        let isDark = root.hasAttribute('dark')
-        if (isDark)
-            root.removeAttribute('dark')
-        else
-            root.setAttribute('dark', '')
-    })
-
-    transition.ready.then(() => {
-        const clipPath = [
-            `circle(0px at ${x}px ${y}px)`,
-            `circle(${endRadius}px at ${x}px ${y}px)`,
-        ];
-        document.documentElement.animate(
-            {
-                clipPath: clipPath,
-            },
-            {
-                duration: 400,
-                easing: "ease-out",
-                pseudoElement: "::view-transition-new(root)",
-            }
-        )
-    })
-
 }
 
 </script>
