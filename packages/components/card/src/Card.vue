@@ -1,16 +1,18 @@
 <template>
     <div class="h-card">
-        <div class="h-card-header"
+        <div v-if="$slots.header"
+             class="h-card-header"
              data-break-line
-             data-empty-hide
-             data-fill-width>
+             data-fill-width
+             data-relative>
             <slot name="header"/>
         </div>
-        <div class="h-card-content">
+        <div class="h-card-content" data-relative>
             <slot name="default"/>
         </div>
-        <div class="h-card-footer"
-             data-empty-hide>
+        <div v-if="$slots.footer"
+             class="h-card-footer"
+             data-relative>
             <slot name="footer"/>
         </div>
     </div>
