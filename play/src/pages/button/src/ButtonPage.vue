@@ -4,14 +4,12 @@
             设置
         </template>
         <template #default>
-            <label>
-                <span>禁用</span>
-                <input v-model="disabled" type="checkbox">
-            </label>
-            <label>
-                <span>边框</span>
-                <input v-model="border" type="checkbox">
-            </label>
+            <h-check-box v-model="disabled">
+                禁用
+            </h-check-box>
+            <h-check-box v-model="border">
+                边框
+            </h-check-box>
             <label>
                 <span>阴影</span>
                 <select id="shadow" v-model="shadow">
@@ -27,12 +25,12 @@
             基础用法和颜色
         </template>
         <template #default>
-            <div>
+            <div class="box">
                 <h-button :disabled="disabled" type="">
                     没有样式
                 </h-button>
             </div>
-            <div v-for="(type,ti) in types" class="grid">
+            <div v-for="(type,ti) in types" class="grid box">
                 <h-button
                         v-for="(color,i) in colors"
                         :key="type"
@@ -51,7 +49,7 @@
             尺寸
         </template>
         <template #default>
-            <div v-for="type in types">
+            <div v-for="type in types" class="box">
                 <h-button v-for="size in sizes"
                           :key="size"
                           :border="border"
@@ -66,7 +64,7 @@
 </template>
 
 <style lang="scss" scoped>
-div + div {
+.box + .box {
   margin-top : 1em;
 }
 
@@ -78,7 +76,7 @@ div + div {
 </style>
 
 <script lang="ts" setup>
-import {HButton, HButtonShadowType, HButtonSize, HButtonType, HCard} from '@ui'
+import {HButton, HButtonShadowType, HButtonSize, HButtonType, HCard, HCheckBox} from '@ui'
 import {DefinedNamedColor} from "h-ui/types"
 import {ref} from "vue"
 

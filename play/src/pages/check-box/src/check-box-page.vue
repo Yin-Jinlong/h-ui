@@ -4,10 +4,9 @@
             设置
         </template>
         <template #default>
-            <label>
-                <span>禁用</span>
-                <input v-model="disabled" type="checkbox">
-            </label>
+            <h-check-box v-model="disabled">
+                禁用
+            </h-check-box>
         </template>
     </h-card>
     <h-card>
