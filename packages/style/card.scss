@@ -12,7 +12,7 @@
   width            : max-content;
 
   & > div:not(:first-child) {
-    margin-top : get-css(padding, xlarge);
+    margin-top : get-css(padding, large);
   }
 
 }
