@@ -22,7 +22,7 @@
     color            : white;
 
     &:hover:not([data-disabled]) {
-      background : var(--btn-color-1);
+      background : var(--btn-color-2);
     }
 
     &:active:not([data-disabled]) {
@@ -42,12 +42,12 @@
     }
 
     &:hover:not([data-disabled]) {
-      color      : var(--btn-color--2);
+      color      : var(--btn-color-2);
       background : transparent;
     }
 
     &:active:not([data-disabled]) {
-      color      : var(--btn-color--4);
+      color      : var(--btn-color--3);
       background : transparent;
     }
 
@@ -62,7 +62,7 @@
     }
 
     &:active:not([data-disabled]) {
-      background-color : var(--btn-color-4);
+      background-color : var(--btn-color-3);
     }
 
   }
