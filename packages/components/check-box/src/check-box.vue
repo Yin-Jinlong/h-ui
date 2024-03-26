@@ -1,13 +1,20 @@
 <template>
     <div v-disabled="disabled"
-         :data-checked="checked?'':undefined"
-         :data-size="size"
-         class="h-check-box"
+         data-flex-center
+         data-none-select
          data-pointer
-         data-relative
          data-transition-fast
+         style="display: inline-flex"
          @click="click">
+        <slot/>
+        <div
+                :data-checked="checked?'':undefined"
+                :data-size="size"
+                class="h-check-box"
+                data-relative
+                data-transition-fast/>
     </div>
+
 </template>
 
 <script lang="ts" setup>
