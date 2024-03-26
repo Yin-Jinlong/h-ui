@@ -24,6 +24,15 @@ import {ref} from "vue";
 
 const dark = ref(false)
 
+function change() {
+    const root = document.documentElement
+    let isDark = root.hasAttribute('dark')
+    if (isDark)
+        root.removeAttribute('dark')
+    else
+        root.setAttribute('dark', '')
+}
+
 function changeTheme(e: MouseEvent) {
     const x = e.clientX;
     const y = e.clientY;
@@ -32,32 +41,27 @@ function changeTheme(e: MouseEvent) {
         Math.max(y, innerHeight - y)
     )
 
-    // @ts-ignore
-    const transition = document.startViewTransition(() => {
-        const root = document.documentElement
-        let isDark = root.hasAttribute('dark')
-        if (isDark)
-            root.removeAttribute('dark')
-        else
-            root.setAttribute('dark', '')
-    })
-
-    transition.ready.then(() => {
-        const clipPath = [
-            `circle(0px at ${x}px ${y}px)`,
-            `circle(${endRadius}px at ${x}px ${y}px)`,
-        ];
-        document.documentElement.animate(
-            {
-                clipPath: clipPath,
-            },
-            {
-                duration: 400,
-                easing: "ease-out",
-                pseudoElement: "::view-transition-new(root)",
-            }
-        )
-    })
+    if (document.startViewTransition) {
+        const transition = document.startViewTransition(change)
+        transition.ready.then(() => {
+            const clipPath = [
+                `circle(0px at ${x}px ${y}px)`,
+                `circle(${endRadius}px at ${x}px ${y}px)`,
+            ];
+            document.documentElement.animate(
+                {
+                    clipPath: clipPath,
+                },
+                {
+                    duration: 400,
+                    easing: "ease-out",
+                    pseudoElement: "::view-transition-new(root)",
+                }
+            )
+        })
+    } else {
+        change()
+    }
 
 }
 </script>
