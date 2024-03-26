@@ -1,4 +1,4 @@
-import {ObjectDirective} from "vue"
+import {DirectiveBinding, ObjectDirective} from "vue"
 
 const eventNames: (keyof GlobalEventHandlersEventMap)[] = [
     'copy', 'cut', 'paste', 'invalid',
@@ -8,6 +8,15 @@ const eventNames: (keyof GlobalEventHandlersEventMap)[] = [
     'focus', 'focusin', 'focusout', 'blur',
     'input', 'beforeinput',
 ]
+
+function updateDisabledStatus<T>(el: HTMLElement, binding: DirectiveBinding<T>) {
+    if (binding.value) {
+        el.setAttribute('data-disabled', '')
+        el.blur()
+    } else {
+        el.removeAttribute('data-disabled')
+    }
+}
 
 /**
  * 阻止事件冒泡，自动为元素添加 data-disabled 属性
@@ -26,12 +35,11 @@ export const vDisabled = {
         })
 
     },
+    mounted(el, binding) {
+        updateDisabledStatus(el, binding)
+    },
     updated(el, binding, vNode) {
-        if (binding.value) {
-            el.setAttribute('data-disabled', '')
-            el.blur()
-        } else {
-            el.removeAttribute('data-disabled')
-        }
-    }
+        updateDisabledStatus(el, binding)
+    },
+    deep: true
 } as ObjectDirective<HTMLElement, boolean | undefined>
