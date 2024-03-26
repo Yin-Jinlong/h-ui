@@ -1,6 +1,7 @@
 @use './var' as *;
 @use './tools/fns' as *;
 @use './tools/prefix' as *;
+@use './tools/style' as *;
 @use './tools/size' as size;
 @use './theme/light' as theme;
 
@@ -90,6 +91,10 @@
 [data-break-line] {
   white-space : break-spaces;
   word-break  : break-word;
+}
+
+[data-disabled] {
+  @include disabled;
 }
 
 @mixin color-adds($name,$base,$count:5,$v:5%) {

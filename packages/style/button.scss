@@ -1,5 +1,6 @@
 @import 'tools/fns';
 @import 'tools/prefix';
+@import 'tools/style';
 
 @mixin gen-colors($name) {
   --btn-color : #{get-css(color,$name)};
@@ -19,11 +20,11 @@
     background-color : var(--btn-color);
     color            : white;
 
-    &:hover:not([data-disabled=true]) {
+    &:hover:not([data-disabled]) {
       background : var(--btn-color-1);
     }
 
-    &:active:not([data-disabled=true]) {
+    &:active:not([data-disabled]) {
       background : var(--btn-color--1);
     }
 
@@ -34,11 +35,11 @@
     color      : var(--btn-color);
     padding    : 0;
 
-    &:hover:not([data-disabled=true]) {
+    &:hover:not([data-disabled]) {
       color : var(--btn-color--2);
     }
 
-    &:active:not([data-disabled=true]) {
+    &:active:not([data-disabled]) {
       color : var(--btn-color--4);
     }
 
@@ -48,11 +49,11 @@
     color            : get-css(color, black-1);
     background-color : var(--btn-color-6);
 
-    &:hover:not([data-disabled=true]) {
+    &:hover:not([data-disabled]) {
       background-color : var(--btn-color-5);
     }
 
-    &:active:not([data-disabled=true]) {
+    &:active:not([data-disabled]) {
       background-color : var(--btn-color-4);
     }
 
@@ -90,11 +91,11 @@
     &[data-type='text'] {
       border-color : var(--btn-color-3);
 
-      &:hover:not([data-disabled=true]) {
+      &:hover:not([data-disabled]) {
         border-color : var(--btn-color-1);
       }
 
-      &:active:not([data-disabled=true]) {
+      &:active:not([data-disabled]) {
         border-color : var(--btn-color--3);
       }
     }
@@ -113,7 +114,7 @@
   }
 
   &[data-shadow='hover'] {
-    &:hover:not([data-disabled=true]) {
+    &:hover:not([data-disabled]) {
       box-shadow : $shadow;
     }
   }
@@ -131,11 +132,11 @@
   color            : inherit;
   @include css-prefix(user-select, none);
 
-  &:hover {
+  &:hover:not([data-disabled]) {
     background : get-css(color, white--1);
   }
 
-  &:active {
+  &:active:not([data-disabled]) {
     background : get-css(color, white--3);
   }
 
@@ -145,11 +146,6 @@
 
   $shadow          : color-mix(in srgb, var(--btn-color--2) 60%, transparent) 0 0 5px;
   @include btn-shadow($shadow);
-
-  &[data-disabled=true] {
-    cursor  : not-allowed;
-    opacity : 0.5;
-  }
 
   & + & {
     margin-left : 12px;

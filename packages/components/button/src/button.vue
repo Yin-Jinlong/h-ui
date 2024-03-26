@@ -1,10 +1,8 @@
 <template>
     <button
             ref="btn"
-            v-key-event="checkDisabled"
-            v-mouse-event="checkDisabled"
+            v-disabled="disabled"
             :data-border="border"
-            :data-disabled="disabled"
             :data-shadow="shadow"
             :data-size="size"
             :data-type="type"
@@ -21,7 +19,7 @@
 <script lang="ts" setup>
 import {onMounted, ref, watch} from "vue"
 import {DefinedNamedColor} from "../../../types"
-import {vMouseEvent, vKeyEvent} from "../../../utils"
+import {vDisabled} from "../../../utils"
 import {genColor} from "./color-tool"
 import {HButtonProps} from "./button"
 
@@ -42,13 +40,6 @@ function changeColor(color: DefinedNamedColor | string) {
         style.setProperty(`--btn-color-${i}`, btnColors[i])
     for (let i = 1; i <= 5; i++)
         style.setProperty(`--btn-color--${i}`, btnColors[6 + i])
-}
-
-
-function checkDisabled(e: Event) {
-    if (props.disabled) {
-        e.stopImmediatePropagation()
-    }
 }
 
 onMounted(() => {

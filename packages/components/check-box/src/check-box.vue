@@ -1,8 +1,9 @@
 <template>
-    <div :data-checked="checked?'':undefined"
+    <div v-disabled="disabled"
+         :data-checked="checked?'':undefined"
+         :data-size="size"
          class="h-check-box"
          data-pointer
-         :data-size="size"
          data-relative
          data-transition-fast
          @click="click">
@@ -12,6 +13,7 @@
 <script lang="ts" setup>
 
 import {HCheckBoxProps} from "./check-box"
+import {vDisabled} from '../../../utils'
 
 const props = withDefaults(defineProps<HCheckBoxProps>(), {
     size: 'normal',

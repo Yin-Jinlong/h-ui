@@ -28,7 +28,7 @@
         </template>
         <template #default>
             <div>
-                <h-button type="">
+                <h-button :disabled="disabled" type="">
                     没有样式
                 </h-button>
             </div>
