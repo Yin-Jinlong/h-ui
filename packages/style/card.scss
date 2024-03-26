@@ -1,8 +1,8 @@
-@import './tools/fns';
+@use './tools/fns' as *;
 
 @include c(card) {
-  background-color : get-css(background, simple-1);
-  border           : #{get-css(border, color)} solid 1px;
+  background-color : get-css(color, background-simple-1);
+  border           : #{get-css(color,border)} solid 1px;
   border-radius    : 10px;
   box-shadow       : 2px 2px 5px 0 rgba(128, 128, 128, 0.15);
   box-sizing       : border-box;
@@ -18,7 +18,7 @@
 }
 
 @include c(card-header) {
-  border-bottom : #{get-css(border,color-simple)} solid 2px;
+  border-bottom : #{get-css(color,border-simple)} solid 2px;
   font-size     : 20px;
   font-weight   : 900;
 }

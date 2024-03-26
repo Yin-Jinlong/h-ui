@@ -82,7 +82,7 @@ import {HButton, HButtonShadowType, HButtonSize, HButtonType, HCard} from '@ui'
 import {DefinedNamedColor} from "h-ui/types"
 import {ref} from "vue"
 
-const sizes: HButtonSize[] = ['small', 'default', 'large', 'xlarge']
+const sizes: HButtonSize[] = ['small', 'normal', 'large', 'xlarge']
 const types: HButtonType[] = ['primary', 'plain', 'text']
 const typeTexts: string[] = ['主要', '普通', '文字']
 const colors: (string | DefinedNamedColor)[] = ['primary', 'success', 'warning', 'danger', 'info', 'emphasize', '#39e']

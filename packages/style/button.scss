@@ -1,4 +1,5 @@
 @import 'tools/fns';
+@import 'tools/prefix';
 
 @mixin gen-colors($name) {
   --btn-color : #{get-css(color,$name)};
@@ -63,7 +64,7 @@
     padding : get-css(padding, small) get-css(padding, normal);
   }
 
-  &[data-size='default'] {
+  &[data-size='normal'] {
     padding : get-css(padding, normal) get-css(padding, large);
   }
 
@@ -123,14 +124,12 @@
 
 @include c(button) {
   @include gen-colors(primary);
-  background-color    : transparent;
-  border              : 0 none transparent;
-  border-radius       : get-css(radius, normal);
-  box-sizing          : border-box;
-  color               : inherit;
-  -moz-user-select    : none;
-  -webkit-user-select : none;
-  user-select         : none;
+  background-color : transparent;
+  border           : 0 none transparent;
+  border-radius    : get-css(radius, normal);
+  box-sizing       : border-box;
+  color            : inherit;
+  @include css-prefix(user-select, none);
 
   &:hover {
     background : get-css(color, white--1);
@@ -144,7 +143,7 @@
   @include btn-size;
   @include btn-border;
 
-  $shadow             : color-mix(in srgb, var(--btn-color--2) 60%, transparent) 0 0 5px;
+  $shadow          : color-mix(in srgb, var(--btn-color--2) 60%, transparent) 0 0 5px;
   @include btn-shadow($shadow);
 
   &[data-disabled=true] {

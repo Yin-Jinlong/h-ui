@@ -25,22 +25,6 @@ li {
 <script setup lang="ts">
 
 import {HButton} from "@ui"
-
-interface Page {
-    name: string
-    path: string
-}
-
-const pages: Page[] = [
-    {
-        name: 'Button',
-        path: '/button'
-    },
-    {
-        name: 'Card',
-        path: '/card'
-    },
-]
-
+import pages from "../../../pages-index"
 
 </script>

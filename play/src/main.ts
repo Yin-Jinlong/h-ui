@@ -1,22 +1,17 @@
 import {createApp} from 'vue'
-import {createRouter, createWebHashHistory} from "vue-router";
+import {createRouter, createWebHashHistory} from "vue-router"
 import './style.scss'
-import App from './App.vue';
+import App from './App.vue'
+import pages from "./pages-index"
 
 const router = createRouter({
     routes: [
         {
+            name: 'home',
             path: '/',
-            component: () => import('@pages/home'),
+            component: () => import('./pages/home')
         },
-        {
-            path: '/button',
-            component: () => import('@pages/button')
-        },
-        {
-            path: '/card',
-            component: () => import('@pages/card')
-        }
+        ...pages
     ],
     history: createWebHashHistory()
 })

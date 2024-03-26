@@ -1,19 +1,19 @@
 @use '../tools/fns' as *;
 
 @mixin background() {
-  @include css-var(background-color, get-css(color, white));
-  @include css-var(background-simple, get-css(color, white));
-  @include css-var(background-simple-1, get-css(color, white));
+  @include css-var(color-background, get-css(color, white));
+  @include css-var(color-background-simple, get-css(color, white));
+  @include css-var(color-background-simple-1, get-css(color, white));
 }
 
 @mixin text() {
-  @include css-var(text-color, get-css(color, black));
+  @include css-var(color-text, get-css(color, black));
   @for $i from 1 to 6 {
-    @include css-var(text-color-#{$i}, get-css(color, black-#{$i}));
+    @include css-var(color-text-#{$i}, get-css(color, black-#{$i}));
   }
 }
 
 @mixin border() {
-  @include css-var(border-color, get-css(color, white--4));
-  @include css-var(border-color-simple, get-css(color, black-5));
+  @include css-var(color-border, get-css(color, white--4));
+  @include css-var(color-border-simple, get-css(color, black-5));
 }

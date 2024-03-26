@@ -4,9 +4,9 @@
             <h2>H-UI</h2>
         </div>
         <div data-fill-height data-flex-column-center style="padding: 0.5rem">
-            <label>
+            <label data-flex-center @click="changeTheme">
                 <span>暗色</span>
-                <input v-model="dark" type="checkbox" @click="changeTheme">
+                <h-check-box v-model="dark"/>
             </label>
         </div>
     </div>
@@ -20,7 +20,8 @@
 </style>
 
 <script lang="ts" setup>
-import {ref} from "vue";
+import {ref} from "vue"
+import {HCheckBox} from '@ui'
 
 const dark = ref(false)
 
@@ -31,6 +32,7 @@ function change() {
         root.removeAttribute('dark')
     else
         root.setAttribute('dark', '')
+    dark.value = !isDark
 }
 
 function changeTheme(e: MouseEvent) {

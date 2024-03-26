@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<HButtonProps>(), {
     type: '',
     border: false,
     shadow: false,
-    size: 'default'
+    size: 'normal'
 })
 const btn = ref<HTMLButtonElement>()
 

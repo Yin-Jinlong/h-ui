@@ -1,3 +1,5 @@
-import HCard from "./src/Card.vue";
+import Card from "./src/Card.vue"
 
-export {HCard}
+export const HCard=Card;
+
+export default HCard;

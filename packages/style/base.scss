@@ -1,5 +1,7 @@
 @use './var' as *;
 @use './tools/fns' as *;
+@use './tools/prefix' as *;
+@use './tools/size' as size;
 @use './theme/light' as theme;
 
 * {
@@ -32,8 +34,7 @@
 }
 
 [data-fill-size] {
-  height : 100%;
-  width  : 100%;
+  @include size.fill;
 }
 
 // 光标类
@@ -43,9 +44,7 @@
 }
 
 [data-none-select] {
-  -moz-user-select    : none;
-  -webkit-user-select : none;
-  user-select         : none;
+  @include css-prefix(user-select, none);
 }
 
 // 布局类
@@ -137,8 +136,8 @@
 }
 
 body {
-  background                 : get-css(background, simple);
-  color                      : get-css(text, color);
+  background                 : get-css(color, background-simple);
+  color                      : get-css(color, text);
   transition-duration        : 0.2s;
   transition-property        : background-color, color;
   transition-timing-function : ease-out;

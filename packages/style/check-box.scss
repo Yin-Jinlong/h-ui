@@ -1,0 +1,58 @@
+@use './tools/fns' as *;
+@use './tools/prefix' as *;
+@use './tools/size' as size;
+
+@mixin cb-size() {
+  &[data-size='small'] {
+    @include size.square(14px);
+    font-size : 12px;
+  }
+
+  &[data-size='normal'] {
+    @include size.square(18px);
+    font-size : 14px;
+  }
+
+  &[data-size='large'] {
+    @include size.square(22px);
+    font-size : 18px;
+  }
+
+  &[data-size='xlarge'] {
+    @include size.square(26px);
+    font-size     : 22px;
+  }
+}
+
+@include c(check-box) {
+  background-color : get-css(color, background-simple);
+  border           : gray solid 1px;
+  border-radius    : 5px;
+  display          : inline-block;
+  font-size        : 16px;
+  @include css-prefix(user-select, none);
+
+  &::before {
+    @include size.fill;
+    align-items     : center;
+    color           : get-css(color, white);
+    content         : '\2713';
+    display         : flex;
+    font-weight     : 900;
+    justify-content : center;
+    position        : absolute;
+    transform       : scaleY(0);
+    transition      : transform .2s ease-out;
+  }
+
+  @include cb-size;
+
+  &[data-checked] {
+    background-color : get-css(color, primary);
+
+    &::before {
+      transform : scaleY(1);
+    }
+  }
+
+}
