@@ -1,6 +1,7 @@
-@import 'tools/fns';
-@import 'tools/prefix';
-@import 'tools/style';
+@use 'tools/fns' as *;
+@use 'tools/prefix' as *;
+@use 'tools/size' as size;
+@use 'tools/style' as *;
 
 @mixin gen-colors($name) {
   --btn-color : #{get-css(color,$name)};
@@ -35,12 +36,19 @@
     color      : var(--btn-color);
     padding    : 0;
 
+    &[data-size] {
+      padding       : 0;
+      border-radius : 3px;
+    }
+
     &:hover:not([data-disabled]) {
-      color : var(--btn-color--2);
+      color      : var(--btn-color--2);
+      background : transparent;
     }
 
     &:active:not([data-disabled]) {
-      color : var(--btn-color--4);
+      color      : var(--btn-color--4);
+      background : transparent;
     }
 
   }
