@@ -9,6 +9,7 @@
   },
   "include": [
     "./index.ts",
+    "./*.d.ts",
     "./package.json",
     "./components/*.ts",
     "./components/**/*.ts",

@@ -21,7 +21,7 @@
 
 <script lang="ts" setup>
 import {ref} from "vue"
-import {HCheckBox} from '@ui'
+import {HCheckBox, viewTransition} from '@ui'
 
 const dark = ref(false)
 
@@ -43,27 +43,21 @@ function changeTheme(e: MouseEvent) {
         Math.max(y, innerHeight - y)
     )
 
-    if (document.startViewTransition) {
-        const transition = document.startViewTransition(change)
-        transition.ready.then(() => {
-            const clipPath = [
-                `circle(0px at ${x}px ${y}px)`,
-                `circle(${endRadius}px at ${x}px ${y}px)`,
-            ];
-            document.documentElement.animate(
-                {
-                    clipPath: clipPath,
-                },
-                {
-                    duration: 400,
-                    easing: "ease-out",
-                    pseudoElement: "::view-transition-new(root)",
-                }
-            )
-        })
-    } else {
-        change()
-    }
-
+    viewTransition(change, null,() => {
+        const clipPath = [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`,
+        ];
+        document.documentElement.animate(
+            {
+                clipPath: clipPath,
+            },
+            {
+                duration: 400,
+                easing: "ease-out",
+                pseudoElement: "::view-transition-new(root)",
+            }
+        )
+    })
 }
 </script>
