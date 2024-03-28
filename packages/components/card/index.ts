@@ -1,4 +1,4 @@
-import Card from "./src/Card.vue"
+import Card from "./src/card.vue"
 
 export const HCard=Card;
 
