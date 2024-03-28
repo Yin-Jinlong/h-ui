@@ -1,3 +1,3 @@
-import ButtonPage from "./src/ButtonPage.vue";
+import ButtonPage from "./src/button-page.vue";
 
 export default ButtonPage
