@@ -1,0 +1,49 @@
+@use './tools/fns' as *;
+@use './tools/size' as size;
+
+@mixin s-size() {
+  &[data-size=small] {
+    @include css-var(switch-height, 20px);
+  }
+  &[data-size=normal] {
+    @include css-var(switch-height, 25px);
+  }
+  &[data-size=large] {
+    @include css-var(switch-height, 30px);
+  }
+  &[data-size=xlarge] {
+    @include css-var(switch-height, 35px);
+  }
+}
+
+@include c(switch) {
+  background-color : gray;
+  border-radius    : 100px;
+  height           : get-css(switch, height);
+  width            : calc(#{get-css(switch, height)} * 1.75);
+
+  &:before {
+    --size           : calc(#{get-css(switch, height)} - 4px);
+    background-color : get-css(color, white);
+    border-radius    : 100px;
+    content          : '';
+    display          : block;
+    height           : var(--size);
+    left             : 2px;
+    position         : absolute;
+    top              : 2px;
+    transition       : all 0.3s ease-out;
+    width            : var(--size);
+  }
+
+  @include s-size;
+
+  &[data-on] {
+    background-color : get-css(color, primary);
+
+    &:before {
+      left : calc(100% - 2px - var(--size));
+    }
+  }
+
+}

@@ -21,5 +21,10 @@ export default [
         name: 'check-box',
         path: '/check-box',
         component: () => import('./pages/check-box')
+    } ,
+    {
+        name: 'switch',
+        path: '/switch',
+        component: () => import('./pages/switch')
     }
 ] as Page[]
