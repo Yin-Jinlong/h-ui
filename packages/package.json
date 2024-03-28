@@ -1,6 +1,6 @@
 {
   "name": "h-ui-packages",
-  "version": "1.0.0",
+  "version": "0.1.0-test.1",
   "description": "web ui库",
   "author": "Yin-Jinlong",
   "type": "module",
@@ -21,6 +21,7 @@
     "@types/node": "^20.11.28",
     "@vitejs/plugin-vue": "^5.0.4",
     "chalk": "^5.3.0",
+    "esno": "^4.7.0",
     "lightningcss": "^1.24.1",
     "rollup": "^4.13.0",
     "rollup-plugin-copy": "^3.5.0",

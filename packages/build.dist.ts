@@ -155,7 +155,20 @@ async function genPackageJson() {
     delete packageJson.dependencies['h-ui']
     delete packageJson.dependencies['h-ui/style/src']
 
-    packageJson.name = 'h-ui'
+    packageJson.name = '@yin-jinlong/h-ui'
+    packageJson.files = [
+        "dist",
+        "es",
+        "lib",
+        "style",
+        "README.md"
+    ]
+    packageJson.homepage = 'https://github.com/Yin-Jinlong/h-ui'
+    packageJson.keywords = ['vue3', 'vue-ui', 'ui']
+    packageJson.repository = {
+        type: "git",
+        url: "git+https://github.com/Yin-Jinlong/h-ui.git"
+    }
     packageJson.main = './lib/index.js'
     packageJson.module = './es/index.mjs'
     packageJson.types = './es/index.d.ts'
@@ -173,6 +186,7 @@ async function genPackageJson() {
     }
 
     fs.writeFileSync(path.resolve(config.dist, 'package.json'), JSON.stringify(packageJson, null, 2))
+    fs.cpSync('README.md',path.resolve(config.dist, 'README.md'))
 }
 
 build().then()

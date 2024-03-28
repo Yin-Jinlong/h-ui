@@ -20,7 +20,7 @@
 
   &[data-size='xlarge'] {
     @include size.square(26px);
-    font-size     : 22px;
+    font-size : 22px;
   }
 }
 
@@ -36,7 +36,7 @@
     @include size.fill;
     align-items     : center;
     color           : get-css(color, white);
-    content         : '\2713';
+    content         : '';
     display         : flex;
     font-weight     : 900;
     justify-content : center;
@@ -51,6 +51,7 @@
     background-color : get-css(color, primary);
 
     &::before {
+      content   : '\2713';
       transform : scaleY(1);
     }
   }
