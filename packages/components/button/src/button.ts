@@ -1,4 +1,4 @@
-import {DefinedNamedColor, Disable, NamedSize} from "../../../types"
+import {BindSize, DefinedNamedColor, Disable} from "../../../types"
 
 /**
  * 按钮样式
@@ -6,15 +6,13 @@ import {DefinedNamedColor, Disable, NamedSize} from "../../../types"
 type ButtonType = '' | 'primary' | 'text' | 'plain'
 type ButtonShadowType = boolean | 'always' | 'hover'
 
-declare interface ButtonProps extends Disable {
+declare interface ButtonProps extends Disable, BindSize {
     type?: ButtonType
-    size?: NamedSize
     color?: DefinedNamedColor | string
     border?: boolean
     shadow?: ButtonShadowType
 }
 
 export type HButtonProps = ButtonProps
-export type HButtonSize = NamedSize
 export type HButtonType = ButtonType
 export type HButtonShadowType = ButtonShadowType
