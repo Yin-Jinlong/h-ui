@@ -1,7 +1,7 @@
 {
   "name": "h-ui-packages",
-  "version": "0.1.0-test.1",
-  "description": "web ui库",
+  "version": "0.1.1",
+  "description": "vue3 ui库",
   "author": "Yin-Jinlong",
   "type": "module",
   "scripts": {
@@ -9,7 +9,8 @@
     "build": "pnpm run build:dist && pnpm run build:css && pnpm run build:types",
     "build:types": "vue-tsc --declaration --emitDeclarationOnly --p tsconfig.types.json",
     "build:dist": "build dist",
-    "build:css": "build style"
+    "build:css": "build style",
+    "release": "cd ../dist && npm publish --access public"
   },
   "license": "LGPL-3.0-or-later",
   "devDependencies": {
@@ -38,7 +39,6 @@
     "chroma-js": "^2.4.2",
     "h-ui": "link:..\\dist",
     "h-ui-build-tool": "link:..\\build",
-    "h-ui/style/src": "link:.\\style",
     "vue": "^3.4.21"
   }
 }

@@ -8,7 +8,15 @@ import {cleanAndMake} from 'build-tool'
 import {color, convertSize, outln} from 'h-ui-build-tool'
 import config from 'build.config'
 
-const outPath = path.resolve(config.dist, config.css?.dir ?? 'style/css')
+const outPath = path.resolve(config.dist, config.css!.dir!)
+
+if (config.sass?.copyDir) {
+    let src = path.resolve(config.dist, config.sass.copyDir === true ? 'style/src' : config.sass.copyDir);
+    cleanAndMake(src)
+    fs.cpSync(path.resolve('style'), src, {
+        recursive: true
+    })
+}
 
 initAsyncCompiler().then(compiler => {
     cleanAndMake(outPath)

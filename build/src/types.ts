@@ -60,6 +60,9 @@ export declare interface BuildOptions {
          */
         dir?: string,
         minify?: boolean
+    },
+    sass?: {
+        copyDir?: string | boolean
     }
 }
 
@@ -74,6 +77,9 @@ export function buildOptions(options: BuildOptions): BuildOptions {
         css: {
             dir: options.css?.dir ?? 'style/css',
             minify: options.css?.minify ?? true
+        },
+        sass: {
+            copyDir: options.sass?.copyDir ?? 'style/src'
         }
     }
 }
