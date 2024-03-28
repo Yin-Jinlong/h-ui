@@ -6,7 +6,7 @@
         <div data-fill-height data-flex-column-center style="padding: 0.5rem">
             <label data-flex-center @click="changeTheme">
                 <span>暗色</span>
-                <h-check-box v-model="dark"/>
+                <h-switch v-model="dark"/>
             </label>
         </div>
     </div>
@@ -21,7 +21,7 @@
 
 <script lang="ts" setup>
 import {ref} from "vue"
-import {HCheckBox, viewTransition} from '@ui'
+import {HSwitch, viewTransition} from '@ui'
 
 const dark = ref(false)
 
@@ -43,7 +43,7 @@ function changeTheme(e: MouseEvent) {
         Math.max(y, innerHeight - y)
     )
 
-    viewTransition(change, null,() => {
+    viewTransition(change, null, () => {
         const clipPath = [
             `circle(0px at ${x}px ${y}px)`,
             `circle(${endRadius}px at ${x}px ${y}px)`,
