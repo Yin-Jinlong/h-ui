@@ -4,36 +4,36 @@
 @use 'tools/style' as *;
 
 @mixin gen-colors($name) {
-  --btn-color : #{get-css(color,$name)};
+  --h-button-color : #{get-css(color,$name)};
 
   @for $i from 1 to 7 {
-    --btn-color-#{$i} : #{get-css(color,#{$name}-#{$i})};
+    @include css-var(button-color-#{$i}, #{get-css(color,#{$name}-#{$i})});
   }
 
   @for $i from 1 to 6 {
-    --btn-color--#{$i} : #{get-css(color,#{$name}--#{$i})};
+    @include css-var(button-color--#{$i}, #{get-css(color,#{$name}--#{$i})});
   }
 }
 
 
 @mixin btn-type() {
   &[data-type='primary'] {
-    background-color : var(--btn-color);
+    background-color : get-css(button, color);
     color            : white;
 
     &:hover:not([data-disabled]) {
-      background : var(--btn-color-2);
+      background : get-css(button, color-2);
     }
 
     &:active:not([data-disabled]) {
-      background : var(--btn-color--1);
+      background : get-css(button, color--1);
     }
 
   }
 
   &[data-type='text'] {
     background : transparent;
-    color      : var(--btn-color);
+    color      : get-css(button, color);
     padding    : 0;
 
     &[data-size] {
@@ -42,12 +42,12 @@
     }
 
     &:hover:not([data-disabled]) {
-      color      : var(--btn-color-2);
+      color      : get-css(button, color-2);
       background : transparent;
     }
 
     &:active:not([data-disabled]) {
-      color      : var(--btn-color--3);
+      color      : get-css(button, color--3);
       background : transparent;
     }
 
@@ -55,14 +55,14 @@
 
   &[data-type='plain'] {
     color            : get-css(color, black-1);
-    background-color : var(--btn-color-6);
+    background-color : get-css(button, color-6);
 
     &:hover:not([data-disabled]) {
-      background-color : var(--btn-color-5);
+      background-color : get-css(button, color-5);
     }
 
     &:active:not([data-disabled]) {
-      background-color : var(--btn-color-3);
+      background-color : get-css(button, color-3);
     }
 
   }
@@ -89,22 +89,22 @@
 @mixin btn-border() {
 
   &[data-border='true'] {
-    border : 1px solid var(--btn-color--1);
+    border : 1px solid get-css(button, color--1);
 
     &[data-type='primary'] {
-      border-color : var(--btn-color--2);
+      border-color : get-css(button, color--2);
       border-width : 2px;
     }
 
     &[data-type='text'] {
-      border-color : var(--btn-color-3);
+      border-color : get-css(button, color-3);
 
       &:hover:not([data-disabled]) {
-        border-color : var(--btn-color-1);
+        border-color : get-css(button, color-1);
       }
 
       &:active:not([data-disabled]) {
-        border-color : var(--btn-color--3);
+        border-color : get-css(button, color--3);
       }
     }
   }
@@ -152,7 +152,7 @@
   @include btn-size;
   @include btn-border;
 
-  $shadow          : color-mix(in srgb, var(--btn-color--2) 60%, transparent) 0 0 5px;
+  $shadow          : color-mix(in srgb, get-css(button, color--2) 60%, transparent) 0 0 5px;
   @include btn-shadow($shadow);
 
   & + & {
@@ -176,7 +176,7 @@
     @include btn-size;
     @include btn-border;
 
-    $shadow : color-mix(in srgb, var(--btn-color--2) 70%, transparent) 0 0 5px;
+    $shadow : color-mix(in srgb, get-css(button, color--2) 70%, transparent) 0 0 5px;
     @include btn-shadow($shadow);
 
   }

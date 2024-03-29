@@ -19,7 +19,7 @@
 <script lang="ts" setup>
 import {onMounted, ref, watch} from "vue"
 import {DefinedNamedColor} from "../../../types"
-import {vDisabled} from "../../../utils"
+import {cssVarName, vDisabled} from "../../../utils"
 import {genColor} from "./color-tool"
 import {HButtonProps} from "./button"
 
@@ -35,11 +35,11 @@ const btn = ref<HTMLButtonElement>()
 function changeColor(color: DefinedNamedColor | string) {
     let btnColors = genColor(color, 6, 5)
     const style = btn.value!.style
-    style.setProperty('--btn-color', btnColors[0])
+    style.setProperty(cssVarName('button-color'), btnColors[0])
     for (let i = 1; i <= 6; i++)
-        style.setProperty(`--btn-color-${i}`, btnColors[i])
+        style.setProperty(cssVarName(`button-color-${i}`), btnColors[i])
     for (let i = 1; i <= 5; i++)
-        style.setProperty(`--btn-color--${i}`, btnColors[6 + i])
+        style.setProperty(cssVarName(`button-color--${i}`), btnColors[6 + i])
 }
 
 onMounted(() => {
