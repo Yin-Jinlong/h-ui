@@ -34,6 +34,10 @@
   font-size        : 16px;
   @include css-prefix(user-select, none);
 
+  &:hover {
+    border-color :  get-css(check-box, on-color);
+  }
+
   &::before {
     @include size.fill;
     align-items     : center;
