@@ -23,7 +23,12 @@
   border-radius    : 100px;
   display          : inline-block;
   height           : get-css(switch, height);
+  outline          : transparent solid 1px;
   width            : calc(#{get-css(switch, height)} * 1.75);
+
+  &:hover {
+    outline-color : get-css(switch, on-color);
+  }
 
   &:before {
     --size           : calc(#{get-css(switch, height)} - 4px);
@@ -43,6 +48,10 @@
 
   &[data-on] {
     background-color : get-css(switch, on-color);
+
+    &:hover {
+      outline-color : get-css(switch, off-color);
+    }
 
     &:before {
       left : calc(100% - 2px - var(--size));
