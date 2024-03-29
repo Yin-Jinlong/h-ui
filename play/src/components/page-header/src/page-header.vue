@@ -21,18 +21,13 @@
 
 <script lang="ts" setup>
 import {ref} from "vue"
-import {HSwitch, viewTransition} from '@ui'
+import {HSwitch, toggleDark, viewTransition} from '@ui'
 
 const dark = ref(false)
 
 function change() {
-    const root = document.documentElement
-    let isDark = root.hasAttribute('dark')
-    if (isDark)
-        root.removeAttribute('dark')
-    else
-        root.setAttribute('dark', '')
-    dark.value = !isDark
+    toggleDark()
+    dark.value = !dark.value
 }
 
 function changeTheme(e: MouseEvent) {
