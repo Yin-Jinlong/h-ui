@@ -3,7 +3,8 @@ import {DefinedNamedColor, Disable, NamedSize} from "../../../types"
 
 declare interface CheckBoxProps extends Disable {
     size?: NamedSize
-    color?: DefinedNamedColor | string
+    onColor?: DefinedNamedColor | string
+    offColor?: DefinedNamedColor | string
 }
 
 export type HCheckBoxProps = CheckBoxProps

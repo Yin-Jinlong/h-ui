@@ -25,7 +25,9 @@
 }
 
 @include c(check-box) {
-  background-color : get-css(color, background-simple);
+  @include css-var(check-box-on-color, get-css(color, primary));
+  @include css-var(check-box-off-color, get-css(color, background-simple));
+  background-color : get-css(check-box, off-color);
   border           : gray solid 1px;
   border-radius    : 5px;
   display          : inline-block;
@@ -48,7 +50,7 @@
   @include cb-size;
 
   &[data-checked] {
-    background-color : get-css(color, primary);
+    background-color : get-css(check-box, on-color);
 
     &::before {
       content   : '\2713';
