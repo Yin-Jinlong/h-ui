@@ -34,7 +34,7 @@
             尺寸
         </template>
         <template #default>
-            <div v-for="size in sizes" :key="size" class="box">
+            <div v-for="size in NamedSizes" :key="size" class="box">
                 <h-switch
                         v-model="on"
                         :disabled="disabled"
@@ -52,10 +52,9 @@
 </style>
 
 <script lang="ts" setup>
-import {NamedSize, HSwitch, HCard, HCheckBox, DefinedNamedColors} from "@ui"
+import {HSwitch, HCard, HCheckBox, DefinedNamedColors, NamedSizes} from "@ui"
 import {ref} from "vue";
 
-const sizes: NamedSize[] = ['small', 'normal', 'large', 'xlarge']
 const on = ref(true)
 const disabled = ref(false)
 </script>

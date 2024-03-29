@@ -40,7 +40,7 @@
         </template>
         <template #default>
             <div data-flex-center style="justify-content: space-evenly">
-                <div v-for="s in sizes">
+                <div v-for="s in NamedSizes">
                     <h-check-box v-model="checked"
                                  :disabled="disabled"
                                  :size="s"/>
@@ -56,9 +56,7 @@
 
 <script lang="ts" setup>
 import {ref} from "vue"
-import {HCheckBox, HCard, NamedSize, DefinedNamedColors} from '@ui'
-
-const sizes: NamedSize[] = ['small', 'normal', 'large', 'xlarge']
+import {HCheckBox, HCard, DefinedNamedColors, NamedSizes} from '@ui'
 
 const checked = ref(false)
 const disabled = ref(false)

@@ -8,4 +8,3 @@ declare interface CheckBoxProps extends Disable {
 }
 
 export type HCheckBoxProps = CheckBoxProps
-export type HCheckBoxSize = NamedSize

@@ -14,7 +14,7 @@
 
 <script lang="ts" setup>
 import {HSwitchProps} from './switch'
-import {cssVar, isDark, vDisabled} from '../../../utils'
+import {cssVar, vDisabled} from '../../../utils'
 import {onMounted, ref, watch} from "vue"
 import {isDefinedNamedColor} from "../../../types"
 import {cssVarName} from "../../../utils"

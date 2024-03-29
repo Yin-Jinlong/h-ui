@@ -50,7 +50,7 @@
         </template>
         <template #default>
             <div v-for="type in types" class="box">
-                <h-button v-for="size in sizes"
+                <h-button v-for="size in NamedSizes"
                           :key="size"
                           :border="border"
                           :disabled="disabled"
@@ -76,11 +76,10 @@
 </style>
 
 <script lang="ts" setup>
-import {HButton, HButtonShadowType, HButtonSize, HButtonType, HCard, HCheckBox} from '@ui'
+import {HButton, HButtonShadowType,NamedSizes, HButtonType, HCard, HCheckBox} from '@ui'
 import {DefinedNamedColor} from "h-ui/types"
 import {ref} from "vue"
 
-const sizes: HButtonSize[] = ['small', 'normal', 'large', 'xlarge']
 const types: HButtonType[] = ['primary', 'plain', 'text']
 const typeTexts: string[] = ['主要', '普通', '文字']
 const colors: (string | DefinedNamedColor)[] = ['primary', 'success', 'warning', 'danger', 'info', 'emphasize', '#39e']
