@@ -17,8 +17,11 @@
 }
 
 @include c(switch) {
-  background-color : get-css(color, white--4);
+  @include css-var(switch-on-color, get-css(color, primary));
+  @include css-var(switch-off-color, get-css(color, white--4));
+  background-color : get-css(switch, off-color);
   border-radius    : 100px;
+  display          : inline-block;
   height           : get-css(switch, height);
   width            : calc(#{get-css(switch, height)} * 1.75);
 
@@ -39,7 +42,7 @@
   @include s-size;
 
   &[data-on] {
-    background-color : get-css(color, primary);
+    background-color : get-css(switch, on-color);
 
     &:before {
       left : calc(100% - 2px - var(--size));
@@ -50,11 +53,6 @@
 
 @include dark-theme {
   @include c(switch) {
-    background-color : get-css(color, black-4);
-
-    &[data-on] {
-      background-color : get-css(color, primary);
-    }
-
+    @include css-var(switch-off-color, get-css(color, black-4));
   }
 }

@@ -11,11 +11,35 @@
     </h-card>
     <h-card>
         <template #header>
+            颜色
+        </template>
+        <template #default>
+            <div v-for="color in DefinedNamedColors" :key="color" style="display: inline-block;margin: 0.5em">
+                <h-switch
+                        v-model="on"
+                        :disabled="disabled"
+                        :on-color="color"/>
+            </div>
+            <div style="display: inline-block;margin: 0.5em">
+                <h-switch
+                        v-model="on"
+                        :disabled="disabled"
+                        :off-color="'danger'"
+                        :on-color="'success'"/>
+            </div>
+        </template>
+    </h-card>
+    <h-card>
+        <template #header>
             尺寸
         </template>
         <template #default>
             <div v-for="size in sizes" :key="size" class="box">
-                <h-switch v-model="on" :disabled="disabled" :size="size"/>
+                <h-switch
+                        v-model="on"
+                        :disabled="disabled"
+                        :on-color="''"
+                        :size="size"/>
             </div>
         </template>
     </h-card>
@@ -28,10 +52,10 @@
 </style>
 
 <script lang="ts" setup>
-import {HButtonSize, HSwitch, HCard, HCheckBox} from "@ui"
+import {NamedSize, HSwitch, HCard, HCheckBox, DefinedNamedColors} from "@ui"
 import {ref} from "vue";
 
-const sizes: HButtonSize[] = ['small', 'normal', 'large', 'xlarge']
-const on = ref(false)
+const sizes: NamedSize[] = ['small', 'normal', 'large', 'xlarge']
+const on = ref(true)
 const disabled = ref(false)
 </script>
