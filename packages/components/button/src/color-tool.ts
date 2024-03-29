@@ -1,7 +1,6 @@
-import {DefinedNamedColor} from "../../../types"
+import {DefinedNamedColor, isDefinedNamedColor} from "../../../types"
 import chroma, {Color, hsl} from "chroma-js"
-
-const namedColors = ['primary', 'success', 'warning', 'danger', 'info', 'emphasize']
+import {cssVar} from "../../../utils"
 
 /**
  * 生成button颜色
@@ -20,8 +19,8 @@ export function genColor(color: string | DefinedNamedColor, lightenCount: number
 
     const add = (color: string | Color) => btnColors.push(color.toString())
 
-    if (namedColors.includes(color)) {
-        const addVar = (str: string=color) => add(`var(--h-color-${str})`)
+    if (isDefinedNamedColor(color)) {
+        const addVar = (str: string = color) => add(cssVar(`color-${str}`))
 
         addVar()
         for (let i = 1; i <= lightenCount; i++)
