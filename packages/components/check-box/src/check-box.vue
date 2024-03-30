@@ -22,7 +22,7 @@
 import {HCheckBoxProps} from "./check-box"
 import {cssVar, cssVarName, vDisabled} from '../../../utils'
 import {onMounted, ref, watch} from "vue";
-import {isDefinedNamedColor} from "../../../types"
+import {convertColor, isDefinedNamedColor} from "../../../types"
 
 const checkBoxEle = ref<HTMLDivElement>()
 
@@ -42,7 +42,7 @@ function changeColor(type: 'on' | 'off', color: string) {
         checkBoxEle.value!.style.removeProperty(cssVarName(`check-box-${type}-color`))
     } else {
         checkBoxEle.value!.style.setProperty(cssVarName(`check-box-${type}-color`),
-            isDefinedNamedColor(color) ? cssVar(`color-${color}`) : color
+            convertColor(color)
         )
     }
 }

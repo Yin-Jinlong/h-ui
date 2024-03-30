@@ -14,9 +14,9 @@
 
 <script lang="ts" setup>
 import {HSwitchProps} from './switch'
-import {cssVar, vDisabled} from '../../../utils'
+import {vDisabled} from '../../../utils'
 import {onMounted, ref, watch} from "vue"
-import {isDefinedNamedColor} from "../../../types"
+import {convertColor} from "../../../types"
 import {cssVarName} from "../../../utils"
 
 const props = withDefaults(defineProps<HSwitchProps>(), {
@@ -34,7 +34,7 @@ function changeColor(type: 'on' | 'off', color: string) {
         switchEle.value!.style.removeProperty(cssVarName(`switch-${type}-color`))
     } else {
         switchEle.value!.style.setProperty(cssVarName(`switch-${type}-color`),
-            isDefinedNamedColor(color) ? cssVar(`color-${color}`) : color
+            convertColor(color)
         )
     }
 }
