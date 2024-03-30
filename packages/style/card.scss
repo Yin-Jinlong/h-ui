@@ -11,7 +11,7 @@
   padding          : get-css(padding, xlarge);
   width            : max-content;
 
-  & > div:not(:first-child) {
+  & > .h-card-content, & > .h-card-footer {
     margin-top : get-css(padding, large);
   }
 
