@@ -1,0 +1,99 @@
+@use './tools/fns' as *;
+@use './tools/size' as size;
+
+@mixin i-size() {
+  &[data-size=small] {
+    font-size : 14px;
+    padding   : 0.3em;
+  }
+
+  &[data-size=normal] {
+    font-size : 16px;
+    padding   : 0.4em;
+  }
+
+  &[data-size=large] {
+    font-size : 18px;
+    padding   : 0.5em;
+  }
+
+  &[data-size=xlarge] {
+    font-size : 20px;
+    padding   : 0.5em;
+  }
+
+  &[type=color] {
+    padding : 0;
+
+    &[data-size=small] {
+      @include size.square(25px);
+    }
+
+    &[data-size=normal] {
+      @include size.square(30px);
+    }
+
+    &[data-size=large] {
+      @include size.square(35px);
+    }
+
+    &[data-size=xlarge] {
+      @include size.square(40px);
+    }
+
+  }
+
+}
+
+@mixin i-type() {
+  &[type=color] {
+
+  }
+}
+
+@include c(input) {
+  @include css-var(input-color, get-css(color, primary));
+  @include css-var(input-text-color, get-css(color, text));
+  background-color : get-css(color, background-simple);
+  border           : #{get-css(color,white--5)} solid 1px;
+  border-radius    : get-css(radius, small);
+  color            : get-css(input, text-color);
+  display          : inline-block;
+  width            : 150px;
+
+  @include i-type;
+  @include i-size;
+
+  &::placeholder {
+    color   : black;
+    opacity : 0.5;
+  }
+
+  &:hover:not([data-disabled]) {
+    border-color : get-css(color, gray--2);
+  }
+
+  &:focus:not([data-disabled]) {
+    border-color : get-css(input, color);
+    outline      : none;
+  }
+
+}
+
+@include dark-theme {
+  @include c(input) {
+    border-color : #{get-css(color,black-5)};
+
+    &::placeholder {
+      color : white;
+    }
+
+    &:hover:not([data-disabled]) {
+      border-color : get-css(color, gray--1);
+    }
+
+    &:focus:not([data-disabled]) {
+      border-color : get-css(input, color);
+    }
+  }
+}

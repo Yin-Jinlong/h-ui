@@ -23,6 +23,11 @@ export default [
         component: () => import('./pages/check-box')
     } ,
     {
+        name: 'input',
+        path: '/input',
+        component: () => import('./pages/input')
+    } ,
+    {
         name: 'switch',
         path: '/switch',
         component: () => import('./pages/switch')
