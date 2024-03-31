@@ -52,8 +52,9 @@
 </style>
 
 <script lang="ts" setup>
-import {HSwitch, HCard, HCheckBox, DefinedNamedColors, NamedSizes} from "@ui"
-import {ref} from "vue";
+import {ref} from "vue"
+
+import {DefinedNamedColors, HCard, HCheckBox, HSwitch, NamedSizes} from "@yin-jinlong/h-ui"
 
 const on = ref(true)
 const disabled = ref(false)

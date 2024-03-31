@@ -4,11 +4,10 @@
     "baseUrl": ".",
     "paths": {
       "@/": ["./src/"],
-      "@ui": ["../packages"],
-      "@ui/*": ["../packages/*"],
       "@pages/*": ["./src/pages/*"],
       "@/components": ["./src/components"],
-
+      "@yin-jinlong/h-ui": ["../packages"],
+      "@yin-jinlong/h-ui/style/src": ["../packages/style"],
     }
   },
   "include": [
@@ -19,7 +18,7 @@
   ],
   "references": [
     {
-      "path": "../packages/tsconfig.types.json"
+      "path": "../packages/tsconfig.json"
     }
   ]
 }

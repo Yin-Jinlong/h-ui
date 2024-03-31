@@ -16,11 +16,12 @@
 </style>
 
 <script lang="ts" setup>
+import {onMounted, ref, watch} from "vue"
 
-import {HInputProps} from "./input"
-import {cssVarName, vDisabled} from '../../../utils'
-import {convertColor} from "../../../types"
-import {onMounted, ref, watch} from "vue";
+import {vDisabled,convertColor,cssVarName} from '@yin-jinlong/h-ui/utils'
+
+import type {HInputProps} from "./props"
+
 
 const props = withDefaults(defineProps<HInputProps>(), {
     size: 'normal',

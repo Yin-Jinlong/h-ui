@@ -17,7 +17,6 @@
     "vite": "^5.1.5"
   },
   "dependencies": {
-    "h-ui": "link:../packages",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   }

@@ -1,22 +1,32 @@
+import {performance} from "perf_hooks"
 import fs from "fs"
 import path from "path"
+import process from "process"
 import readline from "readline"
-import {performance} from "perf_hooks"
 
-import {rollup, Plugin} from "rollup"
+import type {Plugin} from "rollup"
+import commonjs from "@rollup/plugin-commonjs"
+import resolve from "@rollup/plugin-node-resolve"
+import terser from "@rollup/plugin-terser"
 import vuePlugin from "@vitejs/plugin-vue"
+import {rollup} from "rollup"
 import postcss from "rollup-plugin-postcss"
 import typescript from "rollup-plugin-typescript2"
-import resolve from "@rollup/plugin-node-resolve"
-import commonjs from "@rollup/plugin-commonjs"
-import terser from "@rollup/plugin-terser"
 
-import {clean} from "./build-tool"
-import {deepAssign} from "h-ui/utils"
-import {color, convertSize, convertTime, out, outln, OutputOption, rollupProcessPlugin} from "h-ui-build-tool"
+import type {OutputOption} from "@yin-jinlong/h-ui-build-tool"
+import {deepAssign} from "@yin-jinlong/h-ui/utils"
+import {
+    color,
+    convertSize,
+    convertTime,
+    out,
+    outln,
+    rollupProcessPlugin
+} from "@yin-jinlong/h-ui-build-tool"
+
+import {clean} from "build-tool"
 
 import config from './build.config'
-import * as process from "process";
 
 const startTime = performance.now()
 const {stdout} = process
@@ -186,7 +196,7 @@ async function genPackageJson() {
     }
 
     fs.writeFileSync(path.resolve(config.dist, 'package.json'), JSON.stringify(packageJson, null, 2))
-    fs.cpSync('README.md',path.resolve(config.dist, 'README.md'))
+    fs.cpSync('README.md', path.resolve(config.dist, 'README.md'))
 }
 
 build().then()

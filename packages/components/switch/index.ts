@@ -1,5 +1,8 @@
 import Switch from "./src/switch.vue"
 
-export const HSwitch=Switch;
+export const HSwitch=Switch
 
-export default HSwitch;
+export * from './src/props'
+export * from './src/type'
+
+export default HSwitch

@@ -56,7 +56,8 @@
 
 <script lang="ts" setup>
 import {ref} from "vue"
-import {HCheckBox, HCard, DefinedNamedColors, NamedSizes} from '@ui'
+
+import {HCheckBox, HCard, DefinedNamedColors, NamedSizes} from '@yin-jinlong/h-ui'
 
 const checked = ref(false)
 const disabled = ref(false)

@@ -21,7 +21,8 @@
 
 <script lang="ts" setup>
 import {ref} from "vue"
-import {HSwitch, isDark, toggleDark, viewTransition} from '@ui'
+
+import {HSwitch, isDark, toggleDark, viewTransition} from '@yin-jinlong/h-ui'
 
 const dark = ref(false)
 

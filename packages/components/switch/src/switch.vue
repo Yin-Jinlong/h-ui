@@ -13,11 +13,12 @@
 </template>
 
 <script lang="ts" setup>
-import {HSwitchProps} from './switch'
-import {vDisabled} from '../../../utils'
 import {onMounted, ref, watch} from "vue"
-import {convertColor} from "../../../types"
-import {cssVarName} from "../../../utils"
+
+import {vDisabled,convertColor,cssVarName} from '@yin-jinlong/h-ui/utils'
+
+import type {HSwitchProps} from './props'
+
 
 const props = withDefaults(defineProps<HSwitchProps>(), {
     size: 'normal',

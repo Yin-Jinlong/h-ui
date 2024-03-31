@@ -10,10 +10,10 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': path.resolve('src'),
-            '@ui': path.resolve('../packages'),
             '@pages': path.resolve('src/pages'),
             'components': path.resolve('../packages/components'),
-            'h-ui/style/src': path.resolve('../packages/style'),
+            '@yin-jinlong/h-ui': path.resolve('../packages'),
+            '@yin-jinlong/h-ui/style/src': path.resolve('../packages/style'),
         }
     },
     plugins: [

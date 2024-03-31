@@ -17,5 +17,5 @@
 </style>
 
 <script setup lang="ts">
-import {HCard} from '@ui'
+import {HCard} from '@yin-jinlong/h-ui'
 </script>

@@ -1,11 +1,13 @@
 import fs from 'fs'
 import path from "path"
 
-import {AsyncCompiler, initAsyncCompiler} from 'sass'
 import {transform} from 'lightningcss'
+import {AsyncCompiler, initAsyncCompiler} from 'sass'
+
+import {color, convertSize, outln} from '@yin-jinlong/h-ui-build-tool'
 
 import {cleanAndMake} from 'build-tool'
-import {color, convertSize, outln} from 'h-ui-build-tool'
+
 import config from 'build.config'
 
 const outPath = path.resolve(config.dist, config.css!.dir!)

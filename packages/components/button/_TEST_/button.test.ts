@@ -1,6 +1,9 @@
+import type {RenderResult} from '@testing-library/vue'
+import {render} from '@testing-library/vue'
 import {expect, test} from 'vitest'
-import {render, RenderResult} from '@testing-library/vue'
+
 import Button from '../src/button.vue'
+
 import '../style'
 
 function buttonElement(rr: RenderResult) {

@@ -59,7 +59,8 @@
 
 <script lang="ts" setup>
 import {nextTick, ref, watch} from "vue"
-import {HInput, HCard, HCheckBox, NamedSizes, DefinedNamedColors} from '@ui'
+
+import {DefinedNamedColors, HCard, HCheckBox, HInput, NamedSizes} from '@yin-jinlong/h-ui'
 
 const types = [
     'color',

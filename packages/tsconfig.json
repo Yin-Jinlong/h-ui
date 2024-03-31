@@ -6,11 +6,9 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "paths": {
-      "components": ["./components"],
-      "components/*": ["./components/*"],
-      "h-ui-build-tool": ["../build"],
-      "h-ui/style/*": ["./style/*"],
-      "h-ui/utils": ["./utils"]
+      "@yin-jinlong/h-ui-build-tool": ["../build"],
+      "@yin-jinlong/h-ui/style/*": ["./style/*"],
+      "@yin-jinlong/h-ui/*": ["./*"]
     }
   },
   "include": [

@@ -18,11 +18,12 @@
 </template>
 
 <script lang="ts" setup>
+import {onMounted, ref, watch} from "vue"
 
-import {HCheckBoxProps} from "./check-box"
-import {cssVar, cssVarName, vDisabled} from '../../../utils'
-import {onMounted, ref, watch} from "vue";
-import {convertColor, isDefinedNamedColor} from "../../../types"
+import {vDisabled,convertColor,cssVarName} from '@yin-jinlong/h-ui/utils'
+
+import {HCheckBoxProps} from "./props"
+
 
 const checkBoxEle = ref<HTMLDivElement>()
 

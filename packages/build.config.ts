@@ -1,4 +1,4 @@
-import {buildOptions} from 'h-ui-build-tool'
+import {buildOptions} from '@yin-jinlong/h-ui-build-tool'
 
 export default buildOptions({
     name: 'h-ui',

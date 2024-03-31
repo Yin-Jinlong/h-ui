@@ -24,7 +24,8 @@ li {
 
 <script setup lang="ts">
 
-import {HButton} from "@ui"
+import {HButton} from "@yin-jinlong/h-ui"
+
 import pages from "../../../pages-index"
 
 </script>

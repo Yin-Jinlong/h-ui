@@ -16,5 +16,8 @@
     "./components/**/*.vue",
     "./types/*.ts",
     "./utils/*.ts"
+  ],
+  "exclude": [
+    "./**/_TEST_"
   ]
 }

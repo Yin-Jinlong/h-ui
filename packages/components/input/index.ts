@@ -1,7 +1,8 @@
 import Input from "./src/input.vue"
 
-export * from './src/input'
+export const HInput = Input
 
-export const HInput = Input;
+export * from './src/props'
+export * from './src/type'
 
-export default HInput;
+export default HInput

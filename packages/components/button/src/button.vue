@@ -18,11 +18,13 @@
 
 <script lang="ts" setup>
 import {onMounted, ref, watch} from "vue"
-import {DefinedNamedColor} from "../../../types"
-import {cssVarName, vDisabled} from "../../../utils"
-import {genColor} from "./color-tool"
-import {HButtonProps} from "./button"
 
+import type {DefinedNamedColor} from "@yin-jinlong/h-ui/types"
+import {vDisabled, cssVarName} from "@yin-jinlong/h-ui/utils"
+
+import type {HButtonProps} from "./props"
+import {genColor} from "./color-tool"
+defineModel()
 const props = withDefaults(defineProps<HButtonProps>(), {
     type: '',
     border: false,
