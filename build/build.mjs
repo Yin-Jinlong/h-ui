@@ -4,10 +4,12 @@ import resolve from "@rollup/plugin-node-resolve"
 import commonjs from "@rollup/plugin-commonjs"
 import json from "@rollup/plugin-json"
 import terser from "@rollup/plugin-terser"
+import {existsSync,rmSync} from "fs"
 
-async function run() {
+async function buildBin(name) {
+    console.log('build', name)
     const build = await rollup({
-        input: 'src/build.ts',
+        input: `src/${name}/index.ts`,
         external(id) {
             return /node_modules/.test(id)
         },
@@ -29,12 +31,21 @@ async function run() {
 
     await build.write({
         format: 'esm',
-        dir: 'dist',
+        dir: `dist/${name}`,
         entryFileNames: '[name].mjs',
         chunkFileNames: '[name].mjs',
-        sourcemap: false
+        sourcemap: 'inline'
     })
     await build.close()
+}
+
+async function run() {
+    if (existsSync('dist')) {
+        rmSync('dist', {
+            recursive: true
+        })
+    }
+    await buildBin('build')
 
     const buildTool = await rollup({
         input: 'index.ts',

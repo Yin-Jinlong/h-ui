@@ -5,7 +5,7 @@
   "author": "Yin-Jinlong",
   "type": "module",
   "bin": {
-    "build": "./dist/build.mjs"
+    "build": "./dist/build/index.mjs"
   },
   "scripts": {
     "build": "node build.mjs",
