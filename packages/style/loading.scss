@@ -1,0 +1,18 @@
+@use './tools/fns' as *;
+@use './tools/size' as size;
+
+@include c(loading) {
+  @include size.square(100%);
+  background-color : rgb(0, 0, 0, 0.6);
+  color            : get-css(color, primary);
+  left             : 0;
+  position         : absolute;
+  top              : 0;
+  z-index          : 2147483647;
+}
+
+@include c(loading-text) {
+  &:not(:empty){
+    margin : 0.5em auto;
+  }
+}

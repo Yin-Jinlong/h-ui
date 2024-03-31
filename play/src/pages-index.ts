@@ -28,6 +28,11 @@ export default [
         component: () => import('./pages/input')
     } ,
     {
+        name: 'loading',
+        path: '/loading',
+        component: () => import('./pages/loading')
+    } ,
+    {
         name: 'switch',
         path: '/switch',
         component: () => import('./pages/switch')
