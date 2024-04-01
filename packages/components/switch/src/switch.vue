@@ -15,16 +15,12 @@
 <script lang="ts" setup>
 import {onMounted, ref, watch} from "vue"
 
-import {vDisabled,convertColor,cssVarName} from '@yin-jinlong/h-ui/utils'
+import {vDisabled, convertColor, cssVarName} from '@yin-jinlong/h-ui/utils'
 
-import type {HSwitchProps} from './props'
+import DefaultProps, {HSwitchProps} from './props'
 
 
-const props = withDefaults(defineProps<HSwitchProps>(), {
-    size: 'normal',
-    onColor: '',
-    offColor: '',
-})
+const props = withDefaults(defineProps<HSwitchProps>(), DefaultProps)
 
 const switchEle = ref<HTMLDivElement>()
 

@@ -20,15 +20,10 @@ import {onMounted, ref, watch} from "vue"
 
 import {vDisabled,convertColor,cssVarName} from '@yin-jinlong/h-ui/utils'
 
-import type {HInputProps} from "./props"
+import DefaultProps,{HInputProps} from "./props"
 
 
-const props = withDefaults(defineProps<HInputProps>(), {
-    size: 'normal',
-    color: '',
-    textColor: '',
-    type: 'text'
-})
+const props = withDefaults(defineProps<HInputProps>(), DefaultProps)
 
 const inputEle = ref<HTMLInputElement>()
 

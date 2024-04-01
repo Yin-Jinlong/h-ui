@@ -1,7 +1,6 @@
-import type {Color} from "chroma-js"
-import chroma, {hsl} from "chroma-js"
+import chroma, {Color,hsl} from "chroma-js"
 
-import type {DefinedNamedColor} from "@yin-jinlong/h-ui/types"
+import {DefinedNamedColor} from "@yin-jinlong/h-ui/types"
 import {cssVar, isDefinedNamedColor} from "@yin-jinlong/h-ui/utils"
 
 /**

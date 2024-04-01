@@ -1,6 +1,6 @@
-import type {BindSize, DefinedNamedColor, Disable} from "@yin-jinlong/h-ui/types"
+import {BindSize, DefinedNamedColor, Disable} from "@yin-jinlong/h-ui/types"
 
-import type {HInputType} from "./type"
+import {HInputType} from "./type"
 
 declare interface Props extends Disable, BindSize {
     placeholder?: string
@@ -11,3 +11,10 @@ declare interface Props extends Disable, BindSize {
 }
 
 export type HInputProps = Props
+
+export default {
+    size: 'normal',
+    color: '',
+    textColor: '',
+    type: 'text'
+} as Props

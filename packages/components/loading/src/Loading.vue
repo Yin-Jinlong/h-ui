@@ -18,13 +18,9 @@
 </template>
 
 <script lang="ts" setup>
-import Running from "./running.vue";
-import type {HLoadingProps} from "./props"
+import DefaultProps,{HLoadingProps} from "./props"
 
-withDefaults(defineProps<HLoadingProps>(), {
-    component: Running,
-    text: ''
-})
+withDefaults(defineProps<HLoadingProps>(), DefaultProps)
 
 const animConfig = {
     duration: 200,

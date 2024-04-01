@@ -19,20 +19,14 @@
 <script lang="ts" setup>
 import {onMounted, ref, watch} from "vue"
 
-import type {DefinedNamedColor} from "@yin-jinlong/h-ui/types"
+import {DefinedNamedColor} from "@yin-jinlong/h-ui/types"
 import {vDisabled, cssVarName} from "@yin-jinlong/h-ui/utils"
 
-import type {HButtonProps} from "./props"
+import DefaultProps, {HButtonProps} from "./props"
 import {genColor} from "./color-tool"
-defineModel()
-const props = withDefaults(defineProps<HButtonProps>(), {
-    type: '',
-    border: false,
-    shadow: false,
-    size: 'normal'
-})
-const btn = ref<HTMLButtonElement>()
 
+const props = withDefaults(defineProps<HButtonProps>(), DefaultProps)
+const btn = ref<HTMLButtonElement>()
 
 function changeColor(color: DefinedNamedColor | string) {
     let btnColors = genColor(color, 6, 5)

@@ -78,8 +78,10 @@
 <script lang="ts" setup>
 import {ref} from "vue"
 
-import type {DefinedNamedColor,HButtonShadowType,HButtonType} from "@yin-jinlong/h-ui"
-import {HButton, HCard, HCheckBox,NamedSizes} from '@yin-jinlong/h-ui'
+import {
+    DefinedNamedColor, HButtonShadowType, HButtonType,
+    HButton, HCard, HCheckBox, NamedSizes
+} from '@yin-jinlong/h-ui'
 
 const types: HButtonType[] = ['primary', 'plain', 'text']
 const typeTexts: string[] = ['主要', '普通', '文字']

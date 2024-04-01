@@ -22,16 +22,12 @@ import {onMounted, ref, watch} from "vue"
 
 import {vDisabled,convertColor,cssVarName} from '@yin-jinlong/h-ui/utils'
 
-import {HCheckBoxProps} from "./props"
+import DefaultProps,{HCheckBoxProps} from "./props"
 
 
 const checkBoxEle = ref<HTMLDivElement>()
 
-const props = withDefaults(defineProps<HCheckBoxProps>(), {
-    size: 'normal',
-    onColor: '',
-    offColor: ''
-})
+const props = withDefaults(defineProps<HCheckBoxProps>(), DefaultProps)
 const checked = defineModel<boolean>()
 
 function click() {

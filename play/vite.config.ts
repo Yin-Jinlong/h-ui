@@ -1,6 +1,7 @@
+import path from 'path'
+
 import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
-import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,6 +16,9 @@ export default defineConfig({
             '@yin-jinlong/h-ui': path.resolve('../packages'),
             '@yin-jinlong/h-ui/style/src': path.resolve('../packages/style'),
         }
+    },
+    optimizeDeps: {
+        include: ['@yin-jinlong/h-ui']
     },
     plugins: [
         vue(),

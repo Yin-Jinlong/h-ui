@@ -4,16 +4,15 @@ import path from "path"
 import process from "process"
 import readline from "readline"
 
-import type {Plugin} from "rollup"
 import commonjs from "@rollup/plugin-commonjs"
 import resolve from "@rollup/plugin-node-resolve"
 import terser from "@rollup/plugin-terser"
 import vuePlugin from "@vitejs/plugin-vue"
-import {rollup} from "rollup"
+import {Plugin,rollup} from "rollup"
 import postcss from "rollup-plugin-postcss"
 import typescript from "rollup-plugin-typescript2"
 
-import type {OutputOption} from "@yin-jinlong/h-ui-build-tool"
+import {OutputOption} from "@yin-jinlong/h-ui-build-tool"
 import {deepAssign} from "@yin-jinlong/h-ui/utils"
 import {
     color,

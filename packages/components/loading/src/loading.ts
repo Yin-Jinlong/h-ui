@@ -1,5 +1,4 @@
-import type {Component, ObjectDirective} from "vue"
-import {createApp} from "vue"
+import {Component, ObjectDirective,createApp} from "vue"
 
 import Loading from "./Loading.vue"
 
