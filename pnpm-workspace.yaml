@@ -1,4 +1,5 @@
 packages:
   - 'build'
+  - 'docs'
   - 'packages'
   - 'play'

@@ -1,0 +1,30 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/": ["./src/"],
+      "@pages/*": ["./src/pages/*"],
+      "@components": ["./src/components"],
+      "@types": ["./src/types"],
+      "@yin-jinlong/h-ui": ["../packages"],
+      "@yin-jinlong/h-ui/style/src": ["../packages/style"],
+    }
+  },
+  "include": [
+    "./global.d.ts",
+    "./*.ts",
+    "./config/*.ts",
+    "./components/*.ts",
+    "./components/**/*.ts",
+    "./components/**/*.vue",
+    "./src/*.ts",
+    "./src/**/*.ts",
+    "./src/**/*.vue"
+  ],
+  "references": [
+    {
+      "path": "../packages/tsconfig.json"
+    }
+  ]
+}

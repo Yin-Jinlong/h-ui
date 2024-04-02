@@ -5,7 +5,7 @@
   "author": "Yin-Jinlong",
   "type": "module",
   "scripts": {
-    "dev": "cd .. && pnpm -C play dev",
+    "dev": "cd .. && pnpm -C docs dev",
     "build": "pnpm run build:dist && pnpm run build:css && pnpm run build:types",
     "build:types": "vue-tsc --declaration --emitDeclarationOnly --p tsconfig.types.json",
     "build:dist": "build dist",

@@ -1,0 +1,37 @@
+{
+  "name": "h-ui-docs",
+  "version": "1.0.0",
+  "description": "vue3 ui库文档",
+  "author": "Yin-Jinlong",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "gen:components-indexes": "esno gen-components-indexes.ts",
+    "serve": "vite preview"
+  },
+  "license": "LGPL-3.0-or-later",
+  "devDependencies": {
+    "@types/node": "^20.11.28",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "@vitest/coverage-v8": "^1.4.0",
+    "@vitest/ui": "^1.4.0",
+    "chalk": "^5.3.0",
+    "esno": "^4.7.0",
+    "happy-dom": "^14.3.9",
+    "lightningcss": "^1.24.1",
+    "rollup": "^4.13.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "sass": "^1.72.0",
+    "terser": "^5.29.2",
+    "tsc": "^2.0.4",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.5",
+    "vitest": "^1.4.0",
+    "vue-tsc": "^2.0.6"
+  },
+  "dependencies": {
+    "shiki": "^1.2.3",
+    "vue": "^3.4.21"
+  }
+}
