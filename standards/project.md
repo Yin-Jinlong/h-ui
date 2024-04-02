@@ -8,9 +8,9 @@
 
 ui源码
 
-## play 开发demo
+## docs 文档
 
-供开发者调试
+开发文档
 
 ## standards 规范
 

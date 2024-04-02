@@ -39,6 +39,67 @@ importers:
         specifier: ^0.36.0
         version: 0.36.0(rollup@4.13.0)(typescript@5.4.2)
 
+  docs:
+    dependencies:
+      shiki:
+        specifier: ^1.2.3
+        version: 1.2.3
+      vue:
+        specifier: ^3.4.21
+        version: 3.4.21(typescript@5.4.2)
+    devDependencies:
+      '@types/node':
+        specifier: ^20.11.28
+        version: 20.11.28
+      '@vitejs/plugin-vue':
+        specifier: ^5.0.4
+        version: 5.0.4(vite@5.1.6)(vue@3.4.21)
+      '@vitest/coverage-v8':
+        specifier: ^1.4.0
+        version: 1.4.0(vitest@1.4.0)
+      '@vitest/ui':
+        specifier: ^1.4.0
+        version: 1.4.0(vitest@1.4.0)
+      chalk:
+        specifier: ^5.3.0
+        version: 5.3.0
+      esno:
+        specifier: ^4.7.0
+        version: 4.7.0
+      happy-dom:
+        specifier: ^14.3.9
+        version: 14.3.9
+      lightningcss:
+        specifier: ^1.24.1
+        version: 1.24.1
+      rollup:
+        specifier: ^4.13.0
+        version: 4.13.0
+      rollup-plugin-copy:
+        specifier: ^3.5.0
+        version: 3.5.0
+      sass:
+        specifier: ^1.72.0
+        version: 1.72.0
+      terser:
+        specifier: ^5.29.2
+        version: 5.29.2
+      tsc:
+        specifier: ^2.0.4
+        version: 2.0.4
+      typescript:
+        specifier: ^5.4.2
+        version: 5.4.2
+      vite:
+        specifier: ^5.1.5
+        version: 5.1.6(@types/node@20.11.28)(lightningcss@1.24.1)(sass@1.72.0)(terser@5.29.2)
+      vitest:
+        specifier: ^1.4.0
+        version: 1.4.0(@types/node@20.11.28)(@vitest/ui@1.4.0)(happy-dom@14.3.9)(lightningcss@1.24.1)(sass@1.72.0)(terser@5.29.2)
+      vue-tsc:
+        specifier: ^2.0.6
+        version: 2.0.6(typescript@5.4.2)
+
   packages:
 
     dependencies:
@@ -131,25 +192,6 @@ importers:
       vue-tsc:
         specifier: ^2.0.6
         version: 2.0.6(typescript@5.4.2)
-
-  play:
-    dependencies:
-      vue:
-        specifier: ^3.4.21
-        version: 3.4.21(typescript@5.4.2)
-      vue-router:
-        specifier: ^4.3.0
-        version: 4.3.0(vue@3.4.21)
-    devDependencies:
-      '@vitejs/plugin-vue':
-        specifier: ^5.0.4
-        version: 5.0.4(vite@5.1.6)(vue@3.4.21)
-      typescript:
-        specifier: ^5.4.2
-        version: 5.4.2
-      vite:
-        specifier: ^5.1.5
-        version: 5.1.6(@types/node@20.11.28)(lightningcss@1.24.1)(sass@1.72.0)(terser@5.29.2)
 
 packages:
 
@@ -854,7 +896,6 @@ packages:
     resolution: {integrity: sha512-Iu0Kno1vrD7zHQDxOmvweqLkAzjxEVqNhUIXBsZ8hu8Oak7/5VTPrxOEZXYC1nmrBVJp0ZcL2E7lSuuOVaE3+w==}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -863,7 +904,6 @@ packages:
     resolution: {integrity: sha512-C31QrW47llgVyrRjIwiOwsHFcaIwmkKi3PCroQY5aVq4H0A5v/vVVAtFsI1nfBngtoRpeREvZOkIhmRwUKkAdw==}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
@@ -872,7 +912,6 @@ packages:
     resolution: {integrity: sha512-Oq90dtMHvthFOPMl7pt7KmxzX7E71AfyIhh+cPhLY9oko97Zf2C9tt/XJD4RgxhaGeAraAXDtqxvKE1y/j35lA==}
     cpu: [riscv64]
     os: [linux]
-    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -881,7 +920,6 @@ packages:
     resolution: {integrity: sha512-yUD/8wMffnTKuiIsl6xU+4IA8UNhQ/f1sAnQebmE/lyQ8abjsVyDkyRkWop0kdMhKMprpNIhPmYlCxgHrPoXoA==}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -890,7 +928,6 @@ packages:
     resolution: {integrity: sha512-9RyNqoFNdF0vu/qqX63fKotBh43fJQeYC98hCaf89DYQpv+xu0D8QFSOS0biA7cGuqJFOc1bJ+m2rhhsKcw1hw==}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
@@ -918,6 +955,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@shikijs/core@1.2.3:
+    resolution: {integrity: sha512-SM+aiQVaEK2P53dEcsvhq9+LJPr0rzwezHbMQhHaSrPN4OlOB4vp1qTdhVEKfMg6atdq8s9ZotWW/CSCzWftwg==}
+    dev: false
 
   /@sinclair/typebox@0.27.8:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
@@ -1142,10 +1183,6 @@ packages:
     dependencies:
       '@vue/compiler-dom': 3.4.21
       '@vue/shared': 3.4.21
-
-  /@vue/devtools-api@6.6.1:
-    resolution: {integrity: sha512-LgPscpE3Vs0x96PzSSB4IGVSZXZBZHpfxs+ZA1d+VEPwHdOXowy/Y2CsvCAIFrf+ssVU1pD1jidj505EpUnfbA==, tarball: https://registry.npmmirror.com/@vue/devtools-api/-/devtools-api-6.6.1.tgz}
-    dev: false
 
   /@vue/language-core@2.0.6(typescript@5.4.2):
     resolution: {integrity: sha512-UzqU12tzf9XLqRO3TiWPwRNpP4fyUzE6MAfOQWQNZ4jy6a30ARRUpmODDKq6O8C4goMc2AlPqTmjOHPjHkilSg==, tarball: https://registry.npmmirror.com/@vue/language-core/-/language-core-2.0.6.tgz}
@@ -2533,7 +2570,6 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -2543,7 +2579,6 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
@@ -2553,7 +2588,6 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -2563,7 +2597,6 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
@@ -3344,7 +3377,7 @@ packages:
     dependencies:
       nanoid: 3.3.7
       picocolors: 1.0.0
-      source-map-js: 1.0.2
+      source-map-js: 1.2.0
     dev: true
 
   /postcss@8.4.38:
@@ -3599,6 +3632,12 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
     dev: true
+
+  /shiki@1.2.3:
+    resolution: {integrity: sha512-+v7lO5cJMeV2N2ySK4l+51YX3wTh5I49SLjAOs1ch1DbUfeEytU1Ac9KaZPoZJCVBGycDZ09OBQN5nbcPFc5FQ==}
+    dependencies:
+      '@shikijs/core': 1.2.3
+    dev: false
 
   /side-channel@1.0.6:
     resolution: {integrity: sha512-fDW/EZ6Q9RiO8eFG8Hj+7u/oW+XrPTIChwCOM2+th2A6OblDtYYIpve9m+KvI9Z4C9qSEXlaGR6bTEYHReuglA==}
@@ -4016,15 +4055,6 @@ packages:
   /vue-component-type-helpers@2.0.7:
     resolution: {integrity: sha512-7e12Evdll7JcTIocojgnCgwocX4WzIYStGClBQ+QuWPinZo/vQolv2EMq4a3lg16TKfwWafLimG77bxb56UauA==}
     dev: true
-
-  /vue-router@4.3.0(vue@3.4.21):
-    resolution: {integrity: sha512-dqUcs8tUeG+ssgWhcPbjHvazML16Oga5w34uCUmsk7i0BcnskoLGwjpa15fqMr2Fa5JgVBrdL2MEgqz6XZ/6IQ==, tarball: https://registry.npmmirror.com/vue-router/-/vue-router-4.3.0.tgz}
-    peerDependencies:
-      vue: ^3.2.0
-    dependencies:
-      '@vue/devtools-api': 6.6.1
-      vue: 3.4.21(typescript@5.4.2)
-    dev: false
 
   /vue-template-compiler@2.7.16:
     resolution: {integrity: sha512-AYbUWAJHLGGQM7+cNTELw+KsOG9nl2CnSv467WobS5Cv9uk3wFcnr1Etsz2sEIHEZvw1U+o9mRlEO6QbZvUPGQ==, tarball: https://registry.npmmirror.com/vue-template-compiler/-/vue-template-compiler-2.7.16.tgz}

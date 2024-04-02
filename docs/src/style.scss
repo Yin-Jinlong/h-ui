@@ -1,0 +1,46 @@
+@import '../../packages/style/index.scss';
+@import '../../packages/style/base-dark';
+@import '@yin-jinlong/h-ui/style/src/base-dark.scss';
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation      : none;
+  mix-blend-mode : normal;
+}
+
+::view-transition-old(root) {
+  z-index : 1;
+}
+
+::view-transition-new(root) {
+  z-index : 2;
+}
+
+html, body {
+  height   : 100vh;
+  overflow : hidden;
+  width    : 100vw;
+}
+
+.h-code {
+  border        : grey solid 1px;
+  border-radius : 5px;
+  font-size     : 16px;
+  margin        : 1em 0;
+  max-width     : 100%;
+  overflow-x    : auto;
+  padding       : 0.5em;
+
+  pre, code {
+    display     : inline-block;
+    font-family : 'JetBrains Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;;
+    width       : max-content;
+  }
+
+}
+
+.line {
+  border-bottom : rgb(128, 128, 128, 0.3) dashed 1px;
+  display       : inline-block;
+  width         : 100%;
+}
