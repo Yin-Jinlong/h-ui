@@ -6,10 +6,10 @@ declare global {
         readonly theme: string
     }
 
-    function code(code: string, lang: BundledLanguage): Promise<string>
+    function code(code: string, lang: BundledLanguage): string
 
     declare interface Window {
-        code(code: string, lang: BundledLanguage): Promise<string>
+        code(code: string, lang: BundledLanguage): string
 
         addEventListener(event: 'theme-change', listener: (e: ThemeEvent) => void): void
     }

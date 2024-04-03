@@ -1,9 +1,7 @@
 import {ObjectDirective} from "vue"
 
 function render(el: HTMLElement, str: string) {
-    code(str, 'vue').then(r => {
-        el.innerHTML = r
-    })
+    el.innerHTML=code(str, 'vue')
 }
 
 export const vCode = {

@@ -1,11 +1,11 @@
-import {codeToHtml} from 'shiki'
 import {createApp} from 'vue'
+import {isDark} from "@yin-jinlong/h-ui"
 
 import App from './App.vue'
+import {mountCode} from "./highlight"
 import {vCode} from './utils'
 
 import './style.scss'
-import {isDark} from "@yin-jinlong/h-ui"
 
 class ThemeEvent extends Event {
     readonly theme: 'dark' | 'light'
@@ -16,12 +16,7 @@ class ThemeEvent extends Event {
     }
 }
 
-window.code = (code, lang) => {
-    return codeToHtml(code, {
-        lang,
-        theme: isDark() ? 'dark-plus' : 'light-plus'
-    })
-}
+mountCode().then()
 
 let lastDark = isDark()
 new MutationObserver(() => {
