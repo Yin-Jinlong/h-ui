@@ -6,8 +6,6 @@ declare global {
         readonly theme: string
     }
 
-    function code(code: string, lang: BundledLanguage): string
-
     declare interface Window {
         code(code: string, lang: BundledLanguage): string
 

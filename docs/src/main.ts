@@ -16,7 +16,6 @@ class ThemeEvent extends Event {
     }
 }
 
-mountCode().then()
 
 let lastDark = isDark()
 new MutationObserver(() => {
@@ -32,4 +31,6 @@ new MutationObserver(() => {
 
 const app = createApp(App)
 app.directive('code', vCode)
-app.mount(document.body)
+mountCode().then(() => {
+    app.mount(document.body)
+})
