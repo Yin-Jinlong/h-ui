@@ -11,8 +11,8 @@ function getSuffix(name: string) {
 // https://vitejs.dev/config/
 export default defineConfig((env) => {
     const prod = env.mode === 'production'
-    console.log(prod)
     return {
+        base: './',
         server: {
             port: 1234,
         },
