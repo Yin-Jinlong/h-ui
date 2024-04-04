@@ -5,8 +5,8 @@
   "author": "Yin-Jinlong",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "pnpm run gen:components-indexes && vite",
+    "build": "pnpm run gen:components-indexes && vite build",
     "gen:components-indexes": "esno gen-components-indexes.ts",
     "serve": "vite preview"
   },

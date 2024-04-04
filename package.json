@@ -5,9 +5,10 @@
   "author": "Yin-Jinlong",
   "type": "module",
   "scripts": {
-    "dev": "pnpm -C play dev",
-    "build": "pnpm -C packages build",
-    "build:types": "pnpm -C packages build:types",
+    "build:packages": "pnpm -C packages build",
+    "build:packages-types": "pnpm -C packages build:types",
+    "docs:dev": "pnpm -C docs dev",
+    "docs:build": "pnpm -C docs build",
     "postinstall": "pnpm -C build build"
   },
   "license": "LGPL-3.0-or-later"
