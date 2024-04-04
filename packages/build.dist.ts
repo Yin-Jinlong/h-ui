@@ -172,7 +172,7 @@ async function genPackageJson() {
         "style",
         "README.md"
     ]
-    packageJson.homepage = 'https://github.com/Yin-Jinlong/h-ui'
+    packageJson.homepage = 'https://yin-jinlong.github.io/h-ui'
     packageJson.keywords = ['vue3', 'vue-ui', 'ui']
     packageJson.repository = {
         type: "git",
