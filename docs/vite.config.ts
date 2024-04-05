@@ -1,7 +1,9 @@
 import path from 'path'
 
 import {defineConfig} from 'vite'
+import {visualizer} from "rollup-plugin-visualizer"
 import vue from '@vitejs/plugin-vue'
+import viteCompression from 'vite-plugin-compression'
 
 function getSuffix(name: string) {
     const i = name.lastIndexOf('.')
@@ -18,21 +20,30 @@ export default defineConfig((env) => {
         },
         build: {
             minify: 'terser',
+            cssCodeSplit: true,
+            cssMinify: 'lightningcss',
+            chunkSizeWarningLimit: 1024,
+            terserOptions: {
+                format: {
+                    comments: false
+                }
+            },
             reportCompressedSize: false,
             rollupOptions: {
                 output: {
+                    compact: true,
                     format: 'esm',
                     preserveModules: false,
                     assetFileNames(chunkInfo) {
                         switch (getSuffix(chunkInfo.name!)) {
                             case 'css':
-                                return 'css/[name].css'
+                                return 'css/[hash:6].css'
                             default:
-                                return '[name].[ext]'
+                                return '[hash:6].[ext]'
                         }
                     },
                     entryFileNames: '[name].js',
-                    chunkFileNames: 'js/[name].js'
+                    chunkFileNames: 'js/[hash].js',
                 }
             }
         },
@@ -53,6 +64,14 @@ export default defineConfig((env) => {
             vue({
                 isProduction: prod
             }),
+            viteCompression({
+                threshold: 32 * 1024
+            }),
+            visualizer({
+                gzipSize: true,
+                template: 'flamegraph',
+                filename: 'sizes.html'
+            })
         ],
     }
 });
