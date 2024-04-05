@@ -7,6 +7,7 @@ declare interface Props extends Disable, BindSize {
     color?: DefinedNamedColor | string
     textColor?: DefinedNamedColor | string
     type?: HInputType
+    border?: boolean
     maxlength?: number
 }
 
@@ -16,5 +17,6 @@ export default {
     size: 'normal',
     color: '',
     textColor: '',
-    type: 'text'
+    type: 'text',
+    border: true
 } as Props

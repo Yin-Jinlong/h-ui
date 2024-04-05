@@ -2,6 +2,7 @@
     <input ref="inputEle"
            v-model="value"
            v-disabled="disabled"
+           :data-border="border?'':undefined"
            :data-size="size"
            :disabled="disabled"
            :maxlength="maxlength"
@@ -18,9 +19,9 @@
 <script lang="ts" setup>
 import {onMounted, ref, watch} from "vue"
 
-import {vDisabled,convertColor,cssVarName} from '@yin-jinlong/h-ui/utils'
+import {vDisabled, convertColor, cssVarName} from '@yin-jinlong/h-ui/utils'
 
-import DefaultProps,{HInputProps} from "./props"
+import DefaultProps, {HInputProps} from "./props"
 
 
 const props = withDefaults(defineProps<HInputProps>(), DefaultProps)

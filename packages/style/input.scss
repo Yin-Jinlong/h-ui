@@ -55,7 +55,7 @@
   @include css-var(input-color, get-css(color, primary));
   @include css-var(input-text-color, get-css(color, text));
   background-color : get-css(color, background-simple);
-  border           : #{get-css(color,white--5)} solid 1px;
+  border           : none transparent;
   border-radius    : get-css(radius, small);
   color            : get-css(input, text-color);
   display          : inline-block;
@@ -63,6 +63,10 @@
 
   @include i-type;
   @include i-size;
+
+  &[data-border] {
+    border : #{get-css(color,white--5)} solid 1px;
+  }
 
   &::placeholder {
     color   : black;
