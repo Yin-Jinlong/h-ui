@@ -1,7 +1,7 @@
 <template>
     <div class="side-bar" data-fill-height>
         <div v-for="i in items">
-            <h-button data-fill-width @click="go(i.path)">{{ i.name }}</h-button>
+            <h-button :class="now===i.name?'now':''" data-fill-width @click="go(i.path)">{{ i.name }}</h-button>
         </div>
     </div>
 </template>
@@ -20,6 +20,11 @@
   }
 
 }
+
+.now {
+  color : var(--h-color-primary);
+}
+
 </style>
 
 <script lang="ts" setup>

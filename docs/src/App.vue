@@ -2,12 +2,15 @@
     <div data-fill-size data-flex-column>
         <page-header/>
         <div v-if="app" data-flex style="flex: 1;overflow: hidden">
-            <side-bar :items="components"/>
-            <div class="content">
+            <side-bar :items="components" :now="nowPage"/>
+            <div v-loading="loading"
+                 class="content"
+                 data-relative
+                 h-loading-text="加载中...">
                 <component :is="app"/>
             </div>
         </div>
-        <h3 v-if="!app&&!isHome()">404</h3>
+        <h3 v-if="!app&&!isHome()" v-loading="loading" h-loading-text="加载中...">404</h3>
         <div v-if="isHome()" data-flex-column style="flex: 1;overflow: hidden;align-items: center">
             <div data-fill-width data-flex-column style="flex:1;max-width: 1000px">
                 <div class="main-head">
@@ -15,7 +18,7 @@
                     <p>氢UI文档</p>
                 </div>
                 <div class="main-btn">
-                    <h-button @click="href('button')" border type="primary">组件</h-button>
+                    <h-button border type="primary" @click="href('button')">组件</h-button>
                 </div>
             </div>
         </div>
@@ -58,13 +61,15 @@ h1 {
 
 import type {Component} from "vue"
 import {onMounted, shallowRef} from "vue"
-import {HButton} from "@yin-jinlong/h-ui"
+import {HButton, vLoading} from "@yin-jinlong/h-ui"
 
 import {PageHeader, SideBar} from "@components"
 
 import components from '../components-indexes'
 
 const app = shallowRef<Component | null>()
+const loading = shallowRef(false)
+const nowPage = shallowRef('')
 
 function isHome() {
     return window.location.hash === ''
@@ -78,11 +83,18 @@ function href(link: string) {
 async function go(path: string) {
     for (const component of components) {
         if (component.path === path) {
-            app.value = (await component.component()).default
+            loading.value = true
+            let page = (await component.component()).default
+            setTimeout(() => {
+                nowPage.value = component.name
+                app.value = page
+                loading.value = false
+            }, 300)
             return
         }
     }
     app.value = null
+    loading.value = false
 }
 
 onMounted(() => {
