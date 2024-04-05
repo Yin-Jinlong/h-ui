@@ -42,8 +42,6 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: gen components-indexes
-        run: pnpm -C docs gen:components-indexes
       - name: Build
         run: pnpm -C docs build
       - name: Setup Pages
