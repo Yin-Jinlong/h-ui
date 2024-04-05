@@ -1,5 +1,7 @@
 !build/
 
+/cache/
+
 ### 构建临时输出 ###
 /*-tmp.mjs
 
