@@ -4,10 +4,14 @@
         <div v-if="app" data-flex style="flex: 1;overflow: hidden">
             <side-bar :items="components" :now="nowPage"/>
             <div v-loading="loading"
-                 class="content"
+                 data-flex-column
                  data-relative
-                 h-loading-text="加载中...">
-                <component :is="app"/>
+                 h-loading-text="加载中..."
+                 style="flex: 1;overflow: hidden">
+                <div class="content"
+                     data-relative>
+                    <component :is="app"/>
+                </div>
             </div>
         </div>
         <h3 v-if="!app&&!isHome()" v-loading="loading" h-loading-text="加载中...">404</h3>

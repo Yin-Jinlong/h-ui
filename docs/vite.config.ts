@@ -58,7 +58,7 @@ export default defineConfig((env) => {
             }
         },
         optimizeDeps: {
-            include: ['@yin-jinlong/h-ui']
+            entries: ['@yin-jinlong/h-ui']
         },
         plugins: [
             vue({

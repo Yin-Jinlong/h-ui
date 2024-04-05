@@ -1,4 +1,4 @@
-import {App, Component, ObjectDirective, createApp} from "vue"
+import {App, ObjectDirective, createApp, reactive, DefineComponent, MaybeRef, h, ref, defineComponent} from "vue"
 
 import Loading from "./Loading.vue"
 
@@ -16,9 +16,8 @@ interface LoadingElement extends HTMLElement {
     [EL_KEY]: HTMLElement
 }
 
-export declare interface HLoadingConfig {
-    component: Component
-    loading: boolean
+export declare interface HLoadingConfig extends HLoadingProps {
+
 }
 
 function getLoadingValue(obj: HLoadingConfig | boolean) {
@@ -29,13 +28,30 @@ function getLoadingValue(obj: HLoadingConfig | boolean) {
     }
 }
 
+function getLoadingText(el: LoadingElement) {
+    return el.getAttribute('h-loading-text') ?? ''
+}
+
+function updateProps(el: LoadingElement) {
+    el[PROPS_KEY].loading = el[LOADING_KEY]
+    el[PROPS_KEY].text = getLoadingText(el)
+}
+
 export const vLoading = {
     created(el, binding, vNode) {
-        el[APP_KEY] = createApp(Loading, {
-            loading: binding.value,
-            text: el.getAttribute('h-loading-text'),
-            component: typeof binding.value === 'object' ? binding.value.component : undefined,
+        el[PROPS_KEY] = reactive<HLoadingProps>({
+            loading: getLoadingValue(binding.value ?? true),
+            text: getLoadingText(el),
+            component: typeof binding.value === 'object' ? binding.value.component : undefined
         })
+        el[APP_KEY] = createApp(defineComponent({
+            name: 'HLoading',
+            setup(_, {expose}) {
+                return () => {
+                    return h(Loading, el[PROPS_KEY])
+                }
+            }
+        }))
     },
     mounted(el, binding, vNode) {
         let c = el[APP_KEY].mount(document.createElement('div'))
@@ -44,15 +60,14 @@ export const vLoading = {
         else
             el.append(c.$el)
         el[EL_KEY] = c.$el
-        el[PROPS_KEY] = c.$props as HLoadingProps
+        el[LOADING_KEY] = getLoadingValue(binding.value ?? true)
+        updateProps(el)
     },
     updated(el, binding, vNode) {
-        el[LOADING_KEY] = getLoadingValue(binding.value)
-        el[PROPS_KEY].loading = el[LOADING_KEY]
-        el[PROPS_KEY].text = el.getAttribute('h-loading-text') ?? ''
+        el[LOADING_KEY] = getLoadingValue(binding.value ?? true)
+        updateProps(el)
     },
     unmounted(el, binding, vNode) {
         el[APP_KEY].unmount()
-        el[EL_KEY].remove()
     }
-} as ObjectDirective<LoadingElement, HLoadingConfig | boolean>
+} as ObjectDirective<LoadingElement, HLoadingConfig | boolean | undefined>
