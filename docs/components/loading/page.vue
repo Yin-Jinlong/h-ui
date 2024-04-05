@@ -1,31 +1,7 @@
 <template>
-    <h-card>
-        <template #header>
-            块内
-        </template>
-        <loading/>
-        <template #footer>
-            <div v-code="loadingCOde"></div>
-        </template>
-    </h-card>
-    <h-card>
-        <template #header>
-            加载文字
-        </template>
-        <load-text/>
-        <template #footer>
-            <div v-code="textCode"></div>
-        </template>
-    </h-card>
-    <h-card>
-        <template #header>
-            全屏
-        </template>
-        <fullscreen/>
-        <template #footer>
-            <div v-code="fullscreenCOde"></div>
-        </template>
-    </h-card>
+    <case-card :code="loadingCode" :component="Loading" title="块内"/>
+    <case-card :code="textCode" :component="LoadText" title="加载文字"/>
+    <case-card :code="fullscreenCOde" :component="Fullscreen" title="全屏"/>
 </template>
 
 <style lang="scss" scoped>
@@ -37,14 +13,13 @@
 </style>
 
 <script lang="ts" setup>
-
-import {HCard} from '@yin-jinlong/h-ui'
+import {CaseCard} from "@components"
 
 import Loading from "./loading.vue"
 import Fullscreen from "./fullscreen.vue"
 import LoadText from "./text.vue"
 
-import loadingCOde from "./loading.vue?raw"
+import loadingCode from "./loading.vue?raw"
 import fullscreenCOde from "./fullscreen.vue?raw"
 import textCode from "./text.vue?raw"
 
