@@ -2,6 +2,7 @@
     <case-card :code="loadingCode" :component="Loading" title="块内"/>
     <case-card :code="textCode" :component="LoadText" title="加载文字"/>
     <case-card :code="fullscreenCOde" :component="Fullscreen" title="全屏"/>
+    <case-card :code="typesCode" :component="Types" title="不同类型"/>
 </template>
 
 <style lang="scss" scoped>
@@ -18,9 +19,11 @@ import {CaseCard} from "@components"
 import Loading from "./loading.vue"
 import Fullscreen from "./fullscreen.vue"
 import LoadText from "./text.vue"
+import Types from "./types.vue"
 
 import loadingCode from "./loading.vue?raw"
 import fullscreenCOde from "./fullscreen.vue?raw"
 import textCode from "./text.vue?raw"
+import typesCode from "./types.vue?raw"
 
 </script>

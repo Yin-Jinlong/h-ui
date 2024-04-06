@@ -1,9 +1,11 @@
 import type {App, Component} from "vue"
 
+type LoadingType = "circle" | "running"
+
 export declare interface HLoadingConfig {
     loading: boolean
     text?: string
-    component?: Component
+    component?: Component | LoadingType
 }
 
 export declare interface HLoadingOptions extends HLoadingConfig {
@@ -17,3 +19,5 @@ export declare interface HLoadingInstance {
     parent: HTMLElement
     el: HTMLElement
 }
+
+export type HLoadingType = LoadingType

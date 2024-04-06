@@ -8,8 +8,14 @@ import {
 import {cssVar} from "@yin-jinlong/h-ui/utils"
 
 import {Running} from "./loading-running"
-import {HLoadingOptions} from "./type"
+import {Circle} from "./loading-circle"
+import {HLoadingOptions, HLoadingType} from "./type"
 import {mergeStyle} from "./utils"
+
+const INNER_LOADINGS: Record<HLoadingType,(() => Component)> = {
+    running: Running,
+    circle: Circle
+}
 
 const animConfig = {
     duration: 200,
@@ -53,6 +59,18 @@ function Loading(options: HLoadingOptions): VNode {
         })
     }
 
+    let loadingComponent = () => {
+        if (!options.component)
+            return Circle()
+        if (typeof options.component === 'string') {
+            let c = INNER_LOADINGS[options.component]
+            if (!c)
+                throw new Error(`${options.component} is not a valid loading component name`)
+            return c()
+        }
+        return options.component
+    }
+
     function setup() {
         onMounted(() => {
             addStyle(root.value!)
@@ -61,7 +79,7 @@ function Loading(options: HLoadingOptions): VNode {
             ref: root,
             'data-flex-column-center': ''
         }, [
-            h(options.component ?? Running()),
+            h(loadingComponent()),
             vIf(!!options.text, h('div', {
                     'data-flex-column-center': ''
                 }, [options.text]),
