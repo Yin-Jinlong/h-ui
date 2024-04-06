@@ -1,30 +1,58 @@
-import {App, ObjectDirective, createApp, reactive, DefineComponent, MaybeRef, h, ref, defineComponent} from "vue"
+import {
+    DirectiveBinding, ObjectDirective,
+    createApp,
+    reactive, watch,
+} from 'vue'
 
-import Loading from "./Loading.vue"
+import {createLoadingComponent} from "./loading-component"
+import {HLoadingConfig, HLoadingInstance, HLoadingOptions} from "./type"
 
-import {HLoadingProps} from './props'
-
-const APP_KEY = Symbol('app')
-const PROPS_KEY = Symbol('props')
-const LOADING_KEY = Symbol('loading')
-const EL_KEY = Symbol('el')
+const INSTANCE_KEY = Symbol('instance')
 
 interface LoadingElement extends HTMLElement {
-    [APP_KEY]: App<Element>
-    [PROPS_KEY]: HLoadingProps
-    [LOADING_KEY]: boolean
-    [EL_KEY]: HTMLElement
+    [INSTANCE_KEY]: HLoadingInstance
 }
 
-export declare interface HLoadingConfig extends HLoadingProps {
+function createInstance(el: HTMLElement, options: HLoadingOptions): HLoadingInstance {
 
+    let instance = {
+        options,
+        parent: options.fullscreen ? document.body : el,
+    } as HLoadingInstance
+
+    watch(() => options.loading, (v) => {
+        if (v) {
+            let app = createApp(createLoadingComponent(options))
+            let c = app.mount(document.createElement('div'))
+            instance.app = app
+            instance.el = c.$el
+            instance.parent.append(c.$el)
+        } else {
+            instance.app?.unmount()
+            instance.app = undefined
+        }
+    }, {
+        immediate: true
+    })
+    instance.options.instance = instance
+    return instance
 }
 
-function getLoadingValue(obj: HLoadingConfig | boolean) {
-    if (typeof obj === 'boolean') {
-        return obj
-    } else {
-        return obj.loading
+function resolveOptions(raw: DirectiveBinding<boolean | HLoadingConfig | undefined>): HLoadingOptions {
+    let fullscreen = raw.modifiers.fullscreen ?? false
+    if (typeof raw.value === 'object') {
+        let props = raw.value
+        return {
+            loading: props.loading ?? true,
+            component: props.component,
+            fullscreen,
+            instance: undefined,
+        }
+    }
+    return {
+        loading: raw.value ?? true,
+        fullscreen,
+        instance: undefined,
     }
 }
 
@@ -32,42 +60,30 @@ function getLoadingText(el: LoadingElement) {
     return el.getAttribute('h-loading-text') ?? ''
 }
 
-function updateProps(el: LoadingElement) {
-    el[PROPS_KEY].loading = el[LOADING_KEY]
-    el[PROPS_KEY].text = getLoadingText(el)
+function updateProps(el: LoadingElement, options: HLoadingOptions): HLoadingInstance {
+    let os = el[INSTANCE_KEY].options as Record<string, any>
+    Object.keys(os).forEach(key => {
+        let k = key as keyof HLoadingOptions
+        let v = options[k]
+        if (options[k] !== os[k] && v !== undefined) {
+            os[k] = v
+        }
+    })
+    return el[INSTANCE_KEY]
+}
+
+function update(el: LoadingElement, binding: DirectiveBinding) {
+    let instance = updateProps(el, resolveOptions(binding))
+    instance.options.text = getLoadingText(el)
 }
 
 export const vLoading = {
     created(el, binding, vNode) {
-        el[PROPS_KEY] = reactive<HLoadingProps>({
-            loading: getLoadingValue(binding.value ?? true),
-            text: getLoadingText(el),
-            component: typeof binding.value === 'object' ? binding.value.component : undefined
-        })
-        el[APP_KEY] = createApp(defineComponent({
-            name: 'HLoading',
-            setup(_, {expose}) {
-                return () => {
-                    return h(Loading, el[PROPS_KEY])
-                }
-            }
-        }))
+        el[INSTANCE_KEY] = createInstance(el, reactive(resolveOptions(binding)) as HLoadingOptions)
     },
-    mounted(el, binding, vNode) {
-        let c = el[APP_KEY].mount(document.createElement('div'))
-        if (binding.modifiers.fullscreen)
-            document.body.append(c.$el)
-        else
-            el.append(c.$el)
-        el[EL_KEY] = c.$el
-        el[LOADING_KEY] = getLoadingValue(binding.value ?? true)
-        updateProps(el)
-    },
-    updated(el, binding, vNode) {
-        el[LOADING_KEY] = getLoadingValue(binding.value ?? true)
-        updateProps(el)
-    },
+    mounted: update,
+    updated: update,
     unmounted(el, binding, vNode) {
-        el[APP_KEY].unmount()
+        el[INSTANCE_KEY].app?.unmount()
     }
 } as ObjectDirective<LoadingElement, HLoadingConfig | boolean | undefined>
