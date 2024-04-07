@@ -12,7 +12,7 @@ import {Circle} from "./loading-circle"
 import {HLoadingOptions, HLoadingType} from "./type"
 import {mergeStyle} from "./utils"
 
-const INNER_LOADINGS: Record<HLoadingType,(() => Component)> = {
+const INNER_LOADINGS: Record<HLoadingType, (() => Component)> = {
     running: Running,
     circle: Circle
 }
@@ -42,18 +42,19 @@ function vIf(v: boolean | undefined, content: VNode, comment: string = 'if'): VN
     return createCommentVNode(comment)
 }
 
-function Loading(options: HLoadingOptions): VNode {
+function Loading(el: HTMLElement, options: HLoadingOptions): VNode {
 
     const root = ref<HTMLElement>()
 
     function addStyle(root: HTMLElement) {
+
         mergeStyle(root, {
             backgroundColor: 'rgb(0, 0, 0, 0.6)',
             color: cssVar('color-primary'),
             height: '100%',
-            left: '0',
+            left: `${el.scrollLeft}px`,
             position: 'absolute',
-            top: '0',
+            top: `${el.scrollTop}px`,
             width: '100%',
             zIndex: '2147483647'
         })
@@ -95,7 +96,7 @@ function Loading(options: HLoadingOptions): VNode {
     ))
 }
 
-export function createLoadingComponent(options: HLoadingOptions): Component {
+export function createLoadingComponent(el: HTMLElement, options: HLoadingOptions): Component {
 
     return defineComponent({
         name: 'HLoading',
@@ -108,7 +109,7 @@ export function createLoadingComponent(options: HLoadingOptions): Component {
                         onAppear: enter,
                         onLeave: leave,
                     }, {
-                        default: withCtx(() => [vIf(options.loading, Loading(options))])
+                        default: withCtx(() => [vIf(options.loading, Loading(el, options))])
                     }
                 )
             }

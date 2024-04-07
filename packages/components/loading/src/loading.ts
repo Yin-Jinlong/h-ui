@@ -22,7 +22,7 @@ function createInstance(el: HTMLElement, options: HLoadingOptions): HLoadingInst
 
     watch(() => options.loading, (v) => {
         if (v) {
-            let app = createApp(createLoadingComponent(options))
+            let app = createApp(createLoadingComponent(el,options))
             let c = app.mount(document.createElement('div'))
             instance.app = app
             instance.el = c.$el
