@@ -37,9 +37,9 @@ export default defineConfig((env) => {
                     assetFileNames(chunkInfo) {
                         switch (getSuffix(chunkInfo.name!)) {
                             case 'css':
-                                return 'css/[hash:6].css'
+                                return 'css/[hash].css'
                             default:
-                                return '[hash:6].[ext]'
+                                return '[hash].[ext]'
                         }
                     },
                     entryFileNames: '[name].js',
@@ -70,7 +70,7 @@ export default defineConfig((env) => {
             visualizer({
                 gzipSize: true,
                 template: 'flamegraph',
-                filename: 'sizes.html'
+                filename: 'cache/sizes.html'
             })
         ],
     }
