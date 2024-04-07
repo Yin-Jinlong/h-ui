@@ -2,7 +2,7 @@
     <case-card :code="loadingCode" :component="Loading" title="块内"/>
     <case-card :code="textCode" :component="LoadText" title="加载文字"/>
     <case-card :code="fullscreenCOde" :component="Fullscreen" title="全屏"/>
-    <case-card :code="typesCode" :component="Types" title="不同类型"/>
+    <case-card :code="typesCode" :component="Types" title="不同样式（全局命名注册）"/>
 </template>
 
 <style lang="scss" scoped>

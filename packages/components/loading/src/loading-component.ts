@@ -9,10 +9,10 @@ import {cssVar} from "@yin-jinlong/h-ui/utils"
 
 import {Running} from "./loading-running"
 import {Circle} from "./loading-circle"
-import {HLoadingOptions, HLoadingType} from "./type"
+import {HLoadingOptions} from "./type"
 import {mergeStyle} from "./utils"
 
-const INNER_LOADINGS: Record<HLoadingType, (() => Component)> = {
+const NAMED_LOADINGS: Record<string, (() => Component)> = {
     running: Running,
     circle: Circle
 }
@@ -64,7 +64,7 @@ function Loading(el: HTMLElement, options: HLoadingOptions): VNode {
         if (!options.component)
             return Circle()
         if (typeof options.component === 'string') {
-            let c = INNER_LOADINGS[options.component]
+            let c = NAMED_LOADINGS[options.component]
             if (!c)
                 throw new Error(`${options.component} is not a valid loading component name`)
             return c()
@@ -115,4 +115,10 @@ export function createLoadingComponent(el: HTMLElement, options: HLoadingOptions
             }
         }
     })
+}
+
+export function registerLoadingComponent(name: string, component: () => Component) {
+    if (NAMED_LOADINGS[name])
+        throw new Error(`${name} is already registered`)
+    NAMED_LOADINGS[name] = component
 }
