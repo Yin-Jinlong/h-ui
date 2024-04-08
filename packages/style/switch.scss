@@ -26,7 +26,7 @@
   outline          : transparent solid 1px;
   width            : calc(#{get-css(switch, height)} * 1.75);
 
-  &:hover {
+  &:hover:not([data-disabled]) {
     outline-color : get-css(switch, on-color);
   }
 
