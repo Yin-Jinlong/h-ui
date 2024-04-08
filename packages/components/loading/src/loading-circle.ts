@@ -11,15 +11,16 @@ const animConfig = {
 function addStyle(root: HTMLDivElement) {
 
     mergeStyle(root, {
-        height: '30px',
+        height: cssVar('loading-size', '30px'),
         position: 'relative',
-        width: '30px',
+        width: cssVar('loading-size', '30px'),
         stroke: cssVar('color-primary'),
-        strokeWidth: '2',
+        strokeWidth: cssVar('loading-stroke-width', '10%'),
     })
 
     mergeStyle(root.firstElementChild as HTMLElement, {
-        transformOrigin: 'center'
+        transformOrigin: 'center',
+        r: `calc(50% - ${cssVar('loading-stroke-width', '10%')})`,
     })
 
 }
@@ -50,13 +51,13 @@ export function Circle(): Component {
         })
 
         return () => h('svg', {
-            ref: root
+            ref: root,
+            viewBox: '0 0 30 30',
         }, [
             h('circle', {
                 ref: circle,
                 cx: 15,
                 cy: 15,
-                r: 14,
                 fill: 'none'
             })
         ])

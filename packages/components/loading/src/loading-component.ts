@@ -5,14 +5,14 @@ import {
     defineComponent, h, withCtx, createCommentVNode, ref, onMounted
 } from "vue"
 
-import {cssVar} from "@yin-jinlong/h-ui/utils"
+import {cssVar, cssVarName} from "@yin-jinlong/h-ui/utils"
 
 import {Running} from "./loading-running"
 import {Circle} from "./loading-circle"
-import {HLoadingOptions} from "./type"
+import {ComponentFn, HLoadingOptions} from "./type"
 import {mergeStyle} from "./utils"
 
-const NAMED_LOADINGS: Record<string, (() => Component)> = {
+const NAMED_LOADINGS: Record<string, (ComponentFn)> = {
     running: Running,
     circle: Circle
 }
@@ -58,11 +58,12 @@ function Loading(el: HTMLElement, options: HLoadingOptions): VNode {
             width: '100%',
             zIndex: '2147483647'
         })
+
+        root.style.setProperty(cssVarName('loading-size'), options.size)
+        root.style.setProperty(cssVarName('loading-stroke-width'), options.width)
     }
 
     let loadingComponent = () => {
-        if (!options.component)
-            return Circle()
         if (typeof options.component === 'string') {
             let c = NAMED_LOADINGS[options.component]
             if (!c)
@@ -117,7 +118,12 @@ export function createLoadingComponent(el: HTMLElement, options: HLoadingOptions
     })
 }
 
-export function registerLoadingComponent(name: string, component: () => Component) {
+/**
+ * 注册全局loading组件，在vLoading的component中使用
+ * @param name 注册名
+ * @param component 组件
+ */
+export function registerLoadingComponent(name: string, component: ComponentFn) {
     if (NAMED_LOADINGS[name])
         throw new Error(`${name} is already registered`)
     NAMED_LOADINGS[name] = component

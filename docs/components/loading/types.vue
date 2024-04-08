@@ -1,5 +1,5 @@
 <template>
-    <h-card v-loading="{loading:true, component:'circle'}"
+    <h-card v-loading="{component:'circle'}"
             data-relative
             h-loading-text="加载中...">
         <template #header>
@@ -11,7 +11,7 @@
             圆圈
         </template>
     </h-card>
-    <h-card v-loading="{loading:true,component:'running'}"
+    <h-card v-loading="{component:'running'}"
             data-relative
             h-loading-text="加载中...">
         <template #header>

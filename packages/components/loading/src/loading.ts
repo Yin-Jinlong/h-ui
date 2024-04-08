@@ -1,8 +1,6 @@
-import {
-    DirectiveBinding, ObjectDirective,
-    createApp,
-    reactive, watch,
-} from 'vue'
+import {createApp, DirectiveBinding, ObjectDirective, reactive, watch,} from 'vue'
+
+import {OptionalKey} from "@yin-jinlong/h-ui/types"
 
 import {createLoadingComponent} from "./loading-component"
 import {HLoadingConfig, HLoadingInstance, HLoadingOptions} from "./type"
@@ -22,7 +20,7 @@ function createInstance(el: HTMLElement, options: HLoadingOptions): HLoadingInst
 
     watch(() => options.loading, (v) => {
         if (v) {
-            let app = createApp(createLoadingComponent(el,options))
+            let app = createApp(createLoadingComponent(el, options))
             let c = app.mount(document.createElement('div'))
             instance.app = app
             instance.el = c.$el
@@ -38,21 +36,23 @@ function createInstance(el: HTMLElement, options: HLoadingOptions): HLoadingInst
     return instance
 }
 
-function resolveOptions(raw: DirectiveBinding<boolean | HLoadingConfig | undefined>): HLoadingOptions {
-    let fullscreen = raw.modifiers.fullscreen ?? false
+function resolveOptions(raw: DirectiveBinding<boolean | OptionalKey<HLoadingConfig> | undefined>): HLoadingOptions {
+
+    const def: HLoadingOptions = {
+        component: 'circle',
+        fullscreen: raw.modifiers.fullscreen ?? false,
+        loading: true,
+        size: '30px',
+        text: '',
+        width: '10%'
+    }
+
     if (typeof raw.value === 'object') {
-        let props = raw.value
-        return {
-            loading: props.loading ?? true,
-            component: props.component,
-            fullscreen,
-            instance: undefined,
-        }
+        return Object.assign(def, raw.value)
     }
     return {
-        loading: raw.value ?? true,
-        fullscreen,
-        instance: undefined,
+        ...def,
+        loading: raw.value ?? true
     }
 }
 
@@ -86,4 +86,4 @@ export const vLoading = {
     unmounted(el, binding, vNode) {
         el[INSTANCE_KEY].app?.unmount()
     }
-} as ObjectDirective<LoadingElement, HLoadingConfig | boolean | undefined>
+} as ObjectDirective<LoadingElement, OptionalKey<HLoadingConfig> | boolean | undefined>
