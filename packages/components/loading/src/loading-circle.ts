@@ -14,7 +14,7 @@ function addStyle(root: HTMLDivElement) {
         height: cssVar('loading-size', '30px'),
         position: 'relative',
         width: cssVar('loading-size', '30px'),
-        stroke: cssVar('color-primary'),
+        stroke: cssVar('loading-color'),
         strokeWidth: cssVar('loading-stroke-width', '10%'),
     })
 

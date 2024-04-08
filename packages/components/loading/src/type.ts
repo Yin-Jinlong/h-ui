@@ -1,4 +1,5 @@
 import type {App, Component} from "vue"
+import {DefinedNamedColor} from "@yin-jinlong/h-ui/types"
 
 export declare interface HLoadingConfig {
     loading: boolean
@@ -6,6 +7,8 @@ export declare interface HLoadingConfig {
     component: Component | string
     size: string
     width: string
+    color: DefinedNamedColor | string
+    modal: boolean | DefinedNamedColor | string
 }
 
 export declare interface HLoadingOptions extends HLoadingConfig {

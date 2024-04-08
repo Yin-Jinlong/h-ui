@@ -5,7 +5,7 @@ import {
     defineComponent, h, withCtx, createCommentVNode, ref, onMounted
 } from "vue"
 
-import {cssVar, cssVarName} from "@yin-jinlong/h-ui/utils"
+import {convertColor, cssVar, cssVarName} from "@yin-jinlong/h-ui/utils"
 
 import {Running} from "./loading-running"
 import {Circle} from "./loading-circle"
@@ -49,8 +49,8 @@ function Loading(el: HTMLElement, options: HLoadingOptions): VNode {
     function addStyle(root: HTMLElement) {
 
         mergeStyle(root, {
-            backgroundColor: 'rgb(0, 0, 0, 0.6)',
-            color: cssVar('color-primary'),
+            backgroundColor: cssVar('loading-modal-color'),
+            color: cssVar('loading-color'),
             height: '100%',
             left: `${el.scrollLeft}px`,
             position: 'absolute',
@@ -59,6 +59,15 @@ function Loading(el: HTMLElement, options: HLoadingOptions): VNode {
             zIndex: '2147483647'
         })
 
+        let modal = ((model) => {
+            if (typeof model === 'boolean') {
+                return model ? 'rgba(0,0,0,0.6)' : 'transparent'
+            }
+            return convertColor(model)
+        })(options.modal)
+
+        root.style.setProperty(cssVarName('loading-color'), convertColor(options.color))
+        root.style.setProperty(cssVarName('loading-modal-color'), modal)
         root.style.setProperty(cssVarName('loading-size'), options.size)
         root.style.setProperty(cssVarName('loading-stroke-width'), options.width)
     }

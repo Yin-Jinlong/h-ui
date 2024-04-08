@@ -39,9 +39,11 @@ function createInstance(el: HTMLElement, options: HLoadingOptions): HLoadingInst
 function resolveOptions(raw: DirectiveBinding<boolean | OptionalKey<HLoadingConfig> | undefined>): HLoadingOptions {
 
     const def: HLoadingOptions = {
+        color: 'primary',
         component: 'circle',
         fullscreen: raw.modifiers.fullscreen ?? false,
         loading: true,
+        modal: true,
         size: '30px',
         text: '',
         width: '10%'

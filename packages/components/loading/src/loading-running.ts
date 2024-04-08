@@ -15,7 +15,7 @@ function addStyle(root: HTMLDivElement) {
     })
 
     mergeStyle(root.children[0], {
-        backgroundColor: cssVar('color-primary-1'),
+        backgroundColor: cssVar('loading-color'),
         borderRadius: '100%',
         height: '100%',
         top: '0',
