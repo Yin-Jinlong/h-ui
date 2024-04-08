@@ -9,10 +9,6 @@
 
 <style lang="scss" scoped>
 
-.h-card {
-  max-width : calc(100% - 1em);
-}
-
 </style>
 
 <script lang="ts" setup>
