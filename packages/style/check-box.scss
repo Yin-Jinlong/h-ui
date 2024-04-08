@@ -27,39 +27,54 @@
 @include c(check-box) {
   @include css-var(check-box-on-color, get-css(color, primary));
   @include css-var(check-box-off-color, get-css(color, background-simple));
-  background-color : get-css(check-box, off-color);
-  border           : gray solid 1px;
-  border-radius    : 5px;
-  display          : inline-block;
-  font-size        : 16px;
-  @include css-prefix(user-select, none);
+  padding : 0.2em 0.3em;
 
   &:hover {
-    border-color :  get-css(check-box, on-color);
+    color : get-css(check-box, on-color);
+
+    @include c(check-box-box) {
+      border-color : get-css(check-box, on-color);
+    }
+
   }
 
-  &::before {
-    @include size.fill;
-    align-items     : center;
-    color           : get-css(color, white);
-    content         : '';
-    display         : flex;
-    font-weight     : 900;
-    justify-content : center;
-    position        : absolute;
-    transform       : scaleY(0);
-    transition      : transform .2s ease-out;
-  }
+  @include c(check-box-box) {
+    background-color : get-css(check-box, off-color);
+    border           : gray solid 1px;
+    border-radius    : 5px;
+    display          : inline-block;
+    font-size        : 16px;
+    @include css-prefix(user-select, none);
 
-  @include cb-size;
-
-  &[data-checked] {
-    background-color : get-css(check-box, on-color);
 
     &::before {
-      content   : '\2713';
-      transform : scaleY(1);
+      @include size.fill;
+      align-items     : center;
+      color           : get-css(color, white);
+      content         : '';
+      display         : flex;
+      font-weight     : 900;
+      justify-content : center;
+      position        : absolute;
+      transform       : scaleY(0);
+      transition      : transform .2s ease-out;
     }
+
+    @include cb-size;
   }
 
+  &[data-checked] {
+    color : get-css(check-box, on-color);
+
+    @include c(check-box-box) {
+
+      background-color : get-css(check-box, on-color);
+
+      &::before {
+        content   : '\2713';
+        transform : scaleY(1);
+      }
+    }
+
+  }
 }

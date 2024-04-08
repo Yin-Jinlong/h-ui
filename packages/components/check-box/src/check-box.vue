@@ -1,16 +1,16 @@
 <template>
-    <div v-disabled="disabled"
+    <div ref="checkBoxEle"
+         v-disabled="disabled"
+         :data-checked="checked?'':undefined"
+         class="h-check-box"
          data-flex-center
          data-none-select
          data-pointer
-         data-transition-fast
-         style="display: inline-flex"
+         data-transition-fast style="display: inline-flex"
          @click="click">
         <slot/>
-        <div ref="checkBoxEle"
-             :data-checked="checked?'':undefined"
-             :data-size="size"
-             class="h-check-box"
+        <div :data-size="size"
+             class="h-check-box-box"
              data-relative
              data-transition-fast/>
     </div>
@@ -20,9 +20,9 @@
 <script lang="ts" setup>
 import {onMounted, ref, watch} from "vue"
 
-import {vDisabled,convertColor,cssVarName} from '@yin-jinlong/h-ui/utils'
+import {vDisabled, convertColor, cssVarName} from '@yin-jinlong/h-ui/utils'
 
-import DefaultProps,{HCheckBoxProps} from "./props"
+import DefaultProps, {HCheckBoxProps} from "./props"
 
 
 const checkBoxEle = ref<HTMLDivElement>()
