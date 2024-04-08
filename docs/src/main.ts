@@ -1,5 +1,5 @@
 import {createApp} from 'vue'
-import {isDark} from "@yin-jinlong/h-ui"
+import {isDark, toggleDark} from "@yin-jinlong/h-ui"
 
 import App from './App.vue'
 import {mountCode} from "./highlight"
@@ -28,6 +28,9 @@ new MutationObserver(() => {
 }).observe(document.documentElement, {
     attributes: true
 })
+
+if (window.matchMedia('(prefers-color-scheme: dark)').matches)
+    toggleDark()
 
 const app = createApp(App)
 app.directive('code', vCode)
