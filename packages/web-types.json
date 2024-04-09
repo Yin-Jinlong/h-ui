@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json.schemastore.org/web-types",
+  "framework": "vue",
+  "js-types-syntax": "typescript",
+  "description-markup": "markdown",
+  "name": "@yin-jinlong/h-ui",
+  "version": "0.4.0",
+  "contributions": {
+    "html": {
+      "attributes": [
+        {
+          "name": "h-loading-text",
+          "description": "加载文字",
+          "source": {
+            "symbol": "vLoading"
+          }
+        },
+        {
+          "name": "v-loading",
+          "description": "加载中",
+          "source": {
+            "symbol": "vLoading"
+          }
+        }
+      ]
+    },
+    "css": {
+      "pseudo-elements": [
+        {
+          "name": "view-transition-old"
+        }, {
+          "name": "view-transition-new"
+        }
+      ]
+    }
+  }
+}

@@ -8,7 +8,7 @@ import commonjs from "@rollup/plugin-commonjs"
 import resolve from "@rollup/plugin-node-resolve"
 import terser from "@rollup/plugin-terser"
 import vuePlugin from "@vitejs/plugin-vue"
-import {Plugin,rollup} from "rollup"
+import {Plugin, rollup} from "rollup"
 import postcss from "rollup-plugin-postcss"
 import typescript from "rollup-plugin-typescript2"
 
@@ -165,6 +165,7 @@ async function genPackageJson() {
     delete packageJson.dependencies['h-ui/style/src']
 
     packageJson.name = '@yin-jinlong/h-ui'
+    packageJson.version = fs.readFileSync('VERSION').toString().trim()
     packageJson.files = [
         "dist",
         "es",
@@ -196,6 +197,7 @@ async function genPackageJson() {
 
     fs.writeFileSync(path.resolve(config.dist, 'package.json'), JSON.stringify(packageJson, null, 2))
     fs.cpSync('README.md', path.resolve(config.dist, 'README.md'))
+    fs.cpSync('web-types.json', path.resolve(config.dist, 'web-types.json'))
 }
 
 build().then()

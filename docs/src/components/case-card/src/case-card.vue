@@ -38,6 +38,9 @@ import type {Component} from "vue"
 import {ref} from "vue"
 import {HButton, HCard, vAutoHeight} from "@yin-jinlong/h-ui"
 
+import '@yin-jinlong/h-ui/components/button/style'
+import '@yin-jinlong/h-ui/components/card/style'
+
 defineProps<{
     title: string
     component: Component

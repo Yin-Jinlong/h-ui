@@ -35,5 +35,6 @@
   "dependencies": {
     "shiki": "^1.2.3",
     "vue": "^3.4.21"
-  }
+  },
+  "web-types": "../dist/web-types.json"
 }

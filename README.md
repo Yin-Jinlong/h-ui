@@ -1,4 +1,4 @@
-# H-UI 氢-UI
+# 氢-UI
 
 [//]: # (概览)
 
@@ -22,3 +22,4 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/Yin-Jinlong/h-ui)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/Yin-Jinlong/h-ui/main)
 
+一个`Vue.js 3` UI 组件库

@@ -2,8 +2,6 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../dist/es",
-    "baseUrl": ".",
-    "rootDir": ".",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "tsBuildInfoFile": "cache/.tsbuildinfo"

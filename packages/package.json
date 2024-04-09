@@ -1,6 +1,5 @@
 {
   "name": "h-ui-packages",
-  "version": "0.3.3",
   "description": "vue3 ui库",
   "author": "Yin-Jinlong",
   "type": "module",
@@ -43,8 +42,8 @@
   },
   "dependencies": {
     "chroma-js": "^2.4.2",
-    "h-ui": "link:..\\dist",
     "h-ui-build-tool": "link:..\\build",
     "vue": "^3.4.21"
-  }
+  },
+  "web-types": "./web-types.json"
 }

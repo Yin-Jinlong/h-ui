@@ -1,5 +1,4 @@
-@import '../../packages/style/index.scss';
-@import '../../packages/style/base-dark';
+@import '@yin-jinlong/h-ui/style/src/index.scss';
 @import '@yin-jinlong/h-ui/style/src/base-dark.scss';
 
 ::view-transition-old(root),
@@ -27,7 +26,6 @@ html, body {
   border-radius : 5px;
   box-sizing    : border-box;
   font-size     : 16px;
-  margin        : 1em 0;
   max-width     : 100%;
   min-width     : 100%;
   overflow-x    : auto;
