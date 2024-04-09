@@ -16,7 +16,7 @@ export function deepAssign<S = object, T = object>(target: T, ...sources: S[]): 
             let value = source[key]
             if (typeof value === 'object') {
                 if (!target[key])
-                    target[key] = {}
+                    target[key] = Array.isArray(value) ? [] : {}
                 assign(target[key], value)
             } else if (value) {
                 target[key] = value
