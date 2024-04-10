@@ -58,13 +58,9 @@
     </div>
 </template>
 
-<style lang="scss" scoped>
-
-</style>
-
 <script lang="ts" setup>
-import {DefinedNamedColors, HCard, HCheckBox, vLoading} from "@yin-jinlong/h-ui"
-import {ref} from "vue";
+import {DefinedNamedColors, HCard, HCheckBox, vLoading} from '@yin-jinlong/h-ui'
+import {ref} from 'vue'
 
 const loading = ref(true)
 </script>

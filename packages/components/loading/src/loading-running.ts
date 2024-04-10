@@ -1,10 +1,10 @@
 import {
     Component,
     defineComponent, h, ref, onMounted
-} from "vue"
+} from 'vue'
 
-import {cssVar} from "@yin-jinlong/h-ui/utils"
-import {mergeStyle} from "./utils"
+import {cssVar} from '@yin-jinlong/h-ui/utils'
+import {mergeStyle} from './utils'
 
 function addStyle(root: HTMLDivElement) {
 

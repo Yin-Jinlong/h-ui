@@ -3,45 +3,45 @@
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation      : none;
-  mix-blend-mode : normal;
+  animation: none;
+  mix-blend-mode: normal;
 }
 
 ::view-transition-old(root) {
-  z-index : 1;
+  z-index: 1;
 }
 
 ::view-transition-new(root) {
-  z-index : 2;
+  z-index: 2;
 }
 
 html, body {
-  height   : 100vh;
-  overflow : hidden;
-  width    : 100vw;
+  height: 100vh;
+  overflow: hidden;
+  width: 100vw;
 }
 
 .h-code {
-  border        : grey solid 1px;
-  border-radius : 5px;
-  box-sizing    : border-box;
-  font-size     : 16px;
-  max-width     : 100%;
-  min-width     : 100%;
-  overflow-x    : auto;
-  padding       : 0.5em;
+  border: grey solid 1px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  max-width: 100%;
+  min-width: 100%;
+  overflow-x: auto;
+  padding: 0.5em;
 
   pre, code {
-    display     : inline-block;
-    font-family : 'JetBrains Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;;
-    min-width   : 100%;
-    width       : max-content;
+    display: inline-block;
+    font-family: 'JetBrains Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;;
+    min-width: 100%;
+    width: max-content;
   }
 
 }
 
 .line {
-  border-bottom : rgb(128, 128, 128, 0.3) dashed 1px;
-  display       : inline-block;
-  width         : 100%;
+  border-bottom: rgb(128, 128, 128, 0.3) dashed 1px;
+  display: inline-block;
+  width: 100%;
 }

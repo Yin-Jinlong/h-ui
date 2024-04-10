@@ -17,11 +17,11 @@
 </style>
 
 <script lang="ts" setup>
-import {onMounted, ref, watch} from "vue"
+import {onMounted, ref, watch} from 'vue'
 
 import {vDisabled, convertColor, cssVarName} from '@yin-jinlong/h-ui/utils'
 
-import DefaultProps, {HInputProps} from "./props"
+import DefaultProps, {HInputProps} from './props'
 
 
 const props = withDefaults(defineProps<HInputProps>(), DefaultProps)

@@ -1,6 +1,6 @@
 @mixin css-prefix($name,$value) {
-  -moz-#{$name}       : $value;
-  -ms-#{$name}        : $value;
-  -webkit-#{$name}    : $value;
-  #{$name}            : $value;
+  -moz-#{$name} : $value;
+  -ms-#{$name}  : $value;
+  -webkit-#{$name} : $value;
+  #{$name} : $value;
 }

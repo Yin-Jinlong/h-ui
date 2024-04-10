@@ -1,4 +1,4 @@
-import type {App, Component, Plugin} from "vue"
+import type {App, Component, Plugin} from 'vue'
 
 export function withInstall<T extends Component>(component: T): T & Plugin {
     let c = component as T & Plugin

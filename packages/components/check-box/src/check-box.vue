@@ -18,11 +18,11 @@
 </template>
 
 <script lang="ts" setup>
-import {onMounted, ref, watch} from "vue"
+import {onMounted, ref, watch} from 'vue'
 
 import {vDisabled, convertColor, cssVarName} from '@yin-jinlong/h-ui/utils'
 
-import DefaultProps, {HCheckBoxProps} from "./props"
+import DefaultProps, {HCheckBoxProps} from './props'
 
 
 const checkBoxEle = ref<HTMLDivElement>()

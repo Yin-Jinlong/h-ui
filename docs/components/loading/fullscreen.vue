@@ -11,13 +11,9 @@
     </h-card>
 </template>
 
-<style lang="scss" scoped>
-
-</style>
-
 <script lang="ts" setup>
-import {ref} from "vue"
-import {HButton, HCard, vLoading} from "@yin-jinlong/h-ui"
+import {ref} from 'vue'
+import {HButton, HCard, vLoading} from '@yin-jinlong/h-ui'
 
 const loading = ref(false)
 

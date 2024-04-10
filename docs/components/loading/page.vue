@@ -12,20 +12,20 @@
 </style>
 
 <script lang="ts" setup>
-import {CaseCard} from "@components"
+import {CaseCard} from '@components'
 
-import Colors from "./colors.vue"
-import Loading from "./loading.vue"
-import Fullscreen from "./fullscreen.vue"
-import LoadText from "./text.vue"
-import Sizes from "./sizes.vue"
-import Types from "./types.vue"
+import Colors from './colors.vue'
+import Loading from './loading.vue'
+import Fullscreen from './fullscreen.vue'
+import LoadText from './text.vue'
+import Sizes from './sizes.vue'
+import Types from './types.vue'
 
-import colorsCode from "./colors.vue?raw"
-import loadingCode from "./loading.vue?raw"
-import fullscreenCOde from "./fullscreen.vue?raw"
-import textCode from "./text.vue?raw"
-import sizesCode from "./sizes.vue?raw"
-import typesCode from "./types.vue?raw"
+import colorsCode from './colors.vue?raw'
+import loadingCode from './loading.vue?raw'
+import fullscreenCOde from './fullscreen.vue?raw'
+import textCode from './text.vue?raw'
+import sizesCode from './sizes.vue?raw'
+import typesCode from './types.vue?raw'
 
 </script>

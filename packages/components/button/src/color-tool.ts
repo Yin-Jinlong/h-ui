@@ -1,7 +1,7 @@
-import chroma, {Color,hsl} from "chroma-js"
+import chroma, {Color, hsl} from 'chroma-js'
 
-import {DefinedNamedColor} from "@yin-jinlong/h-ui/types"
-import {cssVar, isDefinedNamedColor} from "@yin-jinlong/h-ui/utils"
+import {DefinedNamedColor} from '@yin-jinlong/h-ui/types'
+import {cssVar, isDefinedNamedColor} from '@yin-jinlong/h-ui/utils'
 
 /**
  * 生成button颜色

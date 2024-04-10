@@ -42,7 +42,7 @@ import {
     HButton,
     HCheckBox
 } from '@yin-jinlong/h-ui'
-import {ref} from "vue"
+import {ref} from 'vue'
 
 const types: HButtonType[] = ['primary', 'plain', 'text']
 const colorTexts = ['主要', '成功', '警告', '危险', '信息', '强调']

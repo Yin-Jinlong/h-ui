@@ -1,6 +1,6 @@
-import {BindSize, DefinedNamedColor, Disable} from "@yin-jinlong/h-ui/types"
+import {BindSize, DefinedNamedColor, Disable} from '@yin-jinlong/h-ui/types'
 
-import {HInputType} from "./type"
+import {HInputType} from './type'
 
 declare interface Props extends Disable, BindSize {
     placeholder?: string

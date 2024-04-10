@@ -1,4 +1,4 @@
-import fs from "fs"
+import fs from 'fs'
 
 export function clean(path: fs.PathLike): boolean {
     if (fs.existsSync(path)) {

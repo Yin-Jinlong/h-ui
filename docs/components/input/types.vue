@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import {ref} from "vue"
+import {ref} from 'vue'
 import {HInputType, HCheckBox, HInput} from '@yin-jinlong/h-ui'
 
 const types: HInputType[] = [

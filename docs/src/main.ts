@@ -1,8 +1,8 @@
 import {createApp} from 'vue'
-import {isDark, toggleDark} from "@yin-jinlong/h-ui"
+import {isDark, toggleDark} from '@yin-jinlong/h-ui'
 
 import App from './App.vue'
-import {mountCode} from "./highlight"
+import {mountCode} from './highlight'
 import {vCode} from './utils'
 
 import './style.scss'
@@ -11,7 +11,7 @@ class ThemeEvent extends Event {
     readonly theme: 'dark' | 'light'
 
     constructor(theme: 'dark' | 'light') {
-        super('theme-change');
+        super('theme-change')
         this.theme = theme
     }
 }

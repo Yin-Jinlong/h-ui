@@ -1,6 +1,6 @@
-import {withInstall} from "@yin-jinlong/h-ui/utils"
+import {withInstall} from '@yin-jinlong/h-ui/utils'
 
-import CheckBox from "./src/check-box.vue"
+import CheckBox from './src/check-box.vue'
 
 export const HCheckBox = withInstall(CheckBox)
 

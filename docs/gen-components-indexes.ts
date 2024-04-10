@@ -20,6 +20,6 @@ components.forEach((name) => {
     },\n`
 })
 
-out+=']\n'
+out += ']\n'
 
-fs.writeFileSync('components-indexes.ts',out)
+fs.writeFileSync('components-indexes.ts', out)

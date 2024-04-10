@@ -8,21 +8,21 @@
 
 <style lang="scss" scoped>
 .side-bar {
-  box-shadow : rgb(128, 128, 128, 0.4) 0 5px 5px;
-  width      : 300px;
+    box-shadow: rgb(128, 128, 128, 0.4) 0 5px 5px;
+    width: 300px;
 
-  @media screen and (max-width : 1000px) {
-    width : 200px;
-  }
+    @media screen and (max-width: 1000px) {
+        width: 200px;
+    }
 
-  @media screen and (max-width : 800px) {
-    width : 100px;
-  }
+    @media screen and (max-width: 800px) {
+        width: 100px;
+    }
 
 }
 
 .now {
-  color : var(--h-color-primary);
+    color: var(--h-color-primary);
 }
 
 </style>
@@ -31,7 +31,7 @@
 
 import {HButton} from '@yin-jinlong/h-ui'
 
-import {SidebarProps} from "./props"
+import {SidebarProps} from './props'
 
 defineProps<SidebarProps>()
 

@@ -1,4 +1,4 @@
-import {RenderResult,render} from '@testing-library/vue'
+import {RenderResult, render} from '@testing-library/vue'
 import {expect, test} from 'vitest'
 
 import Button from '../src/button.vue'

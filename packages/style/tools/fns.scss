@@ -3,23 +3,23 @@
 }
 
 @function color-setL($color,$light) {
-  @return change-color($color, $lightness : $light)
+  @return change-color($color, $lightness: $light)
 }
 
 @function color-addL($color,$light) {
-  $l : lightness($color) + $light;
+  $l: lightness($color) + $light;
   @if $l > 100% {
-    $l : 100%;
+    $l: 100%;
   }
-  @return change-color($color, $lightness : $l)
+  @return change-color($color, $lightness: $l)
 }
 
 @function color-subL($color,$light) {
-  $l : lightness($color) - $light;
+  $l: lightness($color) - $light;
   @if $l < 0 {
-    $l : 0;
+    $l: 0;
   }
-  @return change-color($color, $lightness : $l)
+  @return change-color($color, $lightness: $l)
 }
 
 @mixin dark-theme() {
@@ -30,13 +30,13 @@
 
 // 设置css变量值，带命名前缀
 @mixin css-var($name,$value) {
-  $var   : --h-#{$name};
+  $var: --h-#{$name};
   #{$var}: $value;
 }
 
 // 类选择器
 @mixin c($classname) {
-  $cn : 'h-'+$classname;
+  $cn: 'h-'+$classname;
   .#{$cn} {
     @content
   }

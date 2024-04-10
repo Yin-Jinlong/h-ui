@@ -1,5 +1,5 @@
 import {expect, test} from 'vitest'
-import {deepAssign} from "../assign"
+import {deepAssign} from '../assign'
 
 test('deepAssign', () => {
     let a = {
@@ -11,7 +11,7 @@ test('deepAssign', () => {
     let r = deepAssign({
         b: 'b'
     }, a)
-    let er= {
+    let er = {
         b: 'b',
         a1: 1,
         a2: {
@@ -19,6 +19,6 @@ test('deepAssign', () => {
         }
     }
     expect(r).toEqual(er)
-    a.a2.a21=false
+    a.a2.a21 = false
     expect(r).toEqual(er)
 })

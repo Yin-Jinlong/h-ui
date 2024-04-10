@@ -3,14 +3,14 @@ import {
     VNode,
     Transition,
     defineComponent, h, withCtx, createCommentVNode, ref, onMounted
-} from "vue"
+} from 'vue'
 
-import {convertColor, cssVar, cssVarName} from "@yin-jinlong/h-ui/utils"
+import {convertColor, cssVar, cssVarName} from '@yin-jinlong/h-ui/utils'
 
-import {Running} from "./loading-running"
-import {Circle} from "./loading-circle"
-import {ComponentFn, HLoadingOptions} from "./type"
-import {mergeStyle} from "./utils"
+import {Running} from './loading-running'
+import {Circle} from './loading-circle'
+import {ComponentFn, HLoadingOptions} from './type'
+import {mergeStyle} from './utils'
 
 const NAMED_LOADINGS: Record<string, (ComponentFn)> = {
     running: Running,
@@ -19,8 +19,8 @@ const NAMED_LOADINGS: Record<string, (ComponentFn)> = {
 
 const animConfig = {
     duration: 200,
-    fill: "forwards",
-    easing: "ease-in"
+    fill: 'forwards',
+    easing: 'ease-in'
 } as KeyframeAnimationOptions
 
 

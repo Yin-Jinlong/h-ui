@@ -1,4 +1,4 @@
-import {Page} from "@types";
+import {Page} from '@types'
 
 declare interface Props {
     items: Page[]

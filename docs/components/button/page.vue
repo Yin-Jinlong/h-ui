@@ -11,18 +11,18 @@
 </style>
 
 <script lang="ts" setup>
-import {CaseCard} from "@components"
+import {CaseCard} from '@components'
 
-import Colors from "./colors.vue"
-import Borders from "./borders.vue"
-import Sizes from "./sizes.vue"
-import Shadows from "./shadows.vue"
-import Types from "./types.vue"
+import Colors from './colors.vue'
+import Borders from './borders.vue'
+import Sizes from './sizes.vue'
+import Shadows from './shadows.vue'
+import Types from './types.vue'
 
 import colorsCode from './colors.vue?raw'
-import bordersCode from "./borders.vue?raw"
-import shadowCode from "./shadows.vue?raw"
+import bordersCode from './borders.vue?raw'
+import shadowCode from './shadows.vue?raw'
 import sizesCode from './sizes.vue?raw'
-import typesCode from "./types.vue?raw"
+import typesCode from './types.vue?raw'
 
 </script>

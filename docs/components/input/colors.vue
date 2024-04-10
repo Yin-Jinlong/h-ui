@@ -25,12 +25,12 @@
 
 <style lang="scss" scoped>
 .box {
-  margin : 0.5em 0;
+    margin: 0.5em 0;
 }
 </style>
 
 <script lang="ts" setup>
-import {ref} from "vue"
+import {ref} from 'vue'
 import {DefinedNamedColors, HCheckBox, HInput} from '@yin-jinlong/h-ui'
 
 const disabled = ref(false)

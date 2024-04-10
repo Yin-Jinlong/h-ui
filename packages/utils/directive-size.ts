@@ -1,4 +1,4 @@
-import {ObjectDirective} from "vue"
+import {ObjectDirective} from 'vue'
 
 export type AutoSizeType = 'auto' | 'max-content'
 

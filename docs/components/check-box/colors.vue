@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import {ref} from "vue"
+import {ref} from 'vue'
 import {HCheckBox} from '@yin-jinlong/h-ui'
 
 const disabled = ref(false)

@@ -19,24 +19,24 @@
 
 <style lang="scss" scoped>
 .case {
-  width : calc(100% - 5px);
+    width: calc(100% - 5px);
 }
 
 .show-code {
-  color : var(--h-color-primary);
-  width : 100%;
+    color: var(--h-color-primary);
+    width: 100%;
 }
 
 .code-box {
-  overflow : hidden;
+    overflow: hidden;
 }
 
 </style>
 
 <script lang="ts" setup>
-import type {Component} from "vue"
-import {ref} from "vue"
-import {HButton, HCard, vAutoHeight} from "@yin-jinlong/h-ui"
+import type {Component} from 'vue'
+import {ref} from 'vue'
+import {HButton, HCard, vAutoHeight} from '@yin-jinlong/h-ui'
 
 import '@yin-jinlong/h-ui/components/button/style'
 import '@yin-jinlong/h-ui/components/card/style'

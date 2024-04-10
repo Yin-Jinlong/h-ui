@@ -1,4 +1,4 @@
-import {isDark} from "@yin-jinlong/h-ui"
+import {isDark} from '@yin-jinlong/h-ui'
 
 export async function mountCode() {
     const shiki = await import('shiki/core')

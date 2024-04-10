@@ -1,6 +1,5 @@
 <template>
-    <button
-            ref="btn"
+    <button ref="btn"
             v-disabled="disabled"
             :data-border="border?'':undefined"
             :data-shadow="shadow"
@@ -17,13 +16,13 @@
 </template>
 
 <script lang="ts" setup>
-import {onMounted, ref, watch} from "vue"
+import {onMounted, ref, watch} from 'vue'
 
-import {DefinedNamedColor} from "@yin-jinlong/h-ui/types"
-import {vDisabled, cssVarName} from "@yin-jinlong/h-ui/utils"
+import {DefinedNamedColor} from '@yin-jinlong/h-ui/types'
+import {vDisabled, cssVarName} from '@yin-jinlong/h-ui/utils'
 
-import DefaultProps, {HButtonProps} from "./props"
-import {genColor} from "./color-tool"
+import DefaultProps, {HButtonProps} from './props'
+import {genColor} from './color-tool'
 
 const props = withDefaults(defineProps<HButtonProps>(), DefaultProps)
 const btn = ref<HTMLButtonElement>()

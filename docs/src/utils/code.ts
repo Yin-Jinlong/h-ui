@@ -1,4 +1,4 @@
-import {ObjectDirective} from "vue"
+import {ObjectDirective} from 'vue'
 
 function render(el: HTMLElement, str: string) {
     el.innerHTML = window.code(str, 'vue')

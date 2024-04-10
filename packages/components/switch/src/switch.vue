@@ -1,8 +1,8 @@
 <template>
-    <div v-disabled="disabled"
+    <div ref="switchEle"
+         v-disabled="disabled"
          :data-on="on?'':undefined"
          :data-size="size"
-         ref="switchEle"
          class="h-switch"
          data-pointer
          data-relative
@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import {onMounted, ref, watch} from "vue"
+import {onMounted, ref, watch} from 'vue'
 
 import {vDisabled, convertColor, cssVarName} from '@yin-jinlong/h-ui/utils'
 

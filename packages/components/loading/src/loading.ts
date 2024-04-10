@@ -1,9 +1,9 @@
 import {createApp, DirectiveBinding, ObjectDirective, reactive, watch,} from 'vue'
 
-import {OptionalKey} from "@yin-jinlong/h-ui/types"
+import {OptionalKey} from '@yin-jinlong/h-ui/types'
 
-import {createLoadingComponent} from "./loading-component"
-import {HLoadingConfig, HLoadingInstance, HLoadingOptions} from "./type"
+import {createLoadingComponent} from './loading-component'
+import {HLoadingConfig, HLoadingInstance, HLoadingOptions} from './type'
 
 const INSTANCE_KEY = Symbol('instance')
 

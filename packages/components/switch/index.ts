@@ -1,6 +1,6 @@
-import {withInstall} from "@yin-jinlong/h-ui/utils"
+import {withInstall} from '@yin-jinlong/h-ui/utils'
 
-import Switch from "./src/switch.vue"
+import Switch from './src/switch.vue'
 
 export const HSwitch = withInstall(Switch)
 

@@ -1,6 +1,6 @@
 import {expect, test} from 'vitest'
 
-import {genColor} from "../src/color-tool"
+import {genColor} from '../src/color-tool'
 
 test('genColor named', () => {
     const lc = 1

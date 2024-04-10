@@ -1,6 +1,6 @@
-import {withInstall} from "@yin-jinlong/h-ui/utils"
+import {withInstall} from '@yin-jinlong/h-ui/utils'
 
-import Input from "./src/input.vue"
+import Input from './src/input.vue'
 
 export const HInput = withInstall(Input)
 

@@ -1,5 +1,5 @@
 import {expect, test} from 'vitest'
-import {isDark,toggleDark} from "../theme"
+import {isDark, toggleDark} from '../theme'
 
 test('isDark', () => {
     document.documentElement.setAttribute('dark', '')

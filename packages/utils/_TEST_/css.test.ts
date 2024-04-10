@@ -1,5 +1,5 @@
 import {expect, test} from 'vitest'
-import {cssVar, cssVarName} from "../css";
+import {cssVar, cssVarName} from '../css'
 
 test('cssVar', () => {
     let v = cssVar('test')

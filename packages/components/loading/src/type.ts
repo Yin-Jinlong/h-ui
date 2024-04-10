@@ -1,5 +1,5 @@
-import type {App, Component} from "vue"
-import {DefinedNamedColor} from "@yin-jinlong/h-ui/types"
+import type {App, Component} from 'vue'
+import {DefinedNamedColor} from '@yin-jinlong/h-ui/types'
 
 export declare interface HLoadingConfig {
     loading: boolean

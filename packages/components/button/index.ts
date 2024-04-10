@@ -1,6 +1,6 @@
-import {withInstall} from "@yin-jinlong/h-ui/utils"
+import {withInstall} from '@yin-jinlong/h-ui/utils'
 
-import Button from "./src/button.vue"
+import Button from './src/button.vue'
 
 export const HButton = withInstall(Button)
 

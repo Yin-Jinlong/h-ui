@@ -17,12 +17,12 @@
 
 <style lang="scss" scoped>
 .box {
-  margin : 0.5em 0;
+    margin: 0.5em 0;
 }
 </style>
 
 <script lang="ts" setup>
-import {ref} from "vue"
+import {ref} from 'vue'
 import {HInput} from '@yin-jinlong/h-ui'
 
 const value = ref('')

@@ -1,4 +1,4 @@
-import {BundledLanguage} from "shiki";
+import {BundledLanguage} from 'shiki'
 
 declare global {
 

@@ -6,32 +6,32 @@
 @use './theme/light' as theme;
 
 * {
-  margin  : 0;
-  padding : 0;
+  margin: 0;
+  padding: 0;
 }
 
 // 动画过度类
 
 [data-transition] {
-  transition : all 0.3s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 [data-transition-fast] {
-  transition : all 0.2s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 [data-transition-slow] {
-  transition : all 0.4s ease-out;
+  transition: all 0.4s ease-out;
 }
 
 // 尺寸类
 
 [data-fill-width] {
-  width : 100%;
+  width: 100%;
 }
 
 [data-fill-height] {
-  height : 100%;
+  height: 100%;
 }
 
 [data-fill-size] {
@@ -41,7 +41,7 @@
 // 光标类
 
 [data-pointer] {
-  cursor : pointer;
+  cursor: pointer;
 }
 
 [data-none-select] {
@@ -51,46 +51,46 @@
 // 布局类
 
 [data-flex] {
-  display : flex;
+  display: flex;
 }
 
 [data-flex-column] {
-  display        : flex;
-  flex-direction : column;
+  display: flex;
+  flex-direction: column;
 }
 
 [data-flex-column-center] {
-  align-items     : center;
-  display         : flex;
-  flex-direction  : column;
-  justify-content : center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 [data-flex-center] {
-  align-items     : center;
-  display         : flex;
-  justify-content : center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 [data-relative] {
-  position : relative;
+  position: relative;
 }
 
 [data-absolute] {
-  left     : 0;
-  position : absolute;
-  top      : 0;
+  left: 0;
+  position: absolute;
+  top: 0;
 }
 
 // 显示类
 
 [data-empty-hide]:empty {
-  display : none;
+  display: none;
 }
 
 [data-break-line] {
-  white-space : break-spaces;
-  word-break  : break-word;
+  white-space: break-spaces;
+  word-break: break-word;
 }
 
 [data-disabled] {
@@ -141,9 +141,9 @@
 }
 
 body {
-  background                 : get-css(color, background-simple);
-  color                      : get-css(color, text);
-  transition-duration        : 0.2s;
-  transition-property        : background-color, color;
-  transition-timing-function : ease-out;
+  background: get-css(color, background-simple);
+  color: get-css(color, text);
+  transition-duration: 0.2s;
+  transition-property: background-color, color;
+  transition-timing-function: ease-out;
 }

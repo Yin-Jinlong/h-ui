@@ -1,5 +1,5 @@
-import path from "path"
-import {FunctionPluginHooks, NormalizedOutputOptions, OutputBundle, Plugin} from "rollup"
+import path from 'path'
+import {FunctionPluginHooks, NormalizedOutputOptions, OutputBundle, Plugin} from 'rollup'
 
 
 export declare interface ProcessPluginHook {
@@ -29,7 +29,7 @@ export function rollupProcessPlugin(hook: ProcessPluginHook) {
                 let dist = path.resolve(options.dir!, key)
                 files.push(path.relative('./', dist))
             })
-            hook.writeBundle.call(this,  files)
+            hook.writeBundle.call(this, files)
         }
     } as FunctionPluginHooks & Plugin
 }

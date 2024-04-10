@@ -1,7 +1,7 @@
-import {Component, defineComponent, h, onMounted, ref} from "vue"
+import {Component, defineComponent, h, onMounted, ref} from 'vue'
 
-import {cssVar} from "@yin-jinlong/h-ui/utils"
-import {mergeStyle} from "./utils"
+import {cssVar} from '@yin-jinlong/h-ui/utils'
+import {mergeStyle} from './utils'
 
 const animConfig = {
     iterations: Infinity,

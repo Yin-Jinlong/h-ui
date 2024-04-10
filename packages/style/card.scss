@@ -1,43 +1,43 @@
 @use './tools/fns' as *;
 
 @include c(card) {
-  background-color : get-css(color, background-simple-1);
-  border           : #{get-css(color,border)} solid 1px;
-  border-radius    : 10px;
-  box-shadow       : 2px 2px 5px 0 rgba(128, 128, 128, 0.15);
-  box-sizing       : border-box;
-  margin           : 5px;
-  min-width        : 200px;
-  padding          : get-css(padding, xlarge) 0;
-  width            : max-content;
+  background-color: get-css(color, background-simple-1);
+  border: #{get-css(color,border)} solid 1px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px 0 rgba(128, 128, 128, 0.15);
+  box-sizing: border-box;
+  margin: 5px;
+  min-width: 200px;
+  padding: get-css(padding, xlarge) 0;
+  width: max-content;
 
   @include c(card-line) {
-    border-bottom : #{get-css(color,border)} solid 1px;
-    height        : 1px;
-    margin        : 0.5em 0;
-    width         : 100%;
+    border-bottom: #{get-css(color,border)} solid 1px;
+    height: 1px;
+    margin: 0.5em 0;
+    width: 100%;
   }
 
   & > div {
-    box-sizing    : border-box;
-    padding-left  : get-css(padding, xlarge);
-    padding-right : get-css(padding, xlarge);
-    width         : 100%;
+    box-sizing: border-box;
+    padding-left: get-css(padding, xlarge);
+    padding-right: get-css(padding, xlarge);
+    width: 100%;
   }
 
 }
 
 @include c(card-header) {
-  font-size   : 20px;
-  font-weight : 900;
+  font-size: 20px;
+  font-weight: 900;
 }
 
 @include c(card-content) {
-  padding : get-css(padding, small);
+  padding: get-css(padding, small);
 }
 
 @include c(card-footer) {
-  padding : get-css(padding, small);
+  padding: get-css(padding, small);
 }
 
 @include dark-theme {

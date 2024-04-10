@@ -14,13 +14,13 @@
 
 <style lang="scss" scoped>
 .header {
-  box-shadow : 0 0 5px rgba(128, 128, 128, 0.3);
-  height     : 50px;
+    box-shadow: 0 0 5px rgba(128, 128, 128, 0.3);
+    height: 50px;
 }
 </style>
 
 <script lang="ts" setup>
-import {ref} from "vue"
+import {ref} from 'vue'
 
 import {HSwitch, isDark, toggleDark, viewTransition} from '@yin-jinlong/h-ui'
 
@@ -32,8 +32,8 @@ function change() {
 }
 
 function changeTheme(e: MouseEvent) {
-    const x = e.clientX;
-    const y = e.clientY;
+    const x = e.clientX
+    const y = e.clientY
     const endRadius = Math.hypot(
         Math.max(x, innerWidth - x),
         Math.max(y, innerHeight - y)
@@ -43,15 +43,15 @@ function changeTheme(e: MouseEvent) {
         const clipPath = [
             `circle(0px at ${x}px ${y}px)`,
             `circle(${endRadius}px at ${x}px ${y}px)`,
-        ];
+        ]
         document.documentElement.animate(
             {
                 clipPath: clipPath,
             },
             {
                 duration: 400,
-                easing: "ease-out",
-                pseudoElement: "::view-transition-new(root)",
+                easing: 'ease-out',
+                pseudoElement: '::view-transition-new(root)',
             }
         )
     })

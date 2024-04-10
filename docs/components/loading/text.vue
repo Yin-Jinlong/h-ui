@@ -11,10 +11,6 @@
     </h-card>
 </template>
 
-<style lang="scss" scoped>
-
-</style>
-
 <script lang="ts" setup>
-import {HCard, vLoading} from "@yin-jinlong/h-ui"
+import {HCard, vLoading} from '@yin-jinlong/h-ui'
 </script>

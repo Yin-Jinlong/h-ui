@@ -1,8 +1,8 @@
-import {DirectiveBinding, ObjectDirective} from "vue"
+import {DirectiveBinding, ObjectDirective} from 'vue'
 
 const eventNames: (keyof GlobalEventHandlersEventMap)[] = [
     'copy', 'cut', 'paste', 'invalid',
-    'mousedown', "mouseenter", 'mouseleave', "mousemove", "mouseout", "mouseover", 'mouseup',
+    'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseout', 'mouseover', 'mouseup',
     'wheel', 'click', 'dblclick',
     'keydown', 'keyup', 'keypress',
     'focus', 'focusin', 'focusout', 'blur',

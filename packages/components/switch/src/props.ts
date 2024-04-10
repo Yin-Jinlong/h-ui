@@ -1,4 +1,4 @@
-import {BindSize, DefinedNamedColor, Disable} from "@yin-jinlong/h-ui/types"
+import {BindSize, DefinedNamedColor, Disable} from '@yin-jinlong/h-ui/types'
 
 declare interface Props extends BindSize, Disable {
     onColor?: DefinedNamedColor | string

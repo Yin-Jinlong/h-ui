@@ -1,19 +1,19 @@
-import {performance} from "perf_hooks"
-import fs from "fs"
-import path from "path"
-import process from "process"
-import readline from "readline"
+import {performance} from 'perf_hooks'
+import fs from 'fs'
+import path from 'path'
+import process from 'process'
+import readline from 'readline'
 
-import commonjs from "@rollup/plugin-commonjs"
-import resolve from "@rollup/plugin-node-resolve"
-import terser from "@rollup/plugin-terser"
-import vuePlugin from "@vitejs/plugin-vue"
-import {Plugin, rollup} from "rollup"
-import postcss from "rollup-plugin-postcss"
-import typescript from "rollup-plugin-typescript2"
+import commonjs from '@rollup/plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
+import terser from '@rollup/plugin-terser'
+import vuePlugin from '@vitejs/plugin-vue'
+import {Plugin, rollup} from 'rollup'
+import postcss from 'rollup-plugin-postcss'
+import typescript from 'rollup-plugin-typescript2'
 
-import {OutputOption} from "@yin-jinlong/h-ui-build-tool"
-import {deepAssign} from "@yin-jinlong/h-ui/utils"
+import {OutputOption} from '@yin-jinlong/h-ui-build-tool'
+import {deepAssign} from '@yin-jinlong/h-ui/utils'
 import {
     color,
     convertSize,
@@ -21,9 +21,9 @@ import {
     out,
     outln,
     rollupProcessPlugin
-} from "@yin-jinlong/h-ui-build-tool"
+} from '@yin-jinlong/h-ui-build-tool'
 
-import {clean} from "build-tool"
+import {clean} from 'build-tool'
 
 import config from './build.config'
 
@@ -167,32 +167,32 @@ async function genPackageJson() {
     packageJson.name = '@yin-jinlong/h-ui'
     packageJson.version = fs.readFileSync('VERSION').toString().trim()
     packageJson.files = [
-        "dist",
-        "es",
-        "lib",
-        "style",
-        "README.md"
+        'dist',
+        'es',
+        'lib',
+        'style',
+        'README.md'
     ]
     packageJson.homepage = 'https://yin-jinlong.github.io/h-ui'
     packageJson.keywords = ['vue3', 'vue-ui', 'ui']
     packageJson.repository = {
-        type: "git",
-        url: "git+https://github.com/Yin-Jinlong/h-ui.git"
+        type: 'git',
+        url: 'git+https://github.com/Yin-Jinlong/h-ui.git'
     }
     packageJson.main = './lib/index.js'
     packageJson.module = './es/index.mjs'
     packageJson.types = './es/index.d.ts'
     packageJson.exports = {
-        ".": {
-            import: "./es/index.mjs",
-            require: "./lib/index.js",
-            types: "./es/index.d.ts",
+        '.': {
+            import: './es/index.mjs',
+            require: './lib/index.js',
+            types: './es/index.d.ts',
         },
-        "./es": {
-            import: "./es/index.mjs",
-            types: "./es/index.d.ts",
+        './es': {
+            import: './es/index.mjs',
+            types: './es/index.d.ts',
         },
-        "./*": "./*"
+        './*': './*'
     }
 
     fs.writeFileSync(path.resolve(config.dist, 'package.json'), JSON.stringify(packageJson, null, 2))

@@ -1,5 +1,5 @@
 import fs from 'fs'
-import path from "path"
+import path from 'path'
 
 import {transform} from 'lightningcss'
 import {AsyncCompiler, initAsyncCompiler} from 'sass'
@@ -13,7 +13,7 @@ import config from 'build.config'
 const outPath = path.resolve(config.dist, config.css!.dir!)
 
 if (config.sass?.copyDir) {
-    let src = path.resolve(config.dist, config.sass.copyDir === true ? 'style/src' : config.sass.copyDir);
+    let src = path.resolve(config.dist, config.sass.copyDir === true ? 'style/src' : config.sass.copyDir)
     cleanAndMake(src)
     fs.cpSync(path.resolve('style'), src, {
         recursive: true
@@ -33,7 +33,7 @@ initAsyncCompiler().then(compiler => {
     compiler.dispose().then()
 })
 
-const encoder = new TextEncoder();
+const encoder = new TextEncoder()
 
 function compile(this: AsyncCompiler, file: fs.Dirent) {
     let name = file.path + '/' + file.name

@@ -1,5 +1,5 @@
-import * as process from "process";
-import chalk from "chalk";
+import * as process from 'process'
+import chalk from 'chalk'
 
 let os = process.stdout
 
@@ -47,7 +47,7 @@ interface SizeConvertResult {
  * @return [size, unit]
  */
 export function convertSize(size: number, min: number = 0.9 * 1024, fixed: number = 2): SizeConvertResult {
-    const uints = "KMGT"
+    const uints = 'KMGT'
     if (size < min)
         return {
             size,

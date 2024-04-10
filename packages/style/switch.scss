@@ -19,42 +19,42 @@
 @include c(switch) {
   @include css-var(switch-on-color, get-css(color, primary));
   @include css-var(switch-off-color, get-css(color, white--4));
-  background-color : get-css(switch, off-color);
-  border-radius    : 100px;
-  display          : inline-block;
-  height           : get-css(switch, height);
-  outline          : transparent solid 1px;
-  width            : calc(#{get-css(switch, height)} * 1.75);
+  background-color: get-css(switch, off-color);
+  border-radius: 100px;
+  display: inline-block;
+  height: get-css(switch, height);
+  outline: transparent solid 1px;
+  width: calc(#{get-css(switch, height)} * 1.75);
 
   &:hover:not([data-disabled]) {
-    outline-color : get-css(switch, on-color);
+    outline-color: get-css(switch, on-color);
   }
 
   &:before {
-    --size           : calc(#{get-css(switch, height)} - 4px);
-    background-color : get-css(color, white);
-    border-radius    : 100px;
-    content          : '';
-    display          : block;
-    height           : var(--size);
-    left             : 2px;
-    position         : absolute;
-    top              : 2px;
-    transition       : all 0.3s ease-out;
-    width            : var(--size);
+    --size: calc(#{get-css(switch, height)} - 4px);
+    background-color: get-css(color, white);
+    border-radius: 100px;
+    content: '';
+    display: block;
+    height: var(--size);
+    left: 2px;
+    position: absolute;
+    top: 2px;
+    transition: all 0.3s ease-out;
+    width: var(--size);
   }
 
   @include s-size;
 
   &[data-on] {
-    background-color : get-css(switch, on-color);
+    background-color: get-css(switch, on-color);
 
     &:hover {
-      outline-color : get-css(switch, off-color);
+      outline-color: get-css(switch, off-color);
     }
 
     &:before {
-      left : calc(100% - 2px - var(--size));
+      left: calc(100% - 2px - var(--size));
     }
   }
 

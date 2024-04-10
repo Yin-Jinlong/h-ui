@@ -1,4 +1,4 @@
-import {DefinedNamedColor, Disable, NamedSize} from "@yin-jinlong/h-ui/types";
+import {DefinedNamedColor, Disable, NamedSize} from '@yin-jinlong/h-ui/types'
 
 declare interface Props extends Disable {
     size?: NamedSize

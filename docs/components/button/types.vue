@@ -5,8 +5,8 @@
     <br>
     <div v-for="(t,i) in types">
         <div>
-            <h-button v-for="c in DefinedNamedColors" :color="c" :type="t">{{typeTexts[i]}}</h-button>
-            <h-button :type="t" color="#39e">{{typeTexts[i]}}</h-button>
+            <h-button v-for="c in DefinedNamedColors" :color="c" :type="t">{{ typeTexts[i] }}</h-button>
+            <h-button :type="t" color="#39e">{{ typeTexts[i] }}</h-button>
         </div>
         <br>
     </div>

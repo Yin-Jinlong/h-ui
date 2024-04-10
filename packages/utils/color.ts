@@ -1,6 +1,6 @@
-import {DefinedNamedColor} from "@yin-jinlong/h-ui/types"
+import {DefinedNamedColor} from '@yin-jinlong/h-ui/types'
 
-import {cssVar} from "./css"
+import {cssVar} from './css'
 
 export const DefinedNamedColors: DefinedNamedColor[] = [
     'primary',

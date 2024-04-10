@@ -29,32 +29,32 @@
 
 <style lang="scss" scoped>
 .content {
-  flex          : 1;
-  overflow-x    : hidden;
-  overflow-y    : auto;
-  padding-right : 5px;
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-right: 5px;
 }
 
 .main-head {
-  padding-top : 2em;
+    padding-top: 2em;
 }
 
 .main-btn {
-  margin : 1em 0;
+    margin: 1em 0;
 }
 
 h1 {
-  background              : -webkit-linear-gradient(120deg, #FEBE34 30%, #2EA1FF);;
-  -webkit-background-clip : text;
-  background-clip         : text;
-  display                 : inline-block;
-  font-size               : 48px;
-  -webkit-text-fill-color : transparent;
-  width                   : max-content;
+    background: -webkit-linear-gradient(120deg, #FEBE34 30%, #2EA1FF);;
+    -webkit-background-clip: text;
+    background-clip: text;
+    display: inline-block;
+    font-size: 48px;
+    -webkit-text-fill-color: transparent;
+    width: max-content;
 
-  & + p {
-    font-size : 30px;
-  }
+    & + p {
+        font-size: 30px;
+    }
 
 }
 
@@ -62,11 +62,11 @@ h1 {
 
 <script lang="ts" setup>
 
-import type {Component} from "vue"
-import {onMounted, shallowRef} from "vue"
-import {HButton, vLoading} from "@yin-jinlong/h-ui"
+import type {Component} from 'vue'
+import {onMounted, shallowRef} from 'vue'
+import {HButton, vLoading} from '@yin-jinlong/h-ui'
 
-import {PageHeader, SideBar} from "@components"
+import {PageHeader, SideBar} from '@components'
 
 import components from '../components-indexes'
 
