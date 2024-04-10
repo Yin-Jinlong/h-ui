@@ -1,20 +1,19 @@
-import {RenderResult, render} from '@testing-library/vue'
+import {render} from '@testing-library/vue'
+import {assertHasClass, element} from '@yin-jinlong/h-ui/_TEST_UTILS_'
 import {expect, test} from 'vitest'
 
 import Button from '../src/button.vue'
 
 import '../style'
 
-function buttonElement(rr: RenderResult) {
-    let ele = rr.container.firstElementChild
-    expect(ele).not.toBeNull()
-    return ele as HTMLElement
+function check(ele: Element) {
+    assertHasClass(ele, 'h-button')
 }
 
 test('button', () => {
     const btn = render(Button)
-    const ele = buttonElement(btn)
-    expect(ele.classList.contains('h-button')).toBe(true)
+    const ele = element(btn)
+    check(ele)
 })
 
 test('button color-css', () => {
@@ -23,7 +22,8 @@ test('button color-css', () => {
             color: '#123'
         }
     })
-    const ele = buttonElement(btn)
+    const ele = element(btn)
+    check(ele)
     let c = ele.style.getPropertyValue('--h-button-color')
     expect(c).toBe('#112233')
 })
@@ -34,7 +34,8 @@ test('button color-named', () => {
             color: 'success'
         }
     })
-    const ele = buttonElement(btn)
+    const ele = element(btn)
+    check(ele)
     let c = ele.style.getPropertyValue('--h-button-color')
     expect(c).toBe('var(--h-color-success)')
 })
@@ -45,6 +46,7 @@ test('button disabled', () => {
             disabled: true
         }
     })
-    const ele = btn.container
+    const ele = element(btn)
+    check(ele)
     expect(ele.hasAttribute('data-disabled'))
 })
