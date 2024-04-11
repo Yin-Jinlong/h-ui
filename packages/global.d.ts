@@ -1,9 +1,12 @@
 // GlobalComponents for Volar
 declare module '@vue/runtime-core' {
     export interface GlobalComponents {
-        HButton: typeof import('h-ui/es')['HButton']
-        HCard: typeof import('h-ui/es')['HCard']
-        HCheckBox: typeof import('h-ui/es')['HCheckBox']
+        HButton: typeof import('h-ui')['HButton']
+        HCard: typeof import('h-ui')['HCard']
+        HCheckBox: typeof import('h-ui')['HCheckBox']
+        HInput: typeof import('h-ui')['HInput']
+        HLoading: typeof import('h-ui')['HLoading']
+        HSwitch: typeof import('h-ui')['HSwitch']
     }
 
 }
