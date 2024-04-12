@@ -13,8 +13,8 @@ permissions:
 
 jobs:
   deploy:
-    environment: codecov
     runs-on: windows-latest
+    environment: codecov
     steps:
       - name: Checkout
         uses: actions/checkout@v4
