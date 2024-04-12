@@ -1,12 +1,11 @@
-# Simple workflow for deploying static content to GitHub Pages
 name: Codecov
 
 on:
-  # Runs on pushes targeting the default branch
   push:
-    branches: ["tmp"]
+    branches: [ "main" ,"new" ]
+  pull_request:
+    branches: [ "main","new" ]
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -29,10 +28,12 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
+      - name: Build
+        run: pnpm -C packages build
       - name: Test
         run: pnpm -C packages test:coverage
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: Yin-Jinlong/h-ui

@@ -4,6 +4,7 @@ import path from 'path'
 import process from 'process'
 import readline from 'readline'
 
+import {codecovRollupPlugin} from '@codecov/rollup-plugin'
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 import terser from '@rollup/plugin-terser'
@@ -131,7 +132,12 @@ async function build() {
             resolve(),
             commonjs(),
             processPlugin(),
-            config.minify ? terser() : undefined
+            config.minify ? terser() : undefined,
+            codecovRollupPlugin({
+                enableBundleAnalysis: process.env.CODECOV_TOKEN !== undefined,
+                bundleName: "h-ui-packages",
+                uploadToken: process.env.CODECOV_TOKEN,
+            }),
         ]
     })
 
