@@ -11,6 +11,9 @@ permissions:
   pages: write
   id-token: write
 
+env:
+  CODECOV_TOKEN: ${{ vars.CODECOV_TOKEN }}
+
 jobs:
   deploy:
     runs-on: windows-latest
