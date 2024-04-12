@@ -18,14 +18,19 @@ function createInstance(el: HTMLElement, options: HLoadingOptions): HLoadingInst
         parent: options.fullscreen ? document.body : el,
     } as HLoadingInstance
 
+    let overflow = el.style.overflow
+
     watch(() => options.loading, (v) => {
         if (v) {
+            overflow = el.style.overflow
+            el.style.overflow = 'clip'
             let app = createApp(createLoadingComponent(el, options))
             let c = app.mount(document.createElement('div'))
             instance.app = app
             instance.el = c.$el
             instance.parent.append(c.$el)
         } else {
+            el.style.overflow = overflow
             instance.app?.unmount()
             instance.app = undefined
         }
