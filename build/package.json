@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "node build.mjs",
-    "build:types": "tsc"
+    "postinstall": "pnpm run build"
   },
   "license": "LGPL-3.0-or-later",
   "devDependencies": {

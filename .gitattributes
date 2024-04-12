@@ -1,2 +1,3 @@
 * text=auto
 pnpm-lock.yaml eol=lf
+install.sh eol=lf

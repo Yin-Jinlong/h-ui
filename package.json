@@ -8,8 +8,7 @@
     "build:packages": "pnpm -C packages build",
     "build:packages-types": "pnpm -C packages build:types",
     "docs:dev": "pnpm -C docs dev",
-    "docs:build": "pnpm -C docs build",
-    "postinstall": "pnpm -C build build"
+    "docs:build": "pnpm -C docs build"
   },
   "license": "LGPL-3.0-or-later"
 }
