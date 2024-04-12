@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: ./install
       - name: Build
-        run: pnpm -C packages build
+        run: pnpm run packages:build
       - name: Test
         run: pnpm -C packages test:coverage
       - name: Upload coverage reports to Codecov

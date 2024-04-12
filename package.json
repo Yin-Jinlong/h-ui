@@ -5,8 +5,7 @@
   "author": "Yin-Jinlong",
   "type": "module",
   "scripts": {
-    "build:packages": "pnpm -C packages build",
-    "build:packages-types": "pnpm -C packages build:types",
+    "packages:build": "pnpm -C packages build",
     "docs:dev": "pnpm -C docs dev",
     "docs:build": "pnpm -C docs build"
   },
