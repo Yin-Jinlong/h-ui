@@ -15,6 +15,10 @@ export default defineConfig({
         name: 'h-ui-packages',
         environment: 'happy-dom',
         api: 4444,
+        coverage: {
+            provider: 'istanbul',
+            reporter: ['text', 'json', 'html']
+        }
     },
 } as UserConfig)
 
