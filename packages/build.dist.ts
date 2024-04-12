@@ -52,13 +52,14 @@ function processPlugin(): Plugin {
      * @param size 文件大小
      */
     function outFileSize(f: string, size: number) {
-        let w = stdout.columns
+        let w = stdout.columns ?? 0
         let sizeStr = convertSize(size)
         let sizeStrLen = sizeStr.size.toString().length + sizeStr.unit.length
         // 如果空间不够了则换行
         if (w - f.length % w < sizeStrLen + 1)
             outln()
-        readline.cursorTo(stdout, w - sizeStrLen)
+        let x = w - sizeStrLen
+        readline.cursorTo(stdout, x < 0 ? 0 : x)
         outln(color.emphasize(sizeStr.size), sizeStr.unit)
     }
 
@@ -135,7 +136,7 @@ async function build() {
             config.minify ? terser() : undefined,
             codecovRollupPlugin({
                 enableBundleAnalysis: process.env.CODECOV_TOKEN !== undefined,
-                bundleName: "h-ui-packages",
+                bundleName: 'h-ui-packages',
                 uploadToken: process.env.CODECOV_TOKEN,
             }),
         ]
