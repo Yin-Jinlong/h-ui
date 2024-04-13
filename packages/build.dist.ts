@@ -178,6 +178,7 @@ async function genPackageJson() {
         'es',
         'lib',
         'style',
+        "web-types.json",
         'README.md'
     ]
     packageJson.homepage = 'https://yin-jinlong.github.io/h-ui'

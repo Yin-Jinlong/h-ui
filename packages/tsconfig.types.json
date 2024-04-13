@@ -4,7 +4,8 @@
     "outDir": "../dist/es",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "tsBuildInfoFile": "cache/.tsbuildinfo"
+    "incremental": false,
+    "composite": false
   },
   "include": [
     "./index.ts",
