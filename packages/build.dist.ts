@@ -12,6 +12,7 @@ import vuePlugin from '@vitejs/plugin-vue'
 import {Plugin, rollup} from 'rollup'
 import postcss from 'rollup-plugin-postcss'
 import typescript from 'rollup-plugin-typescript2'
+import dts from 'vite-plugin-dts'
 
 import {OutputOption} from '@yin-jinlong/h-ui-build-tool'
 import {deepAssign} from '@yin-jinlong/h-ui/utils'
@@ -139,6 +140,9 @@ async function build() {
                 bundleName: 'h-ui-packages',
                 uploadToken: process.env.CODECOV_TOKEN,
             }),
+            dts({
+                tsconfigPath: 'tsconfig.types.json',
+            })
         ]
     })
 
@@ -157,8 +161,7 @@ async function build() {
 
     await build.close()
     await genPackageJson()
-    fs.cpSync('global.d.ts', path.resolve(config.dist, 'es/global.d.ts'))
-    fs.cpSync('global.d.ts', path.resolve(config.dist, 'lib/global.d.ts'))
+    fs.cpSync('global.d.ts', path.resolve(config.dist, 'dist/@types/global.d.ts'))
     outln(color.action('took '), convertTime(performance.now() - startTime))
 
 }
@@ -168,8 +171,6 @@ async function genPackageJson() {
     delete packageJson.scripts
     delete packageJson.devDependencies
     delete packageJson.dependencies['h-ui-build-tool']
-    delete packageJson.dependencies['h-ui']
-    delete packageJson.dependencies['h-ui/style/src']
 
     packageJson.name = '@yin-jinlong/h-ui'
     packageJson.version = fs.readFileSync('VERSION').toString().trim()
@@ -189,16 +190,16 @@ async function genPackageJson() {
     }
     packageJson.main = './lib/index.js'
     packageJson.module = './es/index.mjs'
-    packageJson.types = './es/index.d.ts'
+    packageJson.types = './dist/@types/index.d.ts'
     packageJson.exports = {
         '.': {
             import: './es/index.mjs',
             require: './lib/index.js',
-            types: './es/index.d.ts',
+            types: './dist/@types/index.d.ts',
         },
         './es': {
             import: './es/index.mjs',
-            types: './es/index.d.ts',
+            types: './dist/@types/index.d.ts',
         },
         './*': './*'
     }
@@ -208,4 +209,7 @@ async function genPackageJson() {
     fs.cpSync('web-types.json', path.resolve(config.dist, 'web-types.json'))
 }
 
-build().then()
+build().then().catch(e => {
+    console.error(e)
+    process.exit(1)
+})

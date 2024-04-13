@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "cd .. && pnpm -C docs dev",
-    "build": "pnpm run build:dist && pnpm run build:css && pnpm run build:types",
-    "build:types": "vue-tsc --declaration --emitDeclarationOnly --p tsconfig.types.json",
+    "build": "pnpm run build:dist && pnpm run build:css",
     "build:dist": "build dist",
     "build:css": "build style",
     "release": "cd ../dist && npm publish --access public",
@@ -40,8 +39,8 @@
     "tsc": "^2.0.4",
     "typescript": "^5.4.2",
     "vite": "^5.1.5",
-    "vitest": "^1.5.0",
-    "vue-tsc": "^2.0.6"
+    "vite-plugin-dts": "^3.8.2",
+    "vitest": "^1.5.0"
   },
   "dependencies": {
     "chroma-js": "^2.4.2",
