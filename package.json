@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "packages:build": "pnpm -C packages build",
+    "packages:test": "pnpm -C packages test",
     "docs:dev": "pnpm -C docs dev",
     "docs:build": "pnpm -C docs build"
   },
