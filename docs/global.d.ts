@@ -1,4 +1,5 @@
 import {BundledLanguage} from 'shiki'
+import type {Component} from 'vue'
 
 declare global {
 
@@ -17,6 +18,20 @@ declare global {
         export default src
     }
 
+    declare module 'indexes~' {
+        import type {Component} from 'vue'
+
+        interface Page {
+            name: string
+            path: string
+            component: () => Promise<{ default: Component }>
+        }
+
+        const components: Page[]
+        export default components
+
+        export {}
+    }
 }
 
 export {}

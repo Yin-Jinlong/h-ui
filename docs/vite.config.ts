@@ -5,6 +5,8 @@ import {visualizer} from 'rollup-plugin-visualizer'
 import vue from '@vitejs/plugin-vue'
 import viteCompression from 'vite-plugin-compression'
 
+import {indexesPlugin} from './src/plugin'
+
 function getSuffix(name: string) {
     const i = name.lastIndexOf('.')
     return i >= 0 ? name.substring(i + 1) : name
@@ -61,6 +63,7 @@ export default defineConfig((env) => {
             entries: ['@yin-jinlong/h-ui']
         },
         plugins: [
+            indexesPlugin(),
             vue({
                 isProduction: prod
             }),

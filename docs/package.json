@@ -5,9 +5,8 @@
   "author": "Yin-Jinlong",
   "type": "module",
   "scripts": {
-    "dev": "pnpm run gen:components-indexes && vite",
-    "build": "pnpm run gen:components-indexes && vite build",
-    "gen:components-indexes": "esno gen-components-indexes.ts",
+    "dev": "vite",
+    "build": "vite build",
     "serve": "vite preview"
   },
   "license": "LGPL-3.0-or-later",

@@ -68,7 +68,8 @@ import {HButton, vLoading} from '@yin-jinlong/h-ui'
 
 import {PageHeader, SideBar} from '@components'
 
-import components from '../components-indexes'
+// @ts-ignore
+import components from 'indexes~'
 
 const app = shallowRef<Component | null>()
 const loading = shallowRef(false)
