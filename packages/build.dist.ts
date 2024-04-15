@@ -205,7 +205,7 @@ async function genPackageJson() {
     }
 
     fs.writeFileSync(path.resolve(config.dist, 'package.json'), JSON.stringify(packageJson, null, 2))
-    fs.cpSync('README.md', path.resolve(config.dist, 'README.md'))
+    fs.cpSync('../README.md', path.resolve(config.dist, 'README.md'))
     fs.cpSync('web-types.json', path.resolve(config.dist, 'web-types.json'))
 }
 

@@ -9,6 +9,7 @@
       "@types": ["./src/types"],
       "@yin-jinlong/h-ui": ["../packages"],
       "@yin-jinlong/h-ui/style/src": ["../packages/style"],
+      "@yin-jinlong/h-ui/style/css": ["../dist/style/css"]
     }
   },
   "include": [

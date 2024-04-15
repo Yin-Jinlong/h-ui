@@ -31,7 +31,45 @@
 
 一个`Vue.js 3` UI 组件库
 
-## 安装
+## 使用
+
+### 安装
+
+```shell
+pnpm install @yin-jinlong/h-ui
+```
+
+### 组件导入
+
+以`Button`为例
+
+- 组件`import {Button} from '@yin-jinlong/h-ui'`
+- 样式`import '@yin-jinlong/h-ui/components/button/style'`
+
+样式也可以引入编译后的`css`文件
+
+```ts
+// base.css不会自动引入，需要手动引入
+import '@yin-jinlong/h-ui/style/css/base.css'
+import '@yin-jinlong/h-ui/style/css/button.css'
+```
+
+引入全部样式
+```ts
+import '@yin-jinlong/h-ui/style/css/index.css'
+```
+
+样式源码在`style/src`下
+
+```ts
+// base.scss不会自动引入，需要手动引入
+import '@yin-jinlong/h-ui/style/src/base.scss'
+import '@yin-jinlong/h-ui/style/src/button.scss'
+```
+
+## 开发
+
+### 安装
 
 ```shell
 ./install
@@ -43,7 +81,7 @@
 直接运行`pnpm install`会导致内部命令链接错误
 </details>
 
-## 构建
+### 构建
 
 <details>
   <summary>组件库</summary>
@@ -63,7 +101,7 @@ pnpm run docs:build
 
 </details>
 
-## 测试
+### 测试
 
 <details>
   <summary>组件库</summary>
