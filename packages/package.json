@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "cd .. && pnpm -C docs dev",
-    "build": "pnpm run build:dist && pnpm run build:css",
+    "build": "run build:*",
     "build:dist": "build dist",
     "build:css": "build style",
     "release": "cd ../dist && npm publish --access public",
@@ -16,7 +16,6 @@
   "peerDependencies": {
   },
   "devDependencies": {
-    "@yin-jinlong/h-ui-build-tools": "link:../build",
     "@codecov/rollup-plugin": "0.0.1-beta.6",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-json": "^6.1.0",

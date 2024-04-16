@@ -1,10 +1,11 @@
+import {existsSync, readdirSync, readFileSync, rmSync,writeFileSync} from 'fs'
+
 import {rollup} from 'rollup'
 import typescript from 'rollup-plugin-typescript2'
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import terser from '@rollup/plugin-terser'
-import {existsSync, rmSync} from 'fs'
 
 async function buildBin(name) {
     console.log('build', name)
@@ -45,7 +46,18 @@ async function run() {
             recursive: true
         })
     }
-    await buildBin('build')
+
+    const packageJson = JSON.parse((await readFileSync('package.json')).toString())
+    packageJson.bin = {}
+
+    readdirSync('src', {
+        withFileTypes: true
+    }).forEach(file => {
+        if (file.isDirectory()) {
+            packageJson.bin[file.name] = `./${file.name}/index.mjs`
+            buildBin(file.name)
+        }
+    })
 
     const buildTool = await rollup({
         input: 'index.ts',
@@ -72,6 +84,7 @@ async function run() {
         preserveModules: true,
         sourcemap: false
     })
+    writeFileSync('dist/package.json', JSON.stringify(packageJson, null, 2))
     await buildTool.close()
 }
 

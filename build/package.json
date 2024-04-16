@@ -1,12 +1,9 @@
 {
-  "name": "h-ui-build-tool",
+  "name": "@yin-jinlong/h-ui-build-tool",
   "version": "1.0.0",
   "description": "氢 ui库",
   "author": "Yin-Jinlong",
   "type": "module",
-  "bin": {
-    "build": "./dist/build/index.mjs"
-  },
   "scripts": {
     "build": "node build.mjs",
     "postinstall": "pnpm run build"
@@ -27,7 +24,7 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/index.mjs"
+      "import": "./index.mjs"
     }
   }
 }

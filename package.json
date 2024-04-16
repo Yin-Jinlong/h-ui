@@ -10,5 +10,8 @@
     "docs:dev": "pnpm -C docs dev",
     "docs:build": "pnpm -C docs build"
   },
+  "devDependencies": {
+    "@yin-jinlong/h-ui-build-tools": "link:./build/dist"
+  },
   "license": "LGPL-3.0-or-later"
 }
