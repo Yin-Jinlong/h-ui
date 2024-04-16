@@ -166,11 +166,8 @@ async function build() {
 
 }
 
-async function genPackageJson() {
-    let packageJson: Record<string, any> = deepAssign({}, (await import('./package.json')).default)
+function convertPackageJson(packageJson: Record<string, any>) {
     delete packageJson.scripts
-    delete packageJson.devDependencies
-    delete packageJson.dependencies['h-ui-build-tool']
 
     packageJson.name = '@yin-jinlong/h-ui'
     packageJson.version = fs.readFileSync('VERSION').toString().trim()
@@ -179,7 +176,7 @@ async function genPackageJson() {
         'es',
         'lib',
         'style',
-        "web-types.json",
+        'web-types.json',
         'README.md'
     ]
     packageJson.homepage = 'https://yin-jinlong.github.io/h-ui'
@@ -201,8 +198,16 @@ async function genPackageJson() {
             import: './es/index.mjs',
             types: './dist/@types/index.d.ts',
         },
+        './style/*': {
+            import: './style/*'
+        },
         './*': './*'
     }
+    return packageJson
+}
+
+async function genPackageJson() {
+    let packageJson = convertPackageJson(deepAssign({}, (await import('./package.json')).default))
 
     fs.writeFileSync(path.resolve(config.dist, 'package.json'), JSON.stringify(packageJson, null, 2))
     fs.cpSync('../README.md', path.resolve(config.dist, 'README.md'))

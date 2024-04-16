@@ -87,9 +87,6 @@ importers:
       terser:
         specifier: ^5.29.2
         version: 5.29.2
-      tsc:
-        specifier: ^2.0.4
-        version: 2.0.4
       typescript:
         specifier: ^5.4.2
         version: 5.4.2
@@ -112,9 +109,6 @@ importers:
       chroma-js:
         specifier: ^2.4.2
         version: 2.4.2
-      h-ui-build-tool:
-        specifier: link:..\build
-        version: link:../build
       vue:
         specifier: ^3.4.21
         version: 3.4.21(typescript@5.4.2)
@@ -156,6 +150,9 @@ importers:
       '@vitest/ui':
         specifier: ^1.5.0
         version: 1.5.0(vitest@1.5.0)
+      '@yin-jinlong/h-ui-build-tools':
+        specifier: link:../build
+        version: link:../build
       chalk:
         specifier: ^5.3.0
         version: 5.3.0
@@ -186,9 +183,6 @@ importers:
       terser:
         specifier: ^5.29.2
         version: 5.29.2
-      tsc:
-        specifier: ^2.0.4
-        version: 2.0.4
       typescript:
         specifier: ^5.4.2
         version: 5.4.2
@@ -4503,11 +4497,6 @@ packages:
   /totalist@3.0.1:
     resolution: {integrity: sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==}
     engines: {node: '>=6'}
-    dev: true
-
-  /tsc@2.0.4:
-    resolution: {integrity: sha512-fzoSieZI5KKJVBYGvwbVZs/J5za84f2lSTLPYf6AGiIf43tZ3GNrI1QzTLcjtyDDP4aLxd46RTZq1nQxe7+k5Q==, tarball: https://registry.npmmirror.com/tsc/-/tsc-2.0.4.tgz}
-    hasBin: true
     dev: true
 
   /tslib@2.6.2:

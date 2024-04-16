@@ -13,7 +13,10 @@
     "test:coverage": "vitest run --coverage || exit 0"
   },
   "license": "LGPL-3.0-or-later",
+  "peerDependencies": {
+  },
   "devDependencies": {
+    "@yin-jinlong/h-ui-build-tools": "link:../build",
     "@codecov/rollup-plugin": "0.0.1-beta.6",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-json": "^6.1.0",
@@ -21,7 +24,7 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@testing-library/vue": "^8.0.3",
     "@types/chroma-js": "^2.4.4",
-    "@types/node": "^20.11.28",
+    "@types/node": ">18.17.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vitest/coverage-istanbul": "^1.5.0",
     "@vitest/coverage-v8": "^1.5.0",
@@ -36,7 +39,6 @@
     "rollup-plugin-typescript2": "^0.36.0",
     "sass": "^1.72.0",
     "terser": "^5.29.2",
-    "tsc": "^2.0.4",
     "typescript": "^5.4.2",
     "vite": "^5.1.5",
     "vite-plugin-dts": "^3.8.2",
@@ -44,7 +46,6 @@
   },
   "dependencies": {
     "chroma-js": "^2.4.2",
-    "h-ui-build-tool": "link:..\\build",
     "vue": "^3.4.21"
   },
   "web-types": "./web-types.json"
