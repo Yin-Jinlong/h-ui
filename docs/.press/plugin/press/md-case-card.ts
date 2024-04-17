@@ -27,9 +27,9 @@ export function mdCaseCardPlugin(md: MarkdownIt): void {
                         } else {
                             let big = convertToBigCamel(name)
                             let small = convertToSmallCamel(name)
-                            let light=`${small}CodeLight`
-                            let dark=`${small}CodeDark`
-                            token.content = `<case-card :code="darkTheme?${dark}:${light}" :component="${big}"/>`
+                            let light = `${small}CodeLight`
+                            let dark = `${small}CodeDark`
+                            token.content = `<case-card :code-light="${light}" :code-dark="${dark}" :component="${big}"/>`
                             components.add('case-card')
                             imports.add(`import ${big} from './${name}.vue'`)
                             imports.add(`import ${light} from './${name}.vue?code&light'`)

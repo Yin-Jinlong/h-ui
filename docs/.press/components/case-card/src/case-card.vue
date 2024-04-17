@@ -6,8 +6,9 @@
                 {{ showCode ? '隐藏' : '显示' }}代码
             </h-button>
             <div v-auto-height class="code-box" data-relative data-transition-fast>
-                <div :style="'height:'+(showCode?'auto':'0px')">
-                    <div v-code="code"/>
+                <div :data-show="showCode" :style="'height:'+(showCode?'max-content':'0px')">
+                    <div v-if="showCode"/>
+                    <code-box :light="codeLight" :dark="codeDark"/>
                 </div>
             </div>
         </template>
@@ -31,18 +32,18 @@
 </style>
 
 <script lang="ts" setup>
+import {CodeBox} from '@components'
 import type {Component} from 'vue'
 import {ref} from 'vue'
 import {HButton, HCard, vAutoHeight} from '@yin-jinlong/h-ui'
-
-import {vCode} from '../../../utils'
 
 import '@yin-jinlong/h-ui/components/button/style'
 import '@yin-jinlong/h-ui/components/card/style'
 
 defineProps<{
     component: Component
-    code: string
+    codeDark: string
+    codeLight: string
 }>()
 
 const showCode = ref(false)

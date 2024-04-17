@@ -3,6 +3,7 @@ import markdownItFrontMatter from 'markdown-it-front-matter'
 import {load} from 'js-yaml'
 
 import {mdCaseCardPlugin} from './md-case-card'
+import {mdCodePlugin} from './md-code'
 import {mdLinkPlugin} from './md-link'
 import {mdVueComponentPlugin} from './md-vue-component'
 import {convertToBigCamel, exists, readText} from './utils'
@@ -102,3 +103,4 @@ md.use(md => {
 md.use(mdLinkPlugin)
 md.use(mdVueComponentPlugin)
 md.use(mdCaseCardPlugin)
+md.use(mdCodePlugin)
