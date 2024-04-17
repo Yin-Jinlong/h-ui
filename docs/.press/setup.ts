@@ -1,11 +1,10 @@
-import {createApp} from 'vue'
 import {isDark, toggleDark} from '@yin-jinlong/h-ui'
+import {App} from 'vue'
 
-import App from './App.vue'
-import {mountCode} from './highlight'
 import {vCode} from './utils'
 
 import './style.scss'
+import {mountCode} from './highlight'
 
 class ThemeEvent extends Event {
     readonly theme: 'dark' | 'light'
@@ -15,7 +14,6 @@ class ThemeEvent extends Event {
         this.theme = theme
     }
 }
-
 
 let lastDark = isDark()
 new MutationObserver(() => {
@@ -32,8 +30,8 @@ new MutationObserver(() => {
 if (window.matchMedia('(prefers-color-scheme: dark)').matches)
     toggleDark()
 
-const app = createApp(App)
-app.directive('code', vCode)
-mountCode().then(() => {
-    app.mount(document.body)
-})
+
+export default async function setup(app:App){
+    app.directive('code', vCode)
+    return mountCode()
+}

@@ -16,7 +16,7 @@
         <div v-if="isHome()" data-flex-column style="flex: 1;overflow: hidden;align-items: center">
             <div data-fill-width data-flex-column style="flex:1;max-width: 1000px">
                 <div class="main-head">
-                    <h1>H UI Docs</h1>
+                    <h1 class="home-title">H UI Docs</h1>
                     <p>氢UI文档</p>
                 </div>
                 <div class="main-btn">
@@ -43,7 +43,7 @@
     margin: 1em 0;
 }
 
-h1 {
+h1.home-title {
     background: -webkit-linear-gradient(120deg, #FEBE34 30%, #2EA1FF);;
     -webkit-background-clip: text;
     background-clip: text;
@@ -76,7 +76,8 @@ const loading = shallowRef(false)
 const nowPage = shallowRef('')
 
 function isHome() {
-    return window.location.hash === ''
+    let {hash} = window.location
+    return hash === '' || hash === '#/'
 }
 
 

@@ -1,8 +1,5 @@
 <template>
     <h-card class="case">
-        <template #header>
-            {{ title }}
-        </template>
         <component :is="component"/>
         <template #footer>
             <h-button class="show-code" @click="showCode=!showCode">
@@ -42,7 +39,6 @@ import '@yin-jinlong/h-ui/components/button/style'
 import '@yin-jinlong/h-ui/components/card/style'
 
 defineProps<{
-    title: string
     component: Component
     code: string
 }>()

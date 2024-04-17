@@ -32,6 +32,12 @@ declare global {
 
         export {}
     }
+
+    declare module '*.vue?md' {
+        const vue: Component
+        export default vue
+    }
+
 }
 
 export {}

@@ -16,7 +16,7 @@ function genIndexes(dir: string): string {
             pages += `{
    name: '${name}',
    path: '/${name}',
-   component: () => import('./components/${name}')
+   component: () => import('components/${name}/index.vue?md')
 },`
         }
     })

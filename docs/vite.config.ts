@@ -5,7 +5,7 @@ import {visualizer} from 'rollup-plugin-visualizer'
 import vue from '@vitejs/plugin-vue'
 import viteCompression from 'vite-plugin-compression'
 
-import {indexesPlugin} from './src/plugin'
+import {pressPlugin, indexesPlugin} from './.press/plugin'
 
 function getSuffix(name: string) {
     const i = name.lastIndexOf('.')
@@ -51,10 +51,10 @@ export default defineConfig((env) => {
         },
         resolve: {
             alias: {
-                '@': path.resolve('src'),
-                '@pages': path.resolve('src/pages'),
-                '@components': path.resolve('src/components'),
-                '@types': path.resolve('src/types'),
+                '@': path.resolve('.press'),
+                '@pages': path.resolve('.press/pages'),
+                '@components': path.resolve('.press/components'),
+                '@types': path.resolve('.press/types'),
                 '@yin-jinlong/h-ui/style/src': path.resolve('../packages/style'),
                 '@yin-jinlong/h-ui': path.resolve('../packages'),
             }
@@ -63,6 +63,13 @@ export default defineConfig((env) => {
             entries: ['@yin-jinlong/h-ui']
         },
         plugins: [
+            pressPlugin({
+                setupFile:'.press/setup.ts',
+                importsMap: {
+                    '@components': ['CaseCard'],
+                    '@pages/app':['App']
+                }
+            }),
             indexesPlugin(),
             vue({
                 isProduction: prod

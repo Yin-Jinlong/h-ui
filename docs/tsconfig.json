@@ -3,10 +3,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/": ["./src/"],
-      "@pages/*": ["./src/pages/*"],
-      "@components": ["./src/components"],
-      "@types": ["./src/types"],
+      "@/": ["./.press/"],
+      "@pages/*": ["./.press/pages/*"],
+      "@components": ["./.press/components"],
+      "@types": ["./.press/types"],
       "@yin-jinlong/h-ui": ["../packages"],
       "@yin-jinlong/h-ui/style/src": ["../packages/style"],
       "@yin-jinlong/h-ui/style/css": ["../dist/style/css"]
@@ -19,9 +19,9 @@
     "./components/*.ts",
     "./components/**/*.ts",
     "./components/**/*.vue",
-    "./src/*.ts",
-    "./src/**/*.ts",
-    "./src/**/*.vue"
+    "./.press/*.ts",
+    "./.press/**/*.ts",
+    "./.press/**/*.vue"
   ],
   "references": [
     {
