@@ -1,22 +1,22 @@
-import {performance} from 'perf_hooks'
 import fs from 'fs'
 import path from 'path'
-import process from 'process'
-import readline from 'readline'
+import {performance} from 'perf_hooks'
 
 import {codecovRollupPlugin} from '@codecov/rollup-plugin'
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 import terser from '@rollup/plugin-terser'
 import vuePlugin from '@vitejs/plugin-vue'
+import {clean} from 'build-tool'
+import process from 'process'
+import readline from 'readline'
 import {Plugin, rollup} from 'rollup'
 import postcss from 'rollup-plugin-postcss'
 import typescript from 'rollup-plugin-typescript2'
 import dts from 'vite-plugin-dts'
 
-import {OutputOption} from '@yin-jinlong/h-ui-build-tool'
-import {deepAssign} from '@yin-jinlong/h-ui/utils'
 import {
+    OutputOption,
     color,
     convertSize,
     convertTime,
@@ -24,8 +24,6 @@ import {
     outln,
     rollupProcessPlugin
 } from '@yin-jinlong/h-ui-build-tool'
-
-import {clean} from 'build-tool'
 
 import config from './build.config'
 
@@ -166,6 +164,10 @@ async function build() {
 
 }
 
+function getPackageJson(path: string) {
+    return JSON.parse(fs.readFileSync(path).toString())
+}
+
 function convertPackageJson(packageJson: Record<string, any>) {
     delete packageJson.scripts
 
@@ -207,7 +209,7 @@ function convertPackageJson(packageJson: Record<string, any>) {
 }
 
 async function genPackageJson() {
-    let packageJson = convertPackageJson(deepAssign({}, (await import('./package.json')).default))
+    let packageJson = convertPackageJson(getPackageJson('./package.json'))
 
     fs.writeFileSync(path.resolve(config.dist, 'package.json'), JSON.stringify(packageJson, null, 2))
     fs.cpSync('../README.md', path.resolve(config.dist, 'README.md'))

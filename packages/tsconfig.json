@@ -13,7 +13,6 @@
   },
   "include": [
     "./*.ts",
-    "./package.json",
     "./**/*.ts",
     "./**/*.vue"
   ],
