@@ -75,7 +75,7 @@ ${setupFile ? `setup(app).then(()=>{
             if (source.endsWith('index.html')) {
                 return source.replace(/\\/g, '/')
             } else if (source.endsWith('main.ts?press'))
-                return source
+                return resolve('.','./main.ts?press').replace(/\\/g, '/')
             if (!isVueMd(source))
                 return
             return source
