@@ -74,8 +74,8 @@ ${setupFile ? `setup(app).then(()=>{
         resolveId(source, importer, options) {
             if (source.endsWith('index.html')) {
                 return source.replace(/\\/g, '/')
-            } else if (source === '/main.ts?press')
-                return source.substring(1)
+            } else if (source.endsWith('main.ts?press'))
+                return source
             if (!isVueMd(source))
                 return
             return source
@@ -83,7 +83,7 @@ ${setupFile ? `setup(app).then(()=>{
         load(id, options) {
             if (relative('.', id) === 'index.html')
                 return INDEX_HTML
-            if (id === 'main.ts?press') {
+            if (id.endsWith('main.ts?press')) {
                 return MAIN_TS
             }
             if (!isVueMd(id))
