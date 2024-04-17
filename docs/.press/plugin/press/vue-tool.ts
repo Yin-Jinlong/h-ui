@@ -8,11 +8,12 @@ import {mdVueComponentPlugin} from './md-vue-component'
 import {convertToBigCamel, exists, readText} from './utils'
 
 
-interface VueMdEnv {
+export declare interface VueMdEnv {
     id: string
     components: Set<string>
-    imports: string[]
+    imports: Set<string>
     attrs: Record<string, any>
+    codes: string[]
 }
 
 const md = new MarkdownIt({
@@ -44,8 +45,9 @@ export function convertToVue(id: string): string | undefined {
     let env: VueMdEnv = {
         id,
         components: new Set(),
-        imports: [],
+        imports: new Set(),
         attrs: {},
+        codes: [],
     }
     let code = md.render(readText(id) ?? '', env)
 
@@ -68,9 +70,11 @@ export function convertToVue(id: string): string | undefined {
 
     return `<template>${code}</template>
 <script lang="ts" setup>
-    import {onMounted} from 'vue' 
+    import {onMounted,ref} from 'vue' 
     ${genImport()}
-    ${env.imports.join('\n')}
+    ${Array.from(env.imports).join('\n')}
+    
+    ${env.codes.join('\n')}
     
     onMounted(()=>{
         document.title='${env.attrs?.title ?? ''}'

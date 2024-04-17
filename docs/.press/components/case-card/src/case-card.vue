@@ -35,6 +35,8 @@ import type {Component} from 'vue'
 import {ref} from 'vue'
 import {HButton, HCard, vAutoHeight} from '@yin-jinlong/h-ui'
 
+import {vCode} from '../../../utils'
+
 import '@yin-jinlong/h-ui/components/button/style'
 import '@yin-jinlong/h-ui/components/card/style'
 

@@ -2,12 +2,13 @@ import MarkdownIt from 'markdown-it'
 import Token from 'markdown-it/lib/token.mjs'
 
 import {convertToBigCamel, convertToSmallCamel, filter} from './utils'
+import {VueMdEnv} from './vue-tool'
 
 const CASE_REG = /\[\.(?<name>\w+)]/
 
 export function mdCaseCardPlugin(md: MarkdownIt): void {
     md.core.ruler.push('case-card', (state) => {
-        let {imports, components} = state.env
+        let {imports, components, codes} = state.env as VueMdEnv
         filter(state.tokens, 'text').forEach((t) => {
             if (t.content.includes('[.')) {
                 let parts = t.content.split(CASE_REG)
@@ -16,6 +17,7 @@ export function mdCaseCardPlugin(md: MarkdownIt): void {
                     t.block = true
                     t.children = []
                     t.content = ''
+                    imports.add(`import {darkTheme} from '@/theme'`)
                     for (let i = 0; i < parts.length; i++) {
                         let name = parts[i]
                         let token = new Token('text', '', 0)
@@ -23,10 +25,15 @@ export function mdCaseCardPlugin(md: MarkdownIt): void {
                             token.content = name
                             t.children.push(token)
                         } else {
-                            token.content = `<case-card :code="${name}Code" :component="${convertToBigCamel(name)}"/>`
+                            let big = convertToBigCamel(name)
+                            let small = convertToSmallCamel(name)
+                            let light=`${small}CodeLight`
+                            let dark=`${small}CodeDark`
+                            token.content = `<case-card :code="darkTheme?${dark}:${light}" :component="${big}"/>`
                             components.add('case-card')
-                            imports.push(`import ${convertToBigCamel(name)} from './${name}.vue'`)
-                            imports.push(`import ${convertToSmallCamel(name)}Code from './${name}.vue?raw'`)
+                            imports.add(`import ${big} from './${name}.vue'`)
+                            imports.add(`import ${light} from './${name}.vue?code&light'`)
+                            imports.add(`import ${dark} from './${name}.vue?code&dark'`)
                         }
                         t.children.push(token)
                         t.content += token.content

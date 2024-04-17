@@ -5,7 +5,7 @@ import {visualizer} from 'rollup-plugin-visualizer'
 import vue from '@vitejs/plugin-vue'
 import viteCompression from 'vite-plugin-compression'
 
-import {pressPlugin, indexesPlugin} from './.press/plugin'
+import {pressPlugin, indexesPlugin, pressCodePlugin} from './.press/plugin'
 
 function getSuffix(name: string) {
     const i = name.lastIndexOf('.')
@@ -70,6 +70,7 @@ export default defineConfig((env) => {
                     '@pages/app':['App']
                 }
             }),
+            pressCodePlugin(),
             indexesPlugin(),
             vue({
                 isProduction: prod

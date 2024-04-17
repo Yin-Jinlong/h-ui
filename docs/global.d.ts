@@ -1,4 +1,3 @@
-import {BundledLanguage} from 'shiki'
 import type {Component} from 'vue'
 
 declare global {
@@ -8,7 +7,6 @@ declare global {
     }
 
     declare interface Window {
-        code(code: string, lang: BundledLanguage): string
 
         addEventListener(event: 'theme-change', listener: (e: ThemeEvent) => void): void
     }
@@ -38,6 +36,15 @@ declare global {
         export default vue
     }
 
+    declare module '*.vue?code&*' {
+        const src: string
+        export default scr
+    }
+
+    declare module '*.vue.code*' {
+        const src: string
+        export default scr
+    }
 }
 
 export {}
