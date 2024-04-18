@@ -3,7 +3,7 @@ import path from 'path'
 import {defineConfig} from 'vite'
 import {visualizer} from 'rollup-plugin-visualizer'
 import vue from '@vitejs/plugin-vue'
-import viteCompression from 'vite-plugin-compression'
+// import viteCompression from 'vite-plugin-compression'
 
 import {pressPlugin, indexesPlugin, pressCodePlugin} from './.press/plugin'
 
@@ -74,9 +74,9 @@ export default defineConfig((env) => {
             vue({
                 isProduction: prod
             }),
-            viteCompression({
-                threshold: 32 * 1024
-            }),
+            // viteCompression({
+            //     threshold: 32 * 1024
+            // }),
             visualizer({
                 gzipSize: true,
                 template: 'flamegraph',
