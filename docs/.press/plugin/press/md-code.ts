@@ -1,7 +1,9 @@
 import MarkdownIt from 'markdown-it'
 import {getHighlighter} from 'shiki'
-import {filter} from '.press/plugin/press/utils'
-import {VueMdEnv} from '.press/plugin/press/vue-tool'
+import {encode} from 'js-base64'
+
+import {filter} from './utils'
+import {VueMdEnv} from './vue-tool'
 
 const highlighter = await getHighlighter({
     langs: [
@@ -42,8 +44,8 @@ export function mdCodePlugin(md: MarkdownIt) {
                 components.add('code-box')
                 meta.light = genName('lightCode')
                 meta.dark = genName('darkCode')
-                codes.push(`const ${meta.light}=\`${light}\``)
-                codes.push(`const ${meta.dark}=\`${dark}\``)
+                codes.push(`const ${meta.light}=Base64.decode('${encode(light)}')`)
+                codes.push(`const ${meta.dark}=Base64.decode('${encode(dark)}')`)
                 token.meta = meta
             }
         })

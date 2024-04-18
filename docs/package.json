@@ -20,6 +20,7 @@
     "chalk": "^5.3.0",
     "esno": "^4.7.0",
     "happy-dom": "^14.3.9",
+    "js-base64": "^3.7.7",
     "js-yaml": "^4.1.0",
     "lightningcss": "^1.24.1",
     "markdown-it": "^14.1.0",
