@@ -37,14 +37,8 @@ export function mdCodePlugin(md: MarkdownIt) {
                 let meta: Record<string, string> = {}
                 let code = token.content
                 let lang = token.info
-                let dark = highlighter.codeToHtml(code, {
-                    lang,
-                    theme: 'dark-plus'
-                })
-                let light = highlighter.codeToHtml(code, {
-                    lang,
-                    theme: 'light-plus'
-                })
+                let dark = colorCode(code, lang, true)
+                let light = colorCode(code, lang, false)
                 components.add('code-box')
                 meta.light = genName('lightCode')
                 meta.dark = genName('darkCode')
@@ -58,4 +52,11 @@ export function mdCodePlugin(md: MarkdownIt) {
         let meta = tokens[idx].meta
         return `<code-box :light="${meta.light}" :dark="${meta.dark}"/>`
     }
+}
+
+export function colorCode(code: string, lang: string, dark: boolean) {
+    return highlighter.codeToHtml(code, {
+        lang,
+        theme: dark ? 'dark-plus' : 'light-plus'
+    })
 }

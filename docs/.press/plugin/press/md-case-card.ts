@@ -32,8 +32,7 @@ export function mdCaseCardPlugin(md: MarkdownIt): void {
                             token.content = `<case-card :code-light="${light}" :code-dark="${dark}" :component="${big}"/>`
                             components.add('case-card')
                             imports.add(`import ${big} from './${name}.vue'`)
-                            imports.add(`import ${light} from './${name}.vue?code&light'`)
-                            imports.add(`import ${dark} from './${name}.vue?code&dark'`)
+                            imports.add(`import {light as ${light},dark as ${dark}} from './${name}.vue?code'`)
                         }
                         t.children.push(token)
                         t.content += token.content

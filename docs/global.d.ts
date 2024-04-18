@@ -11,11 +11,6 @@ declare global {
         addEventListener(event: 'theme-change', listener: (e: ThemeEvent) => void): void
     }
 
-    declare module '*.vue?raw' {
-        const src: string
-        export default src
-    }
-
     declare module 'indexes~' {
         import type {Component} from 'vue'
 
@@ -36,15 +31,11 @@ declare global {
         export default vue
     }
 
-    declare module '*.vue?code&*' {
-        const src: string
-        export default scr
+    declare module '*.vue?code' {
+        const dark: string
+        const light:string
     }
 
-    declare module '*.vue.code*' {
-        const src: string
-        export default scr
-    }
 }
 
 export {}
