@@ -9,7 +9,9 @@
                  data-relative
                  h-loading-text="加载中..."
                  style="flex: 1;">
-                <component :is="app"/>
+                <div md>
+                    <component :is="app"/>
+                </div>
             </div>
         </div>
         <h3 v-if="!app&&!isHome()" v-loading="loading" h-loading-text="加载中...">404</h3>

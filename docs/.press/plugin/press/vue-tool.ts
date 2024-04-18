@@ -54,7 +54,7 @@ export function convertToVue(id: string): string | undefined {
         attrs: {},
         codes: [],
     }
-    let code = `<div md>${md.render(readText(id) ?? '', env)}</div>`
+    let code =md.render(readText(id) ?? '', env)
 
     function genImport(): string {
         let cs: Record<string, Set<string>> = {}
