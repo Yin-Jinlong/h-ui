@@ -2,9 +2,11 @@
 title: H-UI-Input
 ---
 
-# Input
+# Input 输入框
 
 ## 颜色&禁用
+
+禁用只需加上`disabled`属性即可。
 
 [.colors]
 
