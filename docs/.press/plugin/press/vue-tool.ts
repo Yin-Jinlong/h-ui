@@ -23,18 +23,22 @@ const md = new MarkdownIt({
 
 const map = new Map<string, string>()
 
-const importsMap: Record<string, string[]> = {}
+const importsMap: Record<string, Set<string>> = {}
 
 function getComponentPkg(component: string): string {
     for (const k in importsMap) {
-        if (importsMap[k].includes(component))
+        if (importsMap[k].has(component))
             return k
     }
     return ''
 }
 
-export function setImportsMap(imports: Record<string, string[]>) {
-    Object.assign(importsMap, imports)
+export function addImportsMap(imports: Record<string, string[]>) {
+    Object.entries(imports).forEach(([k, v]) => {
+        if (!importsMap[k])
+            importsMap[k] = new Set()
+        v.forEach(c => importsMap[k].add(c))
+    })
 }
 
 export function convertToVue(id: string): string | undefined {

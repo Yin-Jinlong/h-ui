@@ -66,7 +66,6 @@ export default defineConfig((env) => {
             pressPlugin({
                 setupFile:'.press/setup.ts',
                 importsMap: {
-                    '@components': ['CaseCard','CodeBox'],
                     '@pages/app':['App']
                 }
             }),

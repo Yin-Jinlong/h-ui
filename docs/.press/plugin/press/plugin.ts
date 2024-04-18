@@ -1,9 +1,10 @@
+import {readdirSync} from 'fs'
 import {relative, resolve} from 'path'
 
 import {Plugin} from 'vite'
 
-import {listFiles} from './utils'
-import {convertToVue, getVueMdId, setImportsMap} from './vue-tool'
+import {convertToBigCamel, listFiles} from './utils'
+import {addImportsMap, convertToVue, getVueMdId} from './vue-tool'
 
 export declare interface PressOptions {
     setupFile?: string
@@ -22,8 +23,22 @@ const INDEX_HTML = `<!doctype html>
 <title>H-UI Docs</title>
 <script src="main.ts?press" type="module"></script>`
 
+function addComponentsMap(path: string) {
+    let cs: string[] = []
+    readdirSync(path, {
+        withFileTypes: true
+    }).forEach((f) => {
+        if (f.isDirectory()) {
+            cs.push(convertToBigCamel(f.name))
+        }
+    })
+    addImportsMap({
+        '@components': cs
+    })
+}
+
 export function pressPlugin(options?: PressOptions): Plugin {
-    setImportsMap(options?.importsMap ?? {})
+    addImportsMap(options?.importsMap ?? {})
     const setupFile = options?.setupFile
 
     const MAIN_TS = `import {createApp} from 'vue'
@@ -40,6 +55,13 @@ ${setupFile ? `setup(app).then(()=>{
     return {
         enforce: 'pre',
         name: 'press-md',
+        configResolved(config) {
+            if (!config.resolve.alias)
+                return
+            let cr = config.resolve.alias.find((a) => a.find === '@components')?.replacement
+            if (cr)
+                addComponentsMap(cr)
+        },
         configureServer(server) {
 
             let {watcher} = server
@@ -75,7 +97,7 @@ ${setupFile ? `setup(app).then(()=>{
             if (source.endsWith('index.html')) {
                 return source.replace(/\\/g, '/')
             } else if (source.endsWith('main.ts?press'))
-                return resolve('.','./main.ts?press').replace(/\\/g, '/')
+                return resolve('.', './main.ts?press').replace(/\\/g, '/')
             if (!isVueMd(source))
                 return
             return source
