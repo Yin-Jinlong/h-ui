@@ -1,7 +1,7 @@
 <template>
     <div class="header" data-fill-width data-flex-center data-relative>
         <div style="flex: 1;padding: 0 0.5rem">
-            <h2>H-UI</h2>
+            <h2><a href="/">H-UI</a></h2>
         </div>
         <div data-fill-height data-flex-column-center style="padding: 0.5rem">
             <label data-flex-center @click="changeTheme">
@@ -16,6 +16,12 @@
 .header {
     box-shadow: 0 0 5px rgba(128, 128, 128, 0.3);
     height: 50px;
+
+    h2 > a {
+        color: inherit;
+        text-decoration: none;
+    }
+
 }
 </style>
 
