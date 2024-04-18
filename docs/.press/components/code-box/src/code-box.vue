@@ -18,13 +18,12 @@
     padding: 0.5em;
 
     pre, code {
-        display: inline-block;
-        font-family: 'JetBrains Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
         min-width: 100%;
         width: max-content;
     }
 
 }
+
 </style>
 
 <script lang="ts" setup>

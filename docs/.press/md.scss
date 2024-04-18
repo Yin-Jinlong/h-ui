@@ -1,0 +1,51 @@
+@use '@yin-jinlong/h-ui/style/src/tools/fns' as *;
+
+[md] {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
+  h1, h2, h3 {
+    margin: 0.5rem 0;
+  }
+
+  h1, h2, h3, h4, h5 {
+    &:before {
+      color: get-css(color, primary);
+      content: '#';
+      opacity: 0.1;
+      transition: all 0.2s ease-out;
+    }
+
+    &:hover:before {
+      opacity: 1;
+    }
+
+  }
+
+  ul {
+    list-style: disc inside;
+    padding-left: 1em;
+  }
+
+  code {
+    display: inline-block;
+    font-family: 'JetBrains Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+    text-indent: 0;
+
+    .line {
+      border-bottom: rgb(128, 128, 128, 0.3) dashed 1px;
+      display: inline-block;
+      width: 100%;
+    }
+  }
+
+  code[inline] {
+    background: rgb(128, 128, 128, 0.2);
+    padding: 0 0.5em;
+    border-radius: 5px;
+  }
+
+
+}

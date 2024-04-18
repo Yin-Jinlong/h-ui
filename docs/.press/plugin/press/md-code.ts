@@ -49,6 +49,9 @@ export function mdCodePlugin(md: MarkdownIt) {
                 token.meta = meta
             }
         })
+        filter(state.tokens, 'code_inline').filter((token) => token.tag === 'code').forEach((token) => {
+            token.attrSet('inline', '')
+        })
     })
     md.renderer.rules.code = (tokens, idx) => {
         let meta = tokens[idx].meta
