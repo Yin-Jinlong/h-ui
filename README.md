@@ -6,6 +6,7 @@
 [![GitHub Tag](https://img.shields.io/github/v/tag/yin-jinlong/h-ui)](https://github.com/Yin-Jinlong/h-ui/tags)
 [![GitHub Release](https://img.shields.io/github/v/release/yin-jinlong/h-ui)](https://github.com/Yin-Jinlong/h-ui/releases)
 [![codecov](https://codecov.io/gh/Yin-Jinlong/h-ui/graph/badge.svg?token=VCK8VB6I3Y)](https://codecov.io/gh/Yin-Jinlong/h-ui)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ce230d3a-0722-4288-95d5-515de080efce/deploy-status)](https://app.netlify.com/sites/h-ui/deploys)
 
 [//]: # (npm)
 [![NPM Version](https://img.shields.io/npm/v/%40yin-jinlong%2Fh-ui)](https://www.npmjs.com/package/@yin-jinlong/h-ui)
@@ -30,6 +31,10 @@
 [![GitHub last commit (branch)](https://img.shields.io/github/last-commit/Yin-Jinlong/h-ui/main)](https://github.com/Yin-Jinlong/h-ui/activity)
 
 一个`Vue.js 3` UI 组件库
+
+加速站点：
+
+- [netlify](https://docs-netlify.h-ui.linkpc.net/)
 
 ## 使用
 
