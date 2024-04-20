@@ -1,8 +1,8 @@
 # 项目结构
 
-## build 构建工具
+## build-utils 构建工具
 
-生成`.bin`下命令
+
 
 ## packages ui主体
 

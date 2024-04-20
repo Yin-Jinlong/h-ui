@@ -11,7 +11,9 @@
     "docs:build": "pnpm -C docs build"
   },
   "devDependencies": {
-    "@yin-jinlong/h-ui-build-tools": "link:./build/dist"
+    "@yin-jinlong/build": "^0.0.1",
+    "@yin-jinlong/run": "^0.0.1",
+    "tsx": "^4.7.2"
   },
   "license": "LGPL-3.0-or-later"
 }

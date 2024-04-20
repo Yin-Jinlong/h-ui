@@ -6,7 +6,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "paths": {
-      "@yin-jinlong/h-ui-build-tool": ["../build"],
+      "@yin-jinlong/h-ui-build-tool": ["../build-utils"],
       "@yin-jinlong/h-ui/style/*": ["./style/*"],
       "@yin-jinlong/h-ui/*": ["./*"]
     }
@@ -18,7 +18,7 @@
   ],
   "references": [
     {
-      "path": "../build/tsconfig.json"
+      "path": "../build-utils/tsconfig.json"
     }
   ]
 }

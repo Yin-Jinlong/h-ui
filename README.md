@@ -81,14 +81,8 @@ import '@yin-jinlong/h-ui/style/src/button.scss'
 ### 安装
 
 ```shell
-./install
+pnpm install
 ```
-
-<details>
-  <summary>Tip</summary>
-
-直接运行`pnpm install`会导致内部命令链接错误
-</details>
 
 ### 构建
 

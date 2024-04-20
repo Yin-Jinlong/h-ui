@@ -3,7 +3,6 @@
 .idea/
 
 ### Project-Manager ###
-.gradle/
 node_modules/
 
 ### out ###
@@ -12,4 +11,4 @@ out/
 gen/
 dist/
 
-!/build/
+!/build-utils/
