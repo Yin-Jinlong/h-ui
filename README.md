@@ -20,12 +20,6 @@
 [![GitHub forks](https://img.shields.io/github/forks/Yin-Jinlong/h-ui)](https://github.com/Yin-Jinlong/h-ui/forks)
 [![GitHub Repo stars](https://img.shields.io/github/stars/Yin-Jinlong/h-ui)](https://github.com/Yin-Jinlong/h-ui/stargazers)
 
-[//]: # (统计)
-
-![Total Lines](https://tokei.rs/b1/github/Yin-Jinlong/h-ui)
-![Source Lines](https://tokei.rs/b1/github/Yin-Jinlong/h-ui?category=code)
-![Files](https://tokei.rs/b1/github/Yin-Jinlong/h-ui?category=files)
-
 [//]: # (活动)
 
 [![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/Yin-Jinlong/h-ui)](https://github.com/Yin-Jinlong/h-ui/activity)

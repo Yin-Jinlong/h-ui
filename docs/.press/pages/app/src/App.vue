@@ -24,6 +24,11 @@
                 <div class="main-btn">
                     <h-button border type="primary" @click="href('button')">组件</h-button>
                 </div>
+                <div data-relative v-loading="chartComponent===null" data-flex-column-center
+                     style="width: 100%;height: 500px">
+                    <h-button @click="loadChart" v-if="!chartComponent" type="plain">加载统计图表</h-button>
+                    <component v-else :is="chartComponent"/>
+                </div>
             </div>
         </div>
     </div>
@@ -63,7 +68,6 @@ h1.home-title {
 </style>
 
 <script lang="ts" setup>
-
 import type {Component} from 'vue'
 import {onMounted, shallowRef} from 'vue'
 import {HButton, vLoading} from '@yin-jinlong/h-ui'
@@ -76,6 +80,8 @@ import components from 'indexes~'
 const app = shallowRef<Component | null>()
 const loading = shallowRef(false)
 const nowPage = shallowRef('')
+
+const chartComponent = shallowRef<Component | null | undefined>()
 
 function isHome() {
     let {hash} = window.location
@@ -102,6 +108,15 @@ async function go(path: string) {
     }
     app.value = null
     loading.value = false
+}
+
+async function loadChart() {
+    chartComponent.value = null
+    import('@components/statistics-chart').then((module) => {
+        setTimeout(() => {
+            chartComponent.value = module['StatisticsChart']
+        }, 300)
+    })
 }
 
 onMounted(() => {
