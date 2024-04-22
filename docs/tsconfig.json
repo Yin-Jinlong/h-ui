@@ -7,6 +7,7 @@
       "@pages/*": ["./.press/pages/*"],
       "@components": ["./.press/components"],
       "@components/*": ["./.press/components/*"],
+      "@icons/*": ["./.press/icons/*"],
       "@types": ["./.press/types"],
       "@yin-jinlong/h-ui": ["../packages"],
       "@yin-jinlong/h-ui/style/src": ["../packages/style"],

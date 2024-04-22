@@ -54,6 +54,7 @@ export default defineConfig((env) => {
                 '@': path.resolve('.press'),
                 '@pages': path.resolve('.press/pages'),
                 '@components': path.resolve('.press/components'),
+                '@icons': path.resolve('.press/icons'),
                 '@types': path.resolve('.press/types'),
                 '@yin-jinlong/h-ui/style/src': path.resolve('../packages/style'),
                 '@yin-jinlong/h-ui': path.resolve('../packages'),
