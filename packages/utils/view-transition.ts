@@ -1,5 +1,13 @@
 type ViewTransitionCallback = () => void | Promise<void>
 
+type TransitionFn = (
+    init: ViewTransitionCallback,
+    before?: ViewTransitionCallback | null,
+    anim?: ViewTransitionCallback | null,
+    end?: ViewTransitionCallback | null,
+    finallyFn?: ViewTransitionCallback | null,
+) => Promise<void>
+
 /**
  *
  * 视图转场
@@ -12,17 +20,11 @@ type ViewTransitionCallback = () => void | Promise<void>
  *
  * @author YJL
  */
-export async function viewTransition(
-    init: ViewTransitionCallback,
-    before?: ViewTransitionCallback | null,
-    anim?: ViewTransitionCallback | null,
-    end?: ViewTransitionCallback | null,
-    finallyFn?: ViewTransitionCallback | null,
-): Promise<void> {
-    if (document.startViewTransition) {
+export const viewTransition: TransitionFn = (() => {
+    return document.startViewTransition ? async (init, before, anim, end, finallyFn) => {
         try {
             await before?.()
-            const t = document.startViewTransition(init)
+            const t = document.startViewTransition!(init)
             await t.ready
             await anim?.()
             await t.finished
@@ -30,7 +32,7 @@ export async function viewTransition(
         } finally {
             await finallyFn?.()
         }
-    } else {
-        await init()
+    } : async (init) => {
+        return await init()
     }
-}
+})()

@@ -13,7 +13,7 @@ declare module '@vue/runtime-core' {
 
 declare global {
     interface Document {
-        startViewTransition?: (callback: () => void | Promise<void>) => ViewTransition
+        readonly startViewTransition?: (callback: () => void | Promise<void>) => ViewTransition
     }
 
     interface ViewTransition {
