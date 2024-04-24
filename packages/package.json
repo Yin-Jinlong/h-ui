@@ -8,7 +8,6 @@
     "build": "run build:*",
     "build:dist": "build dist",
     "build:css": "build style",
-    "release": "cd ../dist && npm publish --access public",
     "test": "vitest",
     "test:coverage": "vitest run --coverage || exit 0"
   },

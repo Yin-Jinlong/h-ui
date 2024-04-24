@@ -30,6 +30,15 @@ import config from './build.config'
 const startTime = performance.now()
 const {stdout} = process
 
+const version = (() => {
+    let v = (process.env.VERSION_REF ?? '').trim()
+    if (!v)
+        return '0.0.0-dev'
+    if (!v.startsWith('refs/tags/v'))
+        throw new Error('no version ref')
+    return v.substring(11)
+})()
+
 /**
  * 进度插件
  *
@@ -164,15 +173,20 @@ async function build() {
 
 }
 
-function getPackageJson(path: string) {
+function getJson(path: string) {
     return JSON.parse(fs.readFileSync(path).toString())
+}
+
+function convertWebTypesJson(webTypesJson: Record<string, any>) {
+    webTypesJson.version = version
+    return webTypesJson
 }
 
 function convertPackageJson(packageJson: Record<string, any>) {
     delete packageJson.scripts
 
     packageJson.name = '@yin-jinlong/h-ui'
-    packageJson.version = fs.readFileSync('VERSION').toString().trim()
+    packageJson.version = version
     packageJson.files = [
         'dist',
         'es',
@@ -209,11 +223,12 @@ function convertPackageJson(packageJson: Record<string, any>) {
 }
 
 async function genPackageJson() {
-    let packageJson = convertPackageJson(getPackageJson('./package.json'))
+    let packageJson = convertPackageJson(getJson('./package.json'))
+    let webTypesJson = convertWebTypesJson(getJson('./web-types.json'))
 
     fs.writeFileSync(path.resolve(config.dist, 'package.json'), JSON.stringify(packageJson, null, 2))
+    fs.writeFileSync(path.resolve(config.dist, 'web-types.json'), JSON.stringify(webTypesJson, null, 2))
     fs.cpSync('../README.md', path.resolve(config.dist, 'README.md'))
-    fs.cpSync('web-types.json', path.resolve(config.dist, 'web-types.json'))
 }
 
 build().then().catch(e => {
