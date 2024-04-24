@@ -14,7 +14,7 @@ title: H-UI-Loading
 
 <br>
 
-`objetc`配置:
+`object`配置:
 
 - `loading`: `boolean` 是否显示
 - `component`: `Component | string` 加载时显示的组件，可以是已经注册的组件名（`registerLoadingComponent`）。

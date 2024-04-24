@@ -3,10 +3,13 @@
         <h-button>None</h-button>
     </div>
     <br>
-    <div v-for="(t,i) in types">
+    <div v-for="t in types">
         <div>
-            <h-button v-for="c in DefinedNamedColors" :color="c" :type="t">{{ typeTexts[i] }}</h-button>
-            <h-button :type="t" color="#39e">{{ typeTexts[i] }}</h-button>
+            <h-button v-for="(c,i) in DefinedNamedColors"
+                      :color="c" :type="t">
+                {{ i === 0 ? t : DefinedNamedColors[i] }}
+            </h-button>
+            <h-button :type="t" color="#39e">{{ t }}</h-button>
         </div>
         <br>
     </div>
@@ -20,5 +23,4 @@ import {
 } from '@yin-jinlong/h-ui'
 
 const types: HButtonType[] = ['primary', 'plain', 'link', 'text']
-const typeTexts: HButtonType[] = ['primary', 'plain', 'link', 'text']
 </script>
