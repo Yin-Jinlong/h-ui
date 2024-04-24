@@ -41,4 +41,4 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: Yin-Jinlong/h-ui
-          directory: packages/coverage/.tmp
+          directory: packages/coverage/
