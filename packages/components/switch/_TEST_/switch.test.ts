@@ -12,22 +12,22 @@ test('switch', () => {
     assertHasClass(ele, 'h-switch')
 })
 
-test('switch not-checked', () => {
+test('switch off', () => {
     const card = render(Switch, {
         props: {
             modelValue: false,
         }
     })
     const ele = element(card)
-    assertNoAttribute(ele, 'data-checked')
+    assertNoAttribute(ele, 'data-on')
 })
 
-test('switch checked', () => {
+test('switch on', () => {
     const card = render(Switch, {
         props: {
             modelValue: true,
         }
     })
     const ele = element(card)
-    assertAttribute(ele, 'data-checked')
+    assertAttribute(ele, 'data-on')
 })
