@@ -19,6 +19,6 @@ import {
     HButton
 } from '@yin-jinlong/h-ui'
 
-const types: HButtonType[] = ['primary', 'plain', 'text']
-const typeTexts: HButtonType[] = ['primary', 'plain', 'text']
+const types: HButtonType[] = ['primary', 'plain', 'link', 'text']
+const typeTexts: HButtonType[] = ['primary', 'plain', 'link', 'text']
 </script>

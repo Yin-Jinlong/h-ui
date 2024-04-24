@@ -31,7 +31,7 @@
 
   }
 
-  &[data-type='text'] {
+  &[data-type='link'] {
     background: transparent;
     color: get-css(button, color);
     padding: 0;
@@ -48,6 +48,36 @@
 
     &:active:not([data-disabled]) {
       color: get-css(button, color--3);
+      background: transparent;
+    }
+
+  }
+
+  &[data-type='text'] {
+    background: transparent;
+    color: get-css(color, text);
+    padding: 0;
+
+    &[data-size] {
+      padding: 0;
+      border-radius: 3px;
+    }
+
+    &[data-border] {
+      border: none;
+    }
+
+    &[data-shadow] {
+      box-shadow: none;
+    }
+
+    &:hover:not([data-disabled]) {
+      color: get-css(button, color);
+      background: transparent;
+    }
+
+    &:active:not([data-disabled]) {
+      color: get-css(button, color--2);
       background: transparent;
     }
 

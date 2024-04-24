@@ -15,7 +15,7 @@ import {
     HButton
 } from '@yin-jinlong/h-ui'
 
-const types: HButtonType[] = ['primary', 'plain', 'text']
+const types: HButtonType[] = ['primary', 'plain', 'link', 'text']
 const colorTexts = ['主要', '成功', '警告', '危险', '信息', '强调']
 
 </script>
