@@ -1,5 +1,11 @@
 <template>
-    <div ref="chartEle" class="chart"/>
+    <div data-fill-size>
+        <label data-flex-center style="justify-content: start">
+            只显示近100次
+            <h-check-box v-model="show100"/>
+        </label>
+        <div ref="chartEle" class="chart"/>
+    </div>
 </template>
 
 <style lang="scss" scoped>
@@ -10,7 +16,7 @@
 </style>
 
 <script lang="ts" setup>
-import {isDark} from '@yin-jinlong/h-ui'
+import {isDark, HCheckBox} from '@yin-jinlong/h-ui'
 import type {EChartsOption} from 'echarts'
 import * as echart from 'echarts/core'
 import {
@@ -22,7 +28,7 @@ import {
 } from 'echarts/components'
 import {LineChart} from 'echarts/charts'
 import {SVGRenderer} from 'echarts/renderers'
-import {onMounted, ref} from 'vue'
+import {onMounted, ref, watch} from 'vue'
 
 echart.use([
     SVGRenderer,
@@ -77,29 +83,43 @@ let darkTheme = {
     }
 }
 
+const show100 = ref(false)
 const chartEle = ref<HTMLDivElement>()
 
 
+let data: any[] | undefined
 let c: echart.ECharts
-let x: number[] = []
-let hashes: string[] = []
-let files: number[] = []
-let lines: number[] = []
-let codes: number[] = []
+let x: number[]
+let hashes: string[]
+let files: number[]
+let lines: number[]
+let codes: number[]
 
 async function getData() {
-    return fetch('/cloc.csv').then(res => res.text()).then((text) => {
-        let [header, ...data] = text.split('\n').map((line) => line.split(','))
-        data.forEach((line) => {
-            if (line.length > 1) {
+    x = []
+    hashes = []
+    files = []
+    lines = []
+    codes = []
+
+    async function convertData() {
+        let si = show100.value ? (data?.length ?? 0) - 101 : -1
+        data?.forEach((line, i) => {
+            if (i >= si && line.length > 1) {
                 let [hash, file, blank, comment, code] = line
-                x.push(x.length + 1)
+                x.push(i + 1)
                 hashes.push(hash)
                 files.push(parseInt(file))
                 lines.push(parseInt(blank) + parseInt(comment) + parseInt(code))
                 codes.push(parseInt(code))
             }
         })
+    }
+
+    return data ? convertData() : fetch('/cloc.csv').then(res => res.text()).then(async (text) => {
+        let [header, ..._data] = text.split('\n').map((line) => line.split(','))
+        data = _data
+        await convertData()
     })
 }
 
@@ -141,10 +161,12 @@ function initChart() {
         },
         yAxis: [{
             type: 'value',
-            name: 'lines'
+            name: 'lines',
+            scale: true,
         }, {
             name: 'files',
-            type: 'value'
+            type: 'value',
+            scale: true,
         }]
     } as EChartsOption)
 
@@ -155,10 +177,15 @@ function initChart() {
 
 }
 
+function updateChart() {
+    getData().then(initChart)
+}
 
 onMounted(() => {
     window.addEventListener('theme-change', initChart)
-    getData().then(initChart)
+    updateChart()
 })
+
+watch(show100, updateChart)
 
 </script>
