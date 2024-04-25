@@ -9,3 +9,8 @@ export declare interface Page {
     path: string
     component: () => Promise<ComponentModule>
 }
+
+export declare interface PageGroup {
+    label: string
+    items: Page[]
+}

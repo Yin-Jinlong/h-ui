@@ -1,7 +1,7 @@
-import {Page} from '@types'
+import {PageGroup} from '@types'
 
 declare interface Props {
-    items: Page[]
+    items: PageGroup[]
     now?: string
 }
 

@@ -1,4 +1,5 @@
 import type {Component} from 'vue'
+import Base64 from 'js-base64'
 
 declare global {
 
@@ -9,6 +10,9 @@ declare global {
     declare interface Window {
 
         addEventListener(event: 'theme-change', listener: (e: ThemeEvent) => void): void
+
+        Base64:Base64
+
     }
 
     declare module 'indexes~' {

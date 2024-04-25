@@ -2,7 +2,7 @@
     <div data-fill-size data-flex-column>
         <page-header/>
         <div v-if="app" data-flex style="flex: 1;overflow: hidden">
-            <side-bar :items="components" :now="nowPage"/>
+            <side-bar :items="items" :now="nowPage"/>
             <div v-loading="loading"
                  class="content"
                  data-flex-column
@@ -22,7 +22,8 @@
                     <p>氢UI文档</p>
                 </div>
                 <div class="main-btn">
-                    <h-button border type="primary" @click="href('button')">组件</h-button>
+                    <h-button border type="primary" @click="href('quick-start')">快速上手</h-button>
+                    <h-button border type="plain" @click="href('button')">组件</h-button>
                 </div>
                 <div data-relative v-loading="chartComponent===null" data-flex-column-center
                      style="width: 100%;height: 500px">
@@ -68,6 +69,7 @@ h1.home-title {
 </style>
 
 <script lang="ts" setup>
+import {PageGroup} from '@types'
 import type {Component} from 'vue'
 import {onMounted, shallowRef} from 'vue'
 import {HButton, vLoading} from '@yin-jinlong/h-ui'
@@ -76,6 +78,23 @@ import {PageHeader, SideBar} from '@components'
 
 // @ts-ignore
 import components from 'indexes~'
+
+const items = [
+    {
+        label: '开始',
+        items: [
+            {
+                name: '快速上手',
+                path: '/quick-start',
+                component: () => import('quick-start.vue?md')
+            }
+        ]
+    },
+    {
+        label: '组件',
+        items: components
+    }
+] as PageGroup[]
 
 const app = shallowRef<Component | null>()
 const loading = shallowRef(false)
@@ -94,16 +113,18 @@ function href(link: string) {
 }
 
 async function go(path: string) {
-    for (const component of components) {
-        if (component.path === path) {
-            loading.value = true
-            let page = (await component.component()).default
-            setTimeout(() => {
-                nowPage.value = component.name
-                app.value = page
-                loading.value = false
-            }, 300)
-            return
+    for (const pg of items){
+        for (const component of pg.items) {
+            if (component.path === path) {
+                loading.value = true
+                let page = (await component.component()).default
+                setTimeout(() => {
+                    nowPage.value = component.name
+                    app.value = page
+                    loading.value = false
+                }, 300)
+                return
+            }
         }
     }
     app.value = null

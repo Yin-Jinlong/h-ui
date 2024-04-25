@@ -1,9 +1,12 @@
 <template>
     <div class="side-bar" data-fill-height>
-        <div v-for="i in items">
-            <h-button  :type="now===i.name?'primary':'text'" data-fill-width @click="go(i.path)">
-                {{i.name }}
-            </h-button>
+        <div v-for="pg in items">
+            <label>{{ pg.label}}</label>
+            <div v-for="i in pg.items">
+                <h-button  :type="now===i.name?'primary':'text'" data-fill-width @click="go(i.path)">
+                    {{i.name }}
+                </h-button>
+            </div>
         </div>
     </div>
 </template>
