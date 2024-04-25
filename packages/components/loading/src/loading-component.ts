@@ -1,16 +1,16 @@
-import {
-    Component,
-    VNode,
-    Transition,
-    defineComponent, h, withCtx, createCommentVNode, ref, onMounted
-} from 'vue'
-
 import {convertColor, cssVar, cssVarName} from '@yin-jinlong/h-ui/utils'
+import {Component, VNode, Transition, createCommentVNode, defineComponent, h, onMounted, ref, withCtx} from 'vue'
+import {Circle} from './loading-circle'
 
 import {Running} from './loading-running'
-import {Circle} from './loading-circle'
 import {ComponentFn, HLoadingOptions} from './type'
 import {mergeStyle} from './utils'
+
+interface LoadingElement extends HTMLElement {
+    [OVERFLOW_KEY]: string
+}
+
+const OVERFLOW_KEY = Symbol('overflow')
 
 const NAMED_LOADINGS: Record<string, (ComponentFn)> = {
     running: Running,
@@ -22,19 +22,6 @@ const animConfig = {
     fill: 'forwards',
     easing: 'ease-in'
 } as KeyframeAnimationOptions
-
-
-function enter(el: Element, done: () => void) {
-    el.animate({
-        opacity: [0, 1]
-    }, animConfig).onfinish = done
-}
-
-function leave(el: Element, done: () => void) {
-    el.animate({
-        opacity: [1, 0]
-    }, animConfig).onfinish = done
-}
 
 function vIf(v: boolean | undefined, content: VNode, comment: string = 'if'): VNode {
     if (v)
@@ -107,6 +94,23 @@ function Loading(el: HTMLElement, options: HLoadingOptions): VNode {
 }
 
 export function createLoadingComponent(el: HTMLElement, options: HLoadingOptions): Component {
+
+    function enter(e: Element, done: () => void) {
+        (el as LoadingElement)[OVERFLOW_KEY] = el.style.overflow
+        el.style.overflow = 'hidden'
+        e.animate({
+            opacity: [0, 1]
+        }, animConfig).onfinish = done
+    }
+
+    function leave(e: Element, done: () => void) {
+        e.animate({
+            opacity: [1, 0]
+        }, animConfig).onfinish = () => {
+            el.style.overflow = (el as LoadingElement)[OVERFLOW_KEY]
+            done()
+        }
+    }
 
     return defineComponent({
         name: 'HLoading',
