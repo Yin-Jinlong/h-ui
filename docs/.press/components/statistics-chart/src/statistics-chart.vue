@@ -30,6 +30,8 @@ import {LineChart} from 'echarts/charts'
 import {SVGRenderer} from 'echarts/renderers'
 import {onMounted, ref, watch} from 'vue'
 
+import {lightTheme, darkTheme} from './theme'
+
 echart.use([
     SVGRenderer,
     GraphicComponent,
@@ -39,49 +41,6 @@ echart.use([
     TitleComponent,
     TooltipComponent,
 ])
-
-let darkTheme = {
-    darkMode: true,
-    backgroundColor: 'transparent',
-    line: {
-        symbolSize: 4,
-        symbol: 'circle'
-    },
-    categoryAxis: {
-        axisLine: {
-            lineStyle: {
-                color: '#aaa'
-            }
-        },
-    },
-    valueAxis: {
-        splitLine: {
-            show: true,
-            lineStyle: {
-                color: [
-                    '#666'
-                ]
-            }
-        },
-        axisLine: {
-            lineStyle: {
-                color: '#ccc'
-            }
-        },
-    },
-    legend: {
-        textStyle: {
-            color: '#ccc'
-        }
-    },
-    tooltip: {
-        axisPointer: {
-            lineStyle: {
-                color: '#aaa',
-            }
-        }
-    }
-}
 
 const show100 = ref(false)
 const chartEle = ref<HTMLDivElement>()
@@ -127,7 +86,7 @@ async function getData() {
 function initChart() {
     if (c)
         c.dispose()
-    c = echart.init(chartEle.value, isDark() ? darkTheme : 'light')
+    c = echart.init(chartEle.value, isDark() ? darkTheme : lightTheme)
     c!.setOption({
         series: [
             {
