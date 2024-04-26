@@ -1,3 +1,4 @@
+import {encode} from 'js-base64'
 import {resolve} from 'path'
 
 import {Plugin} from 'vite'
@@ -28,10 +29,7 @@ export function pressCodePlugin(): Plugin {
             if (!fileText)
                 throw new Error(`File not found or could not be read: ${file}`)
 
-            let dark = colorCode(fileText, 'vue', true)
-            let light = colorCode(fileText, 'vue', false)
-
-            return `export const dark = \`${dark}\`;export const light = \`${light}\``
+            return `export default \`${(encode(colorCode(fileText, 'vue')))}\``
         },
         transform(code, id, options) {
             if (!id.match(/.*\.vue\.code(\?(\w|&)*)?/))

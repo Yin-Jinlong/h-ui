@@ -7,8 +7,7 @@
             </h-button>
             <div v-auto-height class="code-box" data-relative data-transition-fast>
                 <div :data-show="showCode" :style="'height:'+(showCode?'max-content':'0px')">
-                    <div v-if="showCode"/>
-                    <code-box :light="codeLight" :dark="codeDark"/>
+                    <code-box v-if="showCode" :code="code"/>
                 </div>
             </div>
         </template>
@@ -32,15 +31,14 @@
 </style>
 
 <script lang="ts" setup>
-import {CodeBox} from '@components/code-box'
 import type {Component} from 'vue'
 import {ref} from 'vue'
+import {CodeBox} from '@components'
 import {HButton, HCard, vAutoHeight} from '@yin-jinlong/h-ui'
 
 defineProps<{
     component: Component
-    codeDark: string
-    codeLight: string
+    code: string
 }>()
 
 const showCode = ref(false)

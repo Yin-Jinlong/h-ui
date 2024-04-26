@@ -30,15 +30,13 @@
   }
 
   code {
-    display: inline-block;
-    font-family: 'JetBrains Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
-    text-indent: 0;
+    font-family: 'JetBrains Mono', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
 
-    .line {
-      border-bottom: rgb(128, 128, 128, 0.3) dashed 1px;
-      display: inline-block;
-      width: 100%;
-    }
+  pre {
+    padding: 1em;
+    background-color: #FBFBFB;
+    border-radius: 10px;
   }
 
   code[inline] {
@@ -47,5 +45,10 @@
     border-radius: 5px;
   }
 
+}
 
+html[dark] [md] {
+  pre {
+    background-color: #1E1F22;
+  }
 }
