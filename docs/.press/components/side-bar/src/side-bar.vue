@@ -1,10 +1,10 @@
 <template>
     <div class="side-bar" data-fill-height>
         <div v-for="pg in items">
-            <label>{{ pg.label}}</label>
+            <label>{{ pg.label }}</label>
             <div v-for="i in pg.items">
-                <h-button  :type="now===i.name?'primary':'text'" data-fill-width @click="go(i.path)">
-                    {{i.name }}
+                <h-button :type="now===i.name?'primary':'text'" data-fill-width @click="router.push(i.path)">
+                    {{ i.name }}
                 </h-button>
             </div>
         </div>
@@ -29,15 +29,13 @@
 </style>
 
 <script lang="ts" setup>
-
 import {HButton} from '@yin-jinlong/h-ui'
+import {useRouter} from 'vue-router'
 
 import {SidebarProps} from './props'
 
-defineProps<SidebarProps>()
+const router = useRouter()
 
-function go(path: string) {
-    window.location.hash = path
-}
+defineProps<SidebarProps>()
 
 </script>

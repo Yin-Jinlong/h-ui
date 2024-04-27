@@ -1,13 +1,9 @@
-import {Component} from 'vue'
-
-export declare interface ComponentModule {
-    default: Component
-}
+import type {Component} from 'vue'
 
 export declare interface Page {
     name: string
     path: string
-    component: () => Promise<ComponentModule>
+    component: () => Promise<Component>
 }
 
 export declare interface PageGroup {
