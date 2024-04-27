@@ -1,10 +1,20 @@
 import path from 'path'
-import {FunctionPluginHooks, NormalizedOutputOptions, OutputBundle, Plugin} from 'rollup'
+import {
+    FunctionPluginHooks,
+    NormalizedInputOptions,
+    NormalizedOutputOptions,
+    OutputBundle,
+    Plugin,
+    RenderedChunk
+} from 'rollup'
 
 
 export declare interface ProcessPluginHook {
     transform?: (id: string) => void
     buildEnd?: () => void,
+    renderStart?:()=>void
+    render?: (file: string) => void
+    generateBundle?: (bundle: OutputBundle) => void
     writeBundle?: (files: string[]) => void
 }
 
@@ -20,6 +30,21 @@ export function rollupProcessPlugin(hook: ProcessPluginHook) {
         },
         buildEnd() {
             hook?.buildEnd?.call(this)
+        },
+        renderStart(outputOptions: NormalizedOutputOptions,
+                    inputOptions: NormalizedInputOptions) {
+            hook?.renderStart?.call(this)
+        },
+        renderChunk(code: string,
+                    chunk: RenderedChunk,
+                    options: NormalizedOutputOptions,
+                    meta: { chunks: Record<string, RenderedChunk> }) {
+            hook?.render?.call(this, chunk.fileName)
+        },
+        generateBundle(options: NormalizedOutputOptions,
+                       bundle: OutputBundle,
+                       isWrite: boolean) {
+            hook?.generateBundle?.call(this, bundle)
         },
         writeBundle(options: NormalizedOutputOptions, bundle: OutputBundle) {
             if (!hook.writeBundle)

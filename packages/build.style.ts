@@ -1,55 +1,87 @@
 import fs from 'fs'
-import path from 'path'
+import {relative, resolve} from 'path'
 
 import {transform} from 'lightningcss'
-import {AsyncCompiler, initAsyncCompiler} from 'sass'
+import {performance} from 'perf_hooks'
+import {Compiler, initCompiler} from 'sass'
 
-import {color, convertSize, outln} from '@yin-jinlong/h-ui-build-tool'
+import {
+    color,
+    convertSize,
+    convertTime,
+    oraFail,
+    oraStart,
+    oraSucceed,
+    oraText,
+    outln
+} from '@yin-jinlong/h-ui-build-tool'
 
 import {cleanAndMake} from 'build-tool'
 
 import config from 'build.config'
 
-const outPath = path.resolve(config.dist, config.css!.dir!)
+const startTime = performance.now()
+const outPath = resolve(config.dist, config.css!.dir!)
+
+const {action, cmd, emphasize, num, path} = color
 
 if (config.sass?.copyDir) {
-    let src = path.resolve(config.dist, config.sass.copyDir === true ? 'style/src' : config.sass.copyDir)
+    let src = resolve(config.dist, config.sass.copyDir === true ? 'style/src' : config.sass.copyDir)
     cleanAndMake(src)
-    fs.cpSync(path.resolve('style'), src, {
+    fs.cpSync(resolve('style'), src, {
         recursive: true
     })
 }
 
-initAsyncCompiler().then(compiler => {
+async function init() {
+    return initCompiler()
+}
+
+init().then(compiler => {
+    let count = 0
+    let sizes = 0
     cleanAndMake(outPath)
 
+    oraStart('compile style...')
     fs.readdirSync('style', {
         withFileTypes: true
     }).forEach((file: fs.Dirent) => {
-        if (file.isFile() && file.name !== 'var.scss')
-            compile.call(compiler, file)
+        if (file.isFile() && file.name !== 'var.scss') {
+            try {
+                oraText(cmd('compile '), path(file.name))
+                sizes += compile.call(compiler, file)
+                count++
+            } catch (e: Error | string | any) {
+                oraFail(path(file.name), 'error:', e?.toString())
+            }
+        }
     })
 
-    compiler.dispose().then()
+    compiler.dispose()
+    let {size, unit} = convertSize(sizes)
+    oraSucceed(action('written '), num(count), 'files, ', emphasize(size), unit)
+}).finally(() => {
+    outln(action('took '), convertTime(performance.now() - startTime))
 })
 
 const encoder = new TextEncoder()
 
-function compile(this: AsyncCompiler, file: fs.Dirent) {
+function compile(this: Compiler, file: fs.Dirent): number {
     let name = file.path + '/' + file.name
 
-    outln(color.cmd('compile '), color.path(file.name), '...')
-    this.compileAsync(name, {
+    oraText(cmd('compile '), path(file.name), '...')
+    let {css} = this.compile(name, {
         charset: true
-    }).then(({css}) => {
-        let of = `${outPath}/${file.name.slice(0, -4)}css`
-        let r = transform({
-            code: encoder.encode(css),
-            minify: config.css?.minify ?? true,
-            filename: file.name
-        })
-        fs.writeFileSync(of, r.code)
-        let {size, unit} = convertSize(fs.statSync(of).size)
-        outln(color.action('write '), color.path(file.name), ' ', color.emphasize(size), unit)
     })
+    let of = `${outPath}/${file.name.slice(0, -4)}css`
+    let r = transform({
+        code: encoder.encode(css),
+        minify: config.css?.minify ?? true,
+        filename: file.name
+    })
+    fs.writeFileSync(of, r.code)
+    let fstat = fs.statSync(of)
+    let {size, unit} = convertSize(fstat.size)
+    oraSucceed(path(relative('', of)), ' ', emphasize(size), unit)
+    return fstat.size
 }

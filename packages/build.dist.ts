@@ -1,5 +1,5 @@
 import fs from 'fs'
-import path from 'path'
+import node_path from 'path'
 import {performance} from 'perf_hooks'
 
 import {codecovRollupPlugin} from '@codecov/rollup-plugin'
@@ -9,7 +9,6 @@ import terser from '@rollup/plugin-terser'
 import vuePlugin from '@vitejs/plugin-vue'
 import {clean} from 'build-tool'
 import process from 'process'
-import readline from 'readline'
 import {Plugin, rollup} from 'rollup'
 import postcss from 'rollup-plugin-postcss'
 import typescript from 'rollup-plugin-typescript2'
@@ -20,7 +19,9 @@ import {
     color,
     convertSize,
     convertTime,
-    out,
+    oraStart,
+    oraText,
+    oraSucceed,
     outln,
     rollupProcessPlugin
 } from '@yin-jinlong/h-ui-build-tool'
@@ -29,6 +30,8 @@ import config from './build.config'
 
 const startTime = performance.now()
 const {stdout} = process
+
+const {action, cmd, danger, emphasize, gray, num, path} = color
 
 const version = (() => {
     let v = (process.env.VERSION_REF ?? '').trim()
@@ -45,33 +48,8 @@ const version = (() => {
  * @return Rollup插件
  */
 function processPlugin(): Plugin {
-    /**
-     * 清空行，并到行开头
-     */
-    function lineStart() {
-        readline.clearLine(stdout, 0)
-        readline.cursorTo(stdout, 0)
-    }
-
-    /**
-     * 输出文件大小
-     *
-     * @param f 文件名
-     * @param size 文件大小
-     */
-    function outFileSize(f: string, size: number) {
-        let w = stdout.columns ?? 0
-        let sizeStr = convertSize(size)
-        let sizeStrLen = sizeStr.size.toString().length + sizeStr.unit.length
-        // 如果空间不够了则换行
-        if (w - f.length % w < sizeStrLen + 1)
-            outln()
-        let x = w - sizeStrLen
-        readline.cursorTo(stdout, x < 0 ? 0 : x)
-        outln(color.emphasize(sizeStr.size), sizeStr.unit)
-    }
-
     let count = 0
+    let renderCount = 0
     return rollupProcessPlugin({
         transform(id: string) {
             let w = stdout.columns
@@ -80,12 +58,21 @@ function processPlugin(): Plugin {
             let rw = w - head.length
             if (content.length > rw) // 超出宽度
                 content = '...' + content.substring(content.length - rw + 3, content.length)
-            lineStart()
-            out(color.cmd('transform'), `(${count}) ${color.gray(content)}`)
+            oraText(cmd('transforming'), `(${count}) ${gray(content)}`)
         },
         buildEnd() {
-            lineStart()
-            outln(color.action('transformed '), color.num(count), ' modules')
+            oraSucceed(action('transformed '), num(count), ' modules')
+        },
+        renderStart() {
+            renderCount = 0
+            oraStart(action('rendering'))
+        },
+        render(file) {
+            oraText(action('rendering '), file)
+            renderCount++
+        },
+        generateBundle() {
+            oraSucceed(action('rendered'), num(renderCount), 'files')
         },
         writeBundle(files: string[]) {
             let sizeAll = 0
@@ -93,12 +80,12 @@ function processPlugin(): Plugin {
                 let {size} = fs.statSync(f)
                 sizeAll += size
                 if (config.reportOutFileInfo) {
-                    out(color.path(f))
-                    outFileSize(f, size)
+                    let ss = convertSize(size)
+                    oraSucceed(path(f), ` ${emphasize(ss.size)}${ss.unit}`)
                 }
             })
             let sizeStr = convertSize(sizeAll)
-            outln(color.action('written '), color.num(files.length), 'files, ', color.emphasize(sizeStr.size), sizeStr.unit)
+            oraSucceed(action('written '), num(files.length), 'files, ', `${emphasize(sizeStr.size)} ${sizeStr.unit}`)
         }
     })
 }
@@ -118,10 +105,10 @@ function getOutPaths(): string[] {
 async function build() {
     if (config.deleteBeforeBuild)
         getOutPaths().forEach(o => {
-            if (clean(path.resolve(config.dist, o)))
-                outln(color.danger('deleted '), color.path(o))
+            if (clean(node_path.resolve(config.dist, o)))
+                outln(danger('deleted '), path(o))
         })
-    outln(color.cmd('build'), ' start...')
+    oraStart(`${cmd('build')} start...`)
     let outs = Array.isArray(config.output) ? config.output : [config.output]
     const build = await rollup({
         input: 'index.ts',
@@ -154,10 +141,10 @@ async function build() {
     })
 
     for (const o of outs) {
-        outln(color.cmd('write '), color.emphasize(o.format!), '...')
+        outln(cmd('write '), emphasize(o.format!), '...')
         let jsName = `[name].${o.ext ?? 'js'}`
         await build.write({
-            dir: path.resolve(config.dist, o.dir),
+            dir: node_path.resolve(config.dist, o.dir),
             entryFileNames: jsName,
             chunkFileNames: jsName,
             format: o.format,
@@ -168,8 +155,8 @@ async function build() {
 
     await build.close()
     await genPackageJson()
-    fs.cpSync('global.d.ts', path.resolve(config.dist, 'dist/@types/global.d.ts'))
-    outln(color.action('took '), convertTime(performance.now() - startTime))
+    fs.cpSync('global.d.ts', node_path.resolve(config.dist, 'dist/@types/global.d.ts'))
+    outln(action('took '), convertTime(performance.now() - startTime))
 
 }
 
@@ -226,9 +213,9 @@ async function genPackageJson() {
     let packageJson = convertPackageJson(getJson('./package.json'))
     let webTypesJson = convertWebTypesJson(getJson('./web-types.json'))
 
-    fs.writeFileSync(path.resolve(config.dist, 'package.json'), JSON.stringify(packageJson, null, 2))
-    fs.writeFileSync(path.resolve(config.dist, 'web-types.json'), JSON.stringify(webTypesJson, null, 2))
-    fs.cpSync('../README.md', path.resolve(config.dist, 'README.md'))
+    fs.writeFileSync(node_path.resolve(config.dist, 'package.json'), JSON.stringify(packageJson, null, 2))
+    fs.writeFileSync(node_path.resolve(config.dist, 'web-types.json'), JSON.stringify(webTypesJson, null, 2))
+    fs.cpSync('../README.md', node_path.resolve(config.dist, 'README.md'))
 }
 
 build().then().catch(e => {
