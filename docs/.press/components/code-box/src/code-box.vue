@@ -3,12 +3,12 @@
         <div class="lang">{{ lang }}</div>
         <transition @enter="enter" @leave="leave">
             <div v-if="mouseIn" class="tools" data-flex-center>
-                <h-button class="copy" @click="copy" size="small" type="text">
+                <h-button class="copy" size="small" type="text" @click="copy">
                     复制{{ copySuccess ? '成功！' : '' }}
                 </h-button>
             </div>
         </transition>
-        <div ref="codeEle" v-html="code"/>
+        <div ref="codeEle" style="overflow-x: auto" v-html="code"/>
     </div>
 </template>
 
@@ -27,11 +27,11 @@
 }
 
 .lang {
+    font-size: 14px;
+    opacity: 0.5;
     position: absolute;
     right: 0.2em;
     top: 0;
-    font-size: 14px;
-    opacity: 0.5;
 }
 
 html[dark] {

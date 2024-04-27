@@ -31,18 +31,22 @@
 
   code {
     font-family: 'JetBrains Mono', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    min-width: 100%;
   }
 
   pre {
-    padding: 1em;
     background-color: #FBFBFB;
     border-radius: 10px;
+    box-sizing: border-box;
+    min-width: 100%;
+    padding: 1em;
+    width: max-content;
   }
 
   code[inline] {
     background: rgb(128, 128, 128, 0.2);
-    padding: 0 0.5em;
     border-radius: 5px;
+    padding: 0 0.5em;
   }
 
 }
