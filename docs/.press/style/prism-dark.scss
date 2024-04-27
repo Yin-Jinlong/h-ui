@@ -1,104 +1,31 @@
+@use 'prism' as *;
+
 $comment: #7A7E85;
-$function: #56A8F5;
-$keyword: #CB8352;
 $plain: #BCBEC4;
-$string: #6AAB73;
 
 html[dark] {
   pre[class*='language-'], code[class*='language-'] {
     color: $plain;
   }
 
-  pre {
-    color: $plain;
+  code[class*='language-'] {
 
-    .token {
-
-      &.attr-name, &.attr-name {
-        color: $plain;
-      }
-
-      &.comment {
-        color: $comment;
-      }
-
-      &.function {
-        color: $function;
-      }
-
-      &.boolean,
-      &.keyword {
-        color: $keyword;
-      }
-
-      &.attr-value,
-      &.string {
-        color: $string;
-      }
-
-      &.prolog,
-      &.doctype,
-      &.cdata {
-        color: hsl(30, 20%, 50%);
-      }
-
-      &.punctuation {
-      }
-
-      &.namespace {
-      }
-
-      &.tag,
-      &.number,
-      &.constant,
-      &.symbol {
-        color: #D5B778;
-      }
-
-      &.selector,
-      &.char,
-      &.builtin,
-      &.inserted {
-        color: hsl(75, 70%, 60%);
-      }
-
-      &.operator,
-      &.entity,
-      &.url,
-      &.language-css .string,
-      &.style .string,
-      &.variable {
-        color: hsl(40, 90%, 60%);
-      }
-
-      &.atrule,
-      &.keyword {
-        color: #CB8352;
-      }
-
-      &.regex,
-      &.important {
-        color: #E90;
-      }
-
-      &.important,
-      &.bold {
-        font-weight: bold;
-      }
-
-      &.italic {
-        font-style: italic;
-      }
-
-      &.entity {
-        cursor: help;
-      }
-
-      &.deleted {
-        color: red;
-      }
-
+    &::-moz-selection {
+      background: #214283;
     }
+
+    &::selection, ::selection {
+      background: #214283;
+    }
+
+  }
+
+  @include code-color($comment: $comment, $plain: $plain) {
+
+    &.number {
+      color: #2AACB8;
+    }
+
   }
 
   code[class='language-shell'] .token {

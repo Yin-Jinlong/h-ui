@@ -17,7 +17,7 @@
 }
 
 .tools {
-    background-color: rgb(128, 128, 128, 0.5);
+    background-color: rgba(230, 230, 230, 0.8);
     border-radius: 5px;
     position: absolute;
     right: 0;
@@ -30,6 +30,12 @@
     top: 0;
     font-size: 14px;
     opacity: 0.5;
+}
+
+html[dark]{
+    .tools {
+        background-color: rgba(20, 20, 20, 0.8);
+    }
 }
 
 </style>
