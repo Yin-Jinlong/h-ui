@@ -1,11 +1,13 @@
 <template>
     <div ref="box" class="h-code">
         <div class="lang">{{ lang }}</div>
-        <div v-if="mouseIn" class="tools" data-flex-center>
-            <h-button class="copy" @click="copy" size="small" type="text">
-                复制{{ copySuccess ? '成功！' : '' }}
-            </h-button>
-        </div>
+        <transition @enter="enter" @leave="leave">
+            <div v-if="mouseIn" class="tools" data-flex-center>
+                <h-button class="copy" @click="copy" size="small" type="text">
+                    复制{{ copySuccess ? '成功！' : '' }}
+                </h-button>
+            </div>
+        </transition>
         <div ref="codeEle" v-html="code"/>
     </div>
 </template>
@@ -32,7 +34,7 @@
     opacity: 0.5;
 }
 
-html[dark]{
+html[dark] {
     .tools {
         background-color: rgba(20, 20, 20, 0.8);
     }
@@ -44,6 +46,12 @@ html[dark]{
 import {ref, onMounted, watch} from 'vue'
 
 import {HButton} from '@yin-jinlong/h-ui'
+
+const toolsAnimOptions: KeyframeAnimationOptions = {
+    duration: 200,
+    easing: 'ease-out',
+    fill: 'forwards'
+}
 
 const props = defineProps<{
     code: string
@@ -69,6 +77,20 @@ function copy() {
             copySuccess.value = false
         }, 2000)
     })
+}
+
+function enter(el: Element, done: () => void) {
+    el.animate({
+        opacity: [0, 1],
+        scale: ['1 0', '1 1']
+    }, toolsAnimOptions).onfinish = done
+}
+
+function leave(el: Element, done: () => void) {
+    el.animate({
+        opacity: [1, 0],
+        scale: ['1 1', '1 0']
+    }, toolsAnimOptions).onfinish = done
 }
 
 onMounted(() => {
