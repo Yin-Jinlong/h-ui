@@ -9,7 +9,7 @@
                  data-relative
                  h-loading-text="加载中..."
                  style="flex: 1;">
-                <div md>
+                <div ref="appEle" md>
                     <component :is="app"/>
                 </div>
             </div>
@@ -69,9 +69,9 @@ h1.home-title {
 </style>
 
 <script lang="ts" setup>
-import {PageGroup} from '@types'
+import {Page, PageGroup} from '@types'
 import type {Component} from 'vue'
-import {onMounted, shallowRef} from 'vue'
+import {nextTick, onMounted, ref, shallowRef} from 'vue'
 import {HButton, vLoading} from '@yin-jinlong/h-ui'
 
 import {PageHeader, SideBar} from '@components'
@@ -97,10 +97,12 @@ const items = [
 ] as PageGroup[]
 
 const app = shallowRef<Component | null>()
-const loading = shallowRef(false)
-const nowPage = shallowRef('')
+const loading = ref(false)
+const nowPage = ref('')
+const appEle = ref<HTMLElement>()
 
 const chartComponent = shallowRef<Component | null | undefined>()
+const pathMap: Map<string, Page> = new Map()
 
 function isHome() {
     let {hash} = window.location
@@ -112,23 +114,35 @@ function href(link: string) {
     window.location.hash = '/' + link
 }
 
+function startAnim() {
+    (Array.from(appEle.value?.children ?? []) as HTMLElement[]).forEach((c, i) => {
+        (c.style.opacity = '0')
+        c.animate({
+            opacity: [0, 1],
+            translate: ['100px 0', '0 0']
+        }, {
+            duration: 300,
+            fill: 'forwards',
+            delay: 30 * i
+        })
+    })
+}
+
 async function go(path: string) {
-    for (const pg of items){
-        for (const component of pg.items) {
-            if (component.path === path) {
-                loading.value = true
-                let page = (await component.component()).default
-                setTimeout(() => {
-                    nowPage.value = component.name
-                    app.value = page
-                    loading.value = false
-                }, 300)
-                return
-            }
-        }
+    let c = pathMap.get(path)
+    if (c) {
+        loading.value = true
+        let page = (await c.component()).default
+        setTimeout(() => {
+            nowPage.value = c!.name
+            app.value = page
+            loading.value = false
+            nextTick(startAnim)
+        }, 300)
+    } else {
+        app.value = null
+        loading.value = false
     }
-    app.value = null
-    loading.value = false
 }
 
 async function loadChart() {
@@ -141,6 +155,7 @@ async function loadChart() {
 }
 
 onMounted(() => {
+    items.forEach(pg => pg.items.forEach(c => pathMap.set(c.path, c)))
     go(window.location.hash.substring(1))
     window.onhashchange = async (e) => {
         e.preventDefault()
