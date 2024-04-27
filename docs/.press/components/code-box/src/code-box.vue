@@ -47,11 +47,7 @@ import {ref, onMounted, watch} from 'vue'
 
 import {HButton} from '@yin-jinlong/h-ui'
 
-const toolsAnimOptions: KeyframeAnimationOptions = {
-    duration: 200,
-    easing: 'ease-out',
-    fill: 'forwards'
-}
+import {enter,leave} from './transition'
 
 const props = defineProps<{
     code: string
@@ -77,20 +73,6 @@ function copy() {
             copySuccess.value = false
         }, 2000)
     })
-}
-
-function enter(el: Element, done: () => void) {
-    el.animate({
-        opacity: [0, 1],
-        scale: ['1 0', '1 1']
-    }, toolsAnimOptions).onfinish = done
-}
-
-function leave(el: Element, done: () => void) {
-    el.animate({
-        opacity: [1, 0],
-        scale: ['1 1', '1 0']
-    }, toolsAnimOptions).onfinish = done
 }
 
 onMounted(() => {
