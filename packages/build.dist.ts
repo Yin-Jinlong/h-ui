@@ -72,7 +72,7 @@ function processPlugin(): Plugin {
             renderCount++
         },
         generateBundle() {
-            oraSucceed(action('rendered'), num(renderCount), 'files')
+            oraSucceed(action('rendered '), num(renderCount), 'files')
         },
         writeBundle(files: string[]) {
             let sizeAll = 0

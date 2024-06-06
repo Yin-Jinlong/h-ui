@@ -1,6 +1,5 @@
 {
   "name": "h-ui-docs",
-  "version": "1.0.0",
   "description": "vue3 ui库文档",
   "author": "Yin-Jinlong",
   "type": "module",
@@ -9,7 +8,7 @@
     "build": "vite build",
     "serve": "vite preview"
   },
-  "license": "LGPL-3.0-or-later",
+  "license": "GPL-3.0",
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
     "@types/markdown-it": "^14.0.1",
