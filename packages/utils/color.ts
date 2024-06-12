@@ -15,8 +15,8 @@ export function isDefinedNamedColor(color: string): boolean {
     return DefinedNamedColors.includes(color as DefinedNamedColor)
 }
 
-export function convertColor(color: string) {
+export function convertColor(color: string, suffix?: string) {
     if (isDefinedNamedColor(color))
-        return cssVar(`color-${color}`)
+        return cssVar(`color-${color}${suffix ? '-' + suffix : ''}`)
     return color
 }
