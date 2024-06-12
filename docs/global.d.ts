@@ -3,15 +3,8 @@ import Base64 from 'js-base64'
 
 declare global {
 
-    interface ThemeEvent extends Event {
-        readonly theme: string
-    }
-
     declare interface Window {
-
-        addEventListener(event: 'theme-change', listener: (e: ThemeEvent) => void): void
-
-        Base64:Base64
+        Base64: Base64
 
     }
 
@@ -37,7 +30,7 @@ declare global {
 
     declare module '*.vue?code' {
         const dark: string
-        const light:string
+        const light: string
     }
 
 }

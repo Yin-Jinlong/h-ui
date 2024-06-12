@@ -16,6 +16,18 @@ declare global {
         readonly startViewTransition?: (callback: () => void | Promise<void>) => ViewTransition
     }
 
+    interface ThemeEvent extends Event {
+        readonly theme: 'dark' | 'light' | string
+    }
+
+    declare interface Window {
+
+        addEventListener(event: 'theme-change', listener: (e: ThemeEvent) => void): void
+
+    }
+
+    function addEventListener(event: 'theme-change', listener: (e: ThemeEvent) => void): void
+
     interface ViewTransition {
         readonly finished: Promise<void>
         readonly ready: Promise<void>

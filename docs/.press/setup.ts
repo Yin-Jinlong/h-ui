@@ -1,5 +1,5 @@
 import {Page} from '@types'
-import {toggleDark} from '@yin-jinlong/h-ui'
+import {installThemeEvent, toggleDark} from '@yin-jinlong/h-ui'
 import {Base64} from 'js-base64'
 import {App} from 'vue'
 import {createRouter, createWebHashHistory, RouteRecordRaw} from 'vue-router'
@@ -34,6 +34,7 @@ let routes: RouteRecordRaw[] = [
 
 export default async function setup(app: App) {
     window.Base64 = Base64
+    installThemeEvent()
     app.use(createRouter({
         history: createWebHashHistory(),
         routes
