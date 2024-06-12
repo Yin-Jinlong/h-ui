@@ -12,15 +12,15 @@
 
 // 动画过度类
 
-[data-transition] {
+.transition-all, [data-transition] {
   transition: all 0.3s ease-out;
 }
 
-[data-transition-fast] {
+.transition-all-fast, [data-transition-fast] {
   transition: all 0.2s ease-out;
 }
 
-[data-transition-slow] {
+.transition-all-slow, [data-transition-slow] {
   transition: all 0.4s ease-out;
 }
 
@@ -97,13 +97,13 @@
   @include disabled;
 }
 
-@mixin color-adds($name,$base,$count:5,$v:5%) {
+@mixin color-adds($name,$base,$count:9,$v:5%) {
   @for $i from 1 to $count+1 {
     @include css-var(color-#{$name}-#{$i}, color-addL($base, $i * $v));
   }
 }
 
-@mixin color-subs($name,$base,$count:5,$v:5%) {
+@mixin color-subs($name,$base,$count:9,$v:5%) {
   @for $i from 1 to $count+1 {
     @include css-var(color-#{$name}--#{$i}, color-subL($base, $i * $v));
   }
@@ -112,7 +112,7 @@
 :root {
   @each $name, $color in $colors {
     @include css-var(color-#{$name}, $color);
-    @include color-adds($name, $color, 6);
+    @include color-adds($name, $color);
     @include color-subs($name, $color);
   }
 
