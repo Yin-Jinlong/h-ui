@@ -158,8 +158,7 @@ function initChart() {
     } as EChartsOption)
 
     c.on('dblclick', p => {
-        let i = parseInt(p.name) - 1
-        window.open(`https://github.com/Yin-Jinlong/h-ui/commit/${hashes[i]}`, '_blank')
+        window.open(`https://github.com/Yin-Jinlong/h-ui/commit/${hashes[p.dataIndex]}`, '_blank')
     })
 
 }
