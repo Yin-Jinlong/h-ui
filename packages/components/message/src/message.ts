@@ -1,5 +1,5 @@
 import {HCard} from '@yin-jinlong/h-ui/components'
-import {convertColor, isDark} from '@yin-jinlong/h-ui/utils'
+import {changeLight, convertColor, isDark} from '@yin-jinlong/h-ui/utils'
 import {createApp, defineComponent, h, reactive, ref, Ref, TransitionGroup, TransitionGroupProps} from 'vue'
 import {HMessage, HMessageConfig} from './type'
 
@@ -46,6 +46,10 @@ function messageLeave(el: HTMLElement, done: () => void) {
 
 let dark: Ref<boolean>
 
+function genColor(color: string, lv: number, dv: number) {
+    return changeLight(color, (dark.value ? dv : lv) * 0.05)
+}
+
 function createContainer() {
     return defineComponent({
         name: 'HMessageContainer',
@@ -59,9 +63,11 @@ function createContainer() {
                     list.push(h(HCard, {
                         key: msg.id,
                         style: {
-                            backgroundColor: convertColor(msg.color, dark.value ? '-8' : '8'),
+                            backgroundColor: convertColor(msg.color, dark.value ? '-8' : '8',
+                                c => genColor(c, 8, -8)),
                             color: convertColor(msg.color),
-                            border: `solid 1px ${convertColor(msg.color, dark.value ? '-6' : '5')}`,
+                            border: `solid 1px ${convertColor(msg.color, dark.value ? '-6' : '5',
+                                c => genColor(c, 5, -6))}`,
                             pointerEvents: 'auto',
                             zIndex: msg.id,
                             left: '0',
