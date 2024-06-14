@@ -6,18 +6,18 @@
   @return change-color($color, $lightness: $light)
 }
 
-@function color-addL($color,$light) {
+@function color-addL($color,$light,$max:100%) {
   $l: lightness($color) + $light;
-  @if $l > 100% {
-    $l: 100%;
+  @if $l > $max {
+    $l: $max;
   }
   @return change-color($color, $lightness: $l)
 }
 
-@function color-subL($color,$light) {
+@function color-subL($color,$light,$min:0%) {
   $l: lightness($color) - $light;
-  @if $l < 0 {
-    $l: 0;
+  @if $l < $min {
+    $l: $min;
   }
   @return change-color($color, $lightness: $l)
 }

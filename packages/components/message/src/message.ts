@@ -1,5 +1,5 @@
 import {HButton, HCard} from '@yin-jinlong/h-ui/components'
-import {changeLight, convertColor, isDark} from '@yin-jinlong/h-ui/utils'
+import {changeLight, clampLight, convertColor, isDark} from '@yin-jinlong/h-ui/utils'
 import {createApp, defineComponent, h, reactive, ref, Ref, TransitionGroup, TransitionGroupProps} from 'vue'
 import {HMessage, HMessageConfig} from './type'
 
@@ -51,7 +51,7 @@ function messageLeave(el: HTMLElement, done: () => void) {
 let dark: Ref<boolean>
 
 function genColor(color: string, lv: number, dv: number) {
-    return changeLight(color, (dark.value ? dv : lv) * 0.05)
+    return clampLight(changeLight(color, (dark.value ? dv : lv) * 0.05), 0.05, 0.95)
 }
 
 function ifOrDef<T>(b: boolean, v: T, def?: T) {

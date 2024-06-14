@@ -47,3 +47,22 @@ export function changeLight(color: string, dl: number) {
         l = 1
     return chroma.hsl(hslColor[0], hslColor[1], l).hex()
 }
+
+/**
+ *
+ * 限制颜色亮度
+ *
+ * @param color 颜色
+ * @param min 最小亮度
+ * @param max 最大亮度
+ */
+export function clampLight(color: string, min: number = 0, max: number = 1) {
+    let c = chroma(color)
+    let hslColor = c.hsl()
+    let l = hslColor[2]
+    if (l < min)
+        l = min
+    else if (l > max)
+        l = max
+    return chroma.hsl(hslColor[0], hslColor[1], l).hex()
+}

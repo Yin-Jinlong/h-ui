@@ -99,13 +99,13 @@
 
 @mixin color-adds($name,$base,$count:9,$v:5%) {
   @for $i from 1 to $count+1 {
-    @include css-var(color-#{$name}-#{$i}, color-addL($base, $i * $v));
+    @include css-var(color-#{$name}-#{$i}, color-addL($base, $i * $v, 95%));
   }
 }
 
 @mixin color-subs($name,$base,$count:9,$v:5%) {
   @for $i from 1 to $count+1 {
-    @include css-var(color-#{$name}--#{$i}, color-subL($base, $i * $v));
+    @include css-var(color-#{$name}--#{$i}, color-subL($base, $i * $v, 5%));
   }
 }
 
