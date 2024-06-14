@@ -91,7 +91,7 @@ code[class*='language-'] {
       }
 
       &.operator {
-        color: #2B2D30;
+        color: #67451A;
       }
 
       &.entity,
@@ -129,9 +129,8 @@ code[class*='language-'] {
         text-decoration: line-through grey;
       }
 
+      @content;
     }
-
-    @content;
 
   }
 

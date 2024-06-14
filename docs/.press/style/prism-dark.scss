@@ -26,6 +26,10 @@ html[dark] {
       color: #2AACB8;
     }
 
+    &.operator {
+      color: #C6B1AD;
+    }
+
   }
 
   code[class='language-shell'] .token {
