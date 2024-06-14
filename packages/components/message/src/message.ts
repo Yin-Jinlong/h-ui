@@ -139,7 +139,9 @@ function show(msg: string, config?: HMessageConfig): number {
 export default {
     show,
     close(id: number): void {
-        contents.splice(contents.findIndex(v => v.id === id), 1)
+        let index = contents.findIndex(v => v.id === id)
+        if (index > -1)
+            contents.splice(index, 1)
     },
     closeAll() {
         contents.splice(0, contents.length)
