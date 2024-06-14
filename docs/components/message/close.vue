@@ -1,4 +1,5 @@
 <template>
+    <h-button @click="noClose" type="primary" color="info">不带关闭</h-button>
     <h-button @click="show" type="primary" color="primary">无限显示</h-button>
     <h-button @click="closeById" type="plain" color="danger">指定id关闭（最后一个消息）</h-button>
     <h-button @click="closeAll" type="primary" color="danger">关闭所有</h-button>
@@ -17,6 +18,12 @@ function show() {
             })
         },
     }))
+}
+
+function noClose() {
+    HMessage.info('不带关闭', {
+        closeable: false
+    })
 }
 
 function closeById() {

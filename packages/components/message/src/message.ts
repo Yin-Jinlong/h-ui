@@ -1,4 +1,4 @@
-import {HCard} from '@yin-jinlong/h-ui/components'
+import {HButton, HCard} from '@yin-jinlong/h-ui/components'
 import {changeLight, convertColor, isDark} from '@yin-jinlong/h-ui/utils'
 import {createApp, defineComponent, h, reactive, ref, Ref, TransitionGroup, TransitionGroupProps} from 'vue'
 import {HMessage, HMessageConfig} from './type'
@@ -11,6 +11,7 @@ interface RawMsg {
     timer: number
     color: string
     onClose?: (id: number) => void
+    closeable: boolean
 }
 
 let contents: RawMsg[]
@@ -53,6 +54,61 @@ function genColor(color: string, lv: number, dv: number) {
     return changeLight(color, (dark.value ? dv : lv) * 0.05)
 }
 
+function ifOrDef<T>(b: boolean, v: T, def?: T) {
+    return b ? v : def
+}
+
+function createMessage(msg: RawMsg) {
+    return h(HCard, {
+        key: msg.id,
+        style: {
+            backgroundColor: convertColor(msg.color, dark.value ? '-8' : '8',
+                c => genColor(c, 8, -8)),
+            color: convertColor(msg.color),
+            border: `solid 1px ${convertColor(msg.color, dark.value ? '-6' : '5',
+                c => genColor(c, 5, -6))}`,
+            pointerEvents: 'auto',
+            zIndex: msg.id,
+            left: '0',
+            top: '0',
+            margin: '0 auto 1rem',
+            width: 'fit-content',
+            minWidth: '100px',
+            maxWidth: '80%',
+            padding: '0.5rem 1rem',
+        }
+    }, {
+        default() {
+            return h('div', {
+                style: {
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }
+            }, [h('p', {
+                style: ifOrDef(msg.closeable, {
+                    paddingRight: '1rem'
+                }, {})
+            }, msg.msg), ifOrDef(msg.closeable, h(HButton, {
+                type: 'text',
+                color: 'info',
+                style: {
+                    position: 'absolute',
+                    right: '-1rem'
+                },
+                onClick() {
+                    close(msg.id)
+                }
+            }, {
+                default() {
+                    return '✕'
+                }
+            }))])
+        }
+    })
+}
+
 function createContainer() {
     return defineComponent({
         name: 'HMessageContainer',
@@ -63,31 +119,7 @@ function createContainer() {
                 let list = []
                 for (let i = 0; i < contents.length; i++) {
                     let msg = contents[i]
-                    list.push(h(HCard, {
-                        key: msg.id,
-                        style: {
-                            backgroundColor: convertColor(msg.color, dark.value ? '-8' : '8',
-                                c => genColor(c, 8, -8)),
-                            color: convertColor(msg.color),
-                            border: `solid 1px ${convertColor(msg.color, dark.value ? '-6' : '5',
-                                c => genColor(c, 5, -6))}`,
-                            pointerEvents: 'auto',
-                            zIndex: msg.id,
-                            left: '0',
-                            top: '0',
-                            transform: 'translateX(0)',
-                            margin: '0 auto 1rem',
-                            textAlign: 'center',
-                            width: 'fit-content',
-                            minWidth: '100px',
-                            maxWidth: '80%',
-                            padding: '0.5rem 1rem',
-                        }
-                    }, {
-                        default() {
-                            return msg.msg
-                        }
-                    }))
+                    list.push(createMessage(msg))
                 }
                 return h(TransitionGroup, {
                     moveClass: 'transition-all',
@@ -138,6 +170,7 @@ function show(msg: string, config?: HMessageConfig): number {
         timer: timeOutId,
         color: config?.color ?? 'primary',
         onClose: config?.onClose,
+        closeable: config?.closeable ?? true,
     })
     return mid++
 }

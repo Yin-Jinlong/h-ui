@@ -1,10 +1,26 @@
 import {DefinedNamedColor} from '@yin-jinlong/h-ui/types'
 
+/**
+ * 消息提示配置
+ */
 export interface HMessageConfig {
     icon?: Comment | string
     color?: DefinedNamedColor | string
+    /**
+     * 显示时长
+     *
+     * @default 3000
+     */
     duration?: number
+    /**
+     * 是否可关闭
+     *
+     * @default true
+     */
     closeable?: boolean
+    /**
+     * 关闭时触发
+     */
     onClose?: (id: number) => void
 }
 
