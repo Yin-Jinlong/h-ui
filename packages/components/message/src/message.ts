@@ -32,10 +32,12 @@ function messageEnter(el: HTMLElement, done: () => void) {
 
 function messageLeave(el: HTMLElement, done: () => void) {
     el.style.left = `calc(50% - ${el.offsetWidth / 2}px)`
+    let {top} = el.getBoundingClientRect()
     el.style.position = 'absolute'
+    el.style.zIndex = '-1'
     el.animate({
         opacity: 0,
-        top: `-${el.offsetHeight}px`,
+        top: `${top - el.offsetHeight}px`,
         scale: 0,
     }, {
         duration: 300,
