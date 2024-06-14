@@ -74,6 +74,11 @@ function createContainer() {
                             top: '0',
                             transform: 'translateX(0)',
                             margin: '0 auto 1rem',
+                            textAlign: 'center',
+                            width: 'fit-content',
+                            minWidth: '100px',
+                            maxWidth: '80%',
+                            padding: '0.5rem 1rem',
                         }
                     }, {
                         default() {
