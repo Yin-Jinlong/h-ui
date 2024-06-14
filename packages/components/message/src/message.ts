@@ -38,9 +38,9 @@ function messageLeave(el: HTMLElement, done: () => void) {
     el.style.position = 'absolute'
     el.style.zIndex = '-1'
     el.animate({
-        opacity: 0,
-        top: `${top - el.offsetHeight}px`,
-        scale: 0,
+        opacity: [1, 0],
+        top: [`${top}px`, `${top - el.offsetWidth / 2}px`],
+        scale: ['1 1', '1 0'],
     }, {
         duration: 300,
         easing: 'ease-out',
