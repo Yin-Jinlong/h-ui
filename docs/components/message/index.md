@@ -8,10 +8,18 @@ title: H-UI-Message
 
 [.colors]
 
-## 显示时长&关闭
+## 显示时长
 
-时长为毫秒数字。默认为3000毫秒。
+时长为毫秒数字。默认为`3000`毫秒。
+
+[.durations]
+
+## 关闭
 
 关闭不存在的id时不会报错。
 
-[.durations]
+配置`onClose:(id:number)=>void`会在关闭前触发。
+
+`closeAll`只会关闭调用时在显示的消息。
+
+[.close]

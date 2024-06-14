@@ -10,6 +10,7 @@ interface RawMsg {
     msg: string
     timer: number
     color: string
+    onClose?: (id: number) => void
 }
 
 let contents: RawMsg[]
@@ -116,7 +117,6 @@ window.onload = () => {
     document.body.append(div)
 
     addEventListener('theme-change', (e) => {
-        console.log(e)
         dark.value = isDark()
     })
 
@@ -124,27 +124,47 @@ window.onload = () => {
 
 function show(msg: string, config?: HMessageConfig): number {
     let id = mid
-    let timeOutId = setTimeout(() => {
-        contents.splice(contents.findIndex(v => v.id === id), 1)
-    }, config?.duration ?? 3000) as unknown as number
+    let timeOutId = 0
+    let dur = config?.duration ?? 3000
+
+    if (dur > 0) {
+        timeOutId = setTimeout(() => {
+            close(id)
+        }, dur) as unknown as number
+    }
     contents.push({
         id: mid,
         msg: msg,
         timer: timeOutId,
-        color: config?.color ?? 'primary'
+        color: config?.color ?? 'primary',
+        onClose: config?.onClose,
     })
     return mid++
 }
 
+function close(id: number): void {
+    let index = contents.findIndex(v => v.id === id)
+    if (index > -1) {
+        let msg = contents[index]
+        clearTimeout(msg.timer)
+        msg.onClose?.(msg.id)
+        contents.splice(index, 1)
+    }
+}
+
 export default {
     show,
-    close(id: number): void {
-        let index = contents.findIndex(v => v.id === id)
-        if (index > -1)
-            contents.splice(index, 1)
-    },
+    close,
     closeAll() {
-        contents.splice(0, contents.length)
+        // 只关闭调用时的消息
+        // 在没执行关闭前插入的消息不关闭
+        let closeIds: number[] = []
+        contents.forEach(v => {
+            closeIds.push(v.id)
+        })
+        closeIds.forEach(id => {
+            close(id)
+        })
     }, danger(msg: string, config?: HMessageConfig): number {
         return show(msg, {
             color: 'danger',
