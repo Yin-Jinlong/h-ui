@@ -28,6 +28,8 @@ import {
 } from 'echarts/components'
 import {LineChart} from 'echarts/charts'
 import {SVGRenderer} from 'echarts/renderers'
+// @ts-ignore
+import type {CallbackDataParams} from 'echarts/types/src/util/types'
 import {onMounted, ref, watch} from 'vue'
 
 import {lightTheme, darkTheme} from './theme'
@@ -82,6 +84,20 @@ async function getData() {
     })
 }
 
+function formatFriendly(num: string) {
+    const UNITS = ['', 'K', 'M', 'G', 'T']
+    let ui = 0
+    let n = parseInt(num)
+    while (n > 1024) {
+        n = n / 1024
+        ui++
+    }
+    return `${n.toFixed(ui == 0 ? 0 : 2)}${UNITS[ui]}`
+}
+
+function formatNum(num: string): string {
+    return num.replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, '$1,')
+}
 
 function initChart() {
     if (c)
@@ -106,7 +122,19 @@ function initChart() {
             }
         ],
         tooltip: {
-            trigger: 'axis'
+            trigger: 'axis',
+            formatter(args: CallbackDataParams[]) {
+                let s = '<table>'
+                args.forEach((item, _) => {
+                    let head = `${item.marker}${item.seriesName}`
+                    s += `<tr>
+                    <td align="left">${head}</td>
+                    <td align="right" style="padding: 0 0.25em"> ${item.seriesName == 'files' ? '' : formatNum(item.data.toString())}</td>
+                    <td align="right" style="padding: 0 0.25em"> <b>${formatFriendly(item.data.toString())}</b></td>
+                    </tr>`
+                })
+                return s
+            }
         },
         legend: {
             show: true,
