@@ -1,6 +1,6 @@
 import {HButton, HCard} from '@yin-jinlong/h-ui/components'
 import {changeLight, clampLight, convertColor, isDark} from '@yin-jinlong/h-ui/utils'
-import {createApp, defineComponent, h, reactive, ref, Ref, TransitionGroup, TransitionGroupProps} from 'vue'
+import {defineComponent, h, reactive, ref, TransitionGroup, createApp, Ref, TransitionGroupProps} from 'vue'
 import {HMessage, HMessageConfig} from './type'
 
 let mid = 0
@@ -71,7 +71,7 @@ function createMessage(msg: RawMsg) {
             zIndex: msg.id,
             left: '0',
             top: '0',
-            margin: '0 auto 1rem',
+            margin: '1rem auto',
             width: 'fit-content',
             minWidth: '100px',
             maxWidth: '80%',
@@ -88,14 +88,14 @@ function createMessage(msg: RawMsg) {
                 }
             }, [h('p', {
                 style: ifOrDef(msg.closeable, {
-                    paddingRight: '1rem'
+                    paddingRight: '0.5em'
                 }, {})
             }, msg.msg), ifOrDef(msg.closeable, h(HButton, {
-                type: 'text',
-                color: 'info',
+                type: 'link',
+                color: msg.color,
                 style: {
                     position: 'absolute',
-                    right: '-1rem'
+                    right: '0'
                 },
                 onClick() {
                     close(msg.id)
@@ -146,7 +146,6 @@ window.onload = () => {
     div.style.width = '100%'
     div.style.pointerEvents = 'none'
     app.mount(div)
-    document.body.append(div)
 
     addEventListener('theme-change', (e) => {
         dark.value = isDark()
@@ -172,6 +171,11 @@ function show(msg: string, config?: HMessageConfig): number {
         onClose: config?.onClose,
         closeable: config?.closeable ?? true,
     })
+
+    if (contents.length == 1) {
+        document.body.append(div)
+    }
+
     return mid++
 }
 
@@ -182,6 +186,11 @@ function close(id: number): void {
         clearTimeout(msg.timer)
         msg.onClose?.(msg.id)
         contents.splice(index, 1)
+        if (contents.length == 0) {
+            setTimeout(() => {
+                div.remove()
+            }, 300)
+        }
     }
 }
 
