@@ -4,6 +4,8 @@ title: H-UI-Message
 
 # Message 消息提示
 
+tip: `Message`依赖于`Card`
+
 ## 颜色
 
 [.colors]

@@ -11,8 +11,11 @@ import './style/md.scss'
 import './style/prism.scss'
 import './style/prism-dark.scss'
 
-if (window.matchMedia('(prefers-color-scheme: dark)').matches)
+let item = localStorage.getItem('theme')
+if ((!item && window.matchMedia('(prefers-color-scheme: dark)').matches) ||
+    item == 'dark') {
     toggleDark()
+}
 
 let componentsRoutes: RouteRecordRaw[] = []
 

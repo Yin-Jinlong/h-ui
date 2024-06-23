@@ -49,7 +49,7 @@
 </style>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import {ref, watch} from 'vue'
 
 import Github from '@icons/github.vue'
 
@@ -91,5 +91,9 @@ function changeTheme(e: MouseEvent) {
 function goHome() {
     window.location.hash = ''
 }
+
+watch(dark, (v) => {
+    localStorage.setItem('theme', v ? 'dark' : 'light')
+})
 
 </script>
