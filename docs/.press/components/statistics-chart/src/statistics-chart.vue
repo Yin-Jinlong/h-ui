@@ -16,7 +16,7 @@
 </style>
 
 <script lang="ts" setup>
-import {HCheckBox, isDark} from '@yin-jinlong/h-ui'
+import {cssVar, HCheckBox, isDark} from '@yin-jinlong/h-ui'
 import type {EChartsOption} from 'echarts'
 import {LineChart} from 'echarts/charts'
 import {
@@ -156,13 +156,18 @@ function initChart() {
                 let value = args[0].value[0]
                 let isDate = value instanceof Date
                 let date: Date = isDate ? value : times[value - 1]
-                let s = `<table><thead><tr><th>${isDate ? '' : (value + '.')} ${formatDate(date)}</thead><tbody>`
+                let s = `<table><thead><tr><th colspan="3" style="color: ${
+                    cssVar('color-primary')
+                }">${
+                    isDate ? '' : (value + '.')} ${formatDate(date)
+                }<tbody>`
+                const cell = ' align="right" style="padding: 0 0.25em"'
                 args.forEach((item, _) => {
                     let head = `${item.marker}${item.seriesName}`
                     s += `<tr>
                     <td align="left">${head}</td>
-                    <td align="right" style="padding: 0 0.25em"> ${item.seriesName == 'files' ? '' : formatNum(item.data[1].toString())}</td>
-                    <td align="right" style="padding: 0 0.25em"> <b>${formatFriendly(item.data[1].toString())}</b></td>
+                    <td${cell}> ${item.seriesName == 'files' ? '' : formatNum(item.data[1].toString())}</td>
+                    <td${cell}> <b>${formatFriendly(item.data[1].toString())}</b></td>
                     </tr>`
                 })
                 return s
@@ -171,7 +176,6 @@ function initChart() {
         legend: {
             show: true,
             orient: 'horizontal',
-            icon: 'rect'
         },
         xAxis: {
             name: timeX.value ? 'time' : 'commits',
