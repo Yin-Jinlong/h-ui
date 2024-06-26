@@ -145,6 +145,7 @@ window.onload = () => {
     div.style.left = '0'
     div.style.width = '100%'
     div.style.pointerEvents = 'none'
+    div.style.zIndex = '2147483647'
     app.mount(div)
 
     addEventListener('theme-change', (e) => {
