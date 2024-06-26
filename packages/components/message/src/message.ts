@@ -14,7 +14,7 @@ interface RawMsg {
     closeable: boolean
 }
 
-let contents: RawMsg[]
+let contents: RawMsg[] = []
 
 function messageEnter(el: HTMLElement, done: () => void) {
     el.style.left = `0px`
@@ -113,7 +113,7 @@ function createContainer() {
     return defineComponent({
         name: 'HMessageContainer',
         setup(_, ctx) {
-            contents = reactive<RawMsg[]>([])
+            contents = reactive<RawMsg[]>(contents)
             dark = ref(isDark())
             return () => {
                 let list = []
