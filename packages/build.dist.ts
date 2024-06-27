@@ -14,6 +14,8 @@ import postcss from 'rollup-plugin-postcss'
 import typescript from 'rollup-plugin-typescript2'
 import dts from 'vite-plugin-dts'
 
+import {getVueComponent} from './build-utils/webtypes'
+
 import {
     OutputOption,
     color,
@@ -166,6 +168,17 @@ function getJson(path: string) {
 
 function convertWebTypesJson(webTypesJson: Record<string, any>) {
     webTypesJson.version = version
+    let components: any[] = []
+
+    fs.readdirSync('components', {
+        withFileTypes: true
+    }).forEach(dir => {
+        if (dir.isDirectory()) {
+            components.push(getVueComponent(dir.name))
+        }
+    })
+
+    webTypesJson.contributions.html['vue-components'] = components
     return webTypesJson
 }
 

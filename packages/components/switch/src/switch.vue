@@ -26,12 +26,12 @@ const switchEle = ref<HTMLDivElement>()
 
 const on = defineModel<boolean>()
 
-function changeColor(type: 'on' | 'off', color: string) {
+function changeColor(type: 'on' | 'off', color: String) {
     if (color === '') {
         switchEle.value!.style.removeProperty(cssVarName(`switch-${type}-color`))
     } else {
         switchEle.value!.style.setProperty(cssVarName(`switch-${type}-color`),
-            convertColor(color)
+            convertColor(color.toString())
         )
     }
 }

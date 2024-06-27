@@ -34,12 +34,12 @@ function click() {
     checked.value = !checked.value
 }
 
-function changeColor(type: 'on' | 'off', color: string) {
+function changeColor(type: 'on' | 'off', color: string | String) {
     if (color === '') {
         checkBoxEle.value!.style.removeProperty(cssVarName(`check-box-${type}-color`))
     } else {
         checkBoxEle.value!.style.setProperty(cssVarName(`check-box-${type}-color`),
-            convertColor(color)
+            convertColor(color.toString())
         )
     }
 }

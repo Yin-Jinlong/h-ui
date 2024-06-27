@@ -4,9 +4,10 @@
   "js-types-syntax": "typescript",
   "description-markup": "markdown",
   "name": "@yin-jinlong/h-ui",
-  "version": "0.4.3",
+  "version": "0.0.0-dev",
   "contributions": {
     "html": {
+      "vue-components": [],
       "attributes": [
         {
           "name": "h-loading-text",

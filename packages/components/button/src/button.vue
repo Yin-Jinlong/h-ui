@@ -41,13 +41,13 @@ onMounted(() => {
     let color = props.color
     if (!color)
         return
-    changeColor(color)
+    changeColor(color.toString())
 })
 
-watch(() => props.color, (c: string | undefined) => {
+watch(() => props.color, (c?: String) => {
     if (!c)
         return
-    changeColor(c)
+    changeColor(c.toString())
 })
 
 </script>

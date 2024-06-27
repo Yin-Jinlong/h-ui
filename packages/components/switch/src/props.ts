@@ -1,14 +1,24 @@
 import {BindSize, DefinedNamedColor, Disable} from '@yin-jinlong/h-ui/types'
+import {PropsDefaultType} from '@yin-jinlong/h-ui/types/props'
 
-declare interface Props extends BindSize, Disable {
-    onColor?: DefinedNamedColor | string
-    offColor?: DefinedNamedColor | string
+export declare interface HSwitchProps extends BindSize, Disable {
+    /**
+     * 开启时颜色
+     */
+    onColor?: DefinedNamedColor | String
+    /**
+     * 关闭时颜色
+     */
+    offColor?: DefinedNamedColor |String
 }
 
-export type HSwitchProps = Props
 
 export default {
     size: 'normal',
-    onColor: '',
-    offColor: '',
-} as Props
+    onColor() {
+        return ''
+    },
+    offColor() {
+        return ''
+    }
+} as PropsDefaultType<HSwitchProps>
