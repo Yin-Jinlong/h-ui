@@ -7,6 +7,7 @@ import {mdCodePlugin} from './md-code'
 import {mdLinkPlugin} from './md-link'
 import {mdVueComponentPlugin} from './md-vue-component'
 import {convertToBigCamel, exists, readText} from './utils'
+import {mdDocCardPlugin} from './md-doc-card'
 
 
 export declare interface VueMdEnv {
@@ -106,5 +107,6 @@ md.use(md => {
 
 md.use(mdLinkPlugin)
 md.use(mdVueComponentPlugin)
+md.use(mdDocCardPlugin)
 md.use(mdCaseCardPlugin)
 md.use(mdCodePlugin)

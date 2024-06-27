@@ -18,3 +18,5 @@ title: H-UI-Switch
 ## 大小
 
 [.sizes]
+
+[:api=switch]

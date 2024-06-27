@@ -23,3 +23,5 @@ title: H-UI-Checkbox
 - `xlarge`
 
 [.sizes]
+
+[:api=check-box]

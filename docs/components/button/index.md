@@ -50,3 +50,5 @@ title: H-UI-Button
 禁用只需加上`disabled`属性即可。
 
 [.shadows]
+
+[:api=button]
