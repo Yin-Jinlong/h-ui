@@ -29,7 +29,7 @@ export declare interface VueComponent extends WithDesc, WithDocURl {
     propsExtends?: string[]
 }
 
-let pathRoot = ''
+let pathRoot = '.'
 
 export function setPathRoot(root: string) {
     pathRoot = root
