@@ -1,0 +1,32 @@
+@use './tools/fns' as *;
+
+@include c(badge) {
+  @include css-var(badge-color, get-css(color, danger));
+  @include css-var(badge-text-color, get-css(color, white));
+
+  height: max-content;
+  width: max-content;
+}
+
+@include c(badge-dot) {
+  align-items: center;
+  background-color: get-css(badge, color);
+  border-radius: 2147483647px;
+  box-sizing: content-box;
+  color: get-css(badge, text-color);
+  display: inline-flex;
+  font-size: 0.5em;
+  height: max-content;
+  justify-content: center;
+  min-width: 2em;
+  padding: 0.5em;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(50%, -50%);
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  width: max-content;
+}

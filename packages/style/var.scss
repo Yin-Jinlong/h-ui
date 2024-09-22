@@ -36,3 +36,8 @@ $radius: (
     'normal': 10px,
     'large': 15px,
 );
+
+$z-indexes: (
+    'normal':1,
+    'topmost':2147483647
+)

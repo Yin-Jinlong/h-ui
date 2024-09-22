@@ -1,3 +1,4 @@
 * text=auto
 pnpm-lock.yaml eol=lf
+package.json eol=lf
 *.csv eol=lf
