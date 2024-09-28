@@ -19,7 +19,7 @@ title: H-UI-Badge
 
 [.overflow]
 
-## 内容
+## 显示
 
 当内容为`string`时，`min` `max`将会忽略。为空（`''`）时不显示。
 
