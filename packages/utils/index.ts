@@ -1,5 +1,6 @@
 export * from './assign'
 export * from './color'
+export * from './compatibility'
 export * from './css'
 export * from './directive'
 export * from './directive-size'
