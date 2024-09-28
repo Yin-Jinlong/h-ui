@@ -10,15 +10,20 @@
                 自定义字符串
             </h-button>
         </h-badge>
+        <h-badge dot>
+            <h-button type="plain">
+                点
+            </h-button>
+        </h-badge>
     </div>
 
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .box {
+    align-items: flex-end;
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-end;
 
     & > * {
         margin: 0.5rem;
@@ -27,6 +32,6 @@
 }
 </style>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import {HBadge, HButton} from '@yin-jinlong/h-ui'
 </script>

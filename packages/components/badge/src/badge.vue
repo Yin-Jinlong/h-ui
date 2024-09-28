@@ -3,7 +3,9 @@
         [cssVarName('badge-color')]: convertColor(color?.toString())
     }" class="h-badge" data-relative>
         <slot name="default"/>
-        <sup v-if="typeof value==='number'?value>=min:value?.length" class="h-badge-dot">
+        <sup v-if="typeof value==='number'?value>=min:value?.length"
+             :data-dot="dot?'':undefined"
+             class="h-badge-dot">
             {{ getValue() }}
         </sup>
     </div>
@@ -16,6 +18,8 @@ import DefaultProps, {HBadgeProps} from './props'
 const props = withDefaults(defineProps<HBadgeProps>(), DefaultProps)
 
 function getValue() {
+    if (props.dot)
+        return ''
     if (typeof props.value === 'string')
         return props.value
     if (props.value > props.max) {

@@ -1,4 +1,5 @@
 @use './tools/fns' as *;
+@use './var' as *;
 
 @include c(badge) {
   @include css-var(badge-color, get-css(color, danger));
@@ -11,7 +12,7 @@
 @include c(badge-dot) {
   align-items: center;
   background-color: get-css(badge, color);
-  border-radius: 2147483647px;
+  border-radius: #{$nums-max}px;
   box-sizing: content-box;
   color: get-css(badge, text-color);
   display: inline-flex;
@@ -29,4 +30,11 @@
   -webkit-user-select: none;
   user-select: none;
   width: max-content;
+
+  &[data-dot] {
+    aspect-ratio: 1;
+    min-width: 0;
+    transform: translate(25%,-25%);
+  }
+
 }

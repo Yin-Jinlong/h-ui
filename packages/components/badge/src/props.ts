@@ -23,6 +23,10 @@ export declare interface HBadgeProps {
      * 超出最大值时的显示方式
      */
     overflow?: HBadgeOverflow
+    /**
+     * 显示为点
+     */
+    dot?: boolean
 }
 
 export default {

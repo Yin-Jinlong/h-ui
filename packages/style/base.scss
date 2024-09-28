@@ -38,6 +38,10 @@
   @include size.fill;
 }
 
+[data-round] {
+  aspect-ratio: 1;
+}
+
 // 光标类
 
 [data-pointer] {

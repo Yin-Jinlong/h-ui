@@ -19,28 +19,38 @@
 @include c(switch) {
   @include css-var(switch-on-color, get-css(color, primary));
   @include css-var(switch-off-color, get-css(color, white--4));
+  --size: calc(#{get-css(switch, height)} - 4px);
+  align-items: center;
   background-color: get-css(switch, off-color);
   border-radius: 100px;
-  display: inline-block;
+  display: inline-flex;
   height: get-css(switch, height);
+  justify-content: end;
+  min-width: calc(#{get-css(switch, height)} * 1.75);
   outline: transparent solid 1px;
-  width: calc(#{get-css(switch, height)} * 1.75);
 
   &:hover:not([data-disabled]) {
     outline-color: get-css(switch, on-color);
   }
 
-  &:before {
-    --size: calc(#{get-css(switch, height)} - 4px);
+  & > .action {
+    align-items: center;
     background-color: get-css(color, white);
     border-radius: 100px;
-    content: '';
-    display: block;
+    color: get-css(switch, off-color);
+    display: flex;
+    font-size: 0.8em;
     height: var(--size);
+    justify-content: center;
     left: 2px;
+    overflow: hidden;
     position: absolute;
     top: 2px;
     transition: all 0.3s ease-out;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
     width: var(--size);
   }
 
@@ -53,7 +63,8 @@
       outline-color: get-css(switch, off-color);
     }
 
-    &:before {
+    & > .action {
+      color: get-css(switch, on-color);
       left: calc(100% - 2px - var(--size));
     }
   }

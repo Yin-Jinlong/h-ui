@@ -20,6 +20,10 @@ export declare interface HButtonProps extends Disable, BindSize {
      * 阴影
      */
     shadow?: HButtonShadowType
+    /**
+     * 圆形
+     */
+    round?: boolean
 }
 
 

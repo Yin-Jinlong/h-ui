@@ -18,13 +18,6 @@
 2. `import assets named`
 3. `import assets`
 
-分组
-
-1. `node:*`
-2. `node_modules`
-3. `other_project_module`
-4. `project`
-
 模块
 
 - 按模块名排序
@@ -33,16 +26,10 @@
 
 - 按引入名称顺序排序
 - `default`在最前
-- `type`>`var`>`class`>`function`
 
 ## 示例
 
 ```ts
-// node 在最前
-import {Dirent,existsSync} from 'fs'
-import http from 'http'
-
-// node_module
 import {afun} from 'A'
 
 import {fun1} from '@/m2'
