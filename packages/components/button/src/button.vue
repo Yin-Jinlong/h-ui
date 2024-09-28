@@ -2,6 +2,7 @@
     <button ref="btn"
             v-disabled="disabled"
             :data-border="border?'':undefined"
+            :data-round="round?'':undefined"
             :data-shadow="shadow"
             :data-size="size"
             :data-type="type"

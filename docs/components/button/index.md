@@ -22,6 +22,12 @@ title: H-UI-Button
 
 [.colors]
 
+## 圆形
+
+Tip:`size`控制的为内边距。
+
+[.round]
+
 ## 尺寸
 
 尺寸大小。通过内边距实现。

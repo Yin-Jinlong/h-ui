@@ -2,6 +2,7 @@
 @use 'tools/prefix' as *;
 @use 'tools/size' as size;
 @use 'tools/style' as *;
+@use 'var' as *;
 
 @mixin gen-colors($name) {
   --h-button-color: #{get-css(color,$name)};
@@ -71,7 +72,7 @@
   }
 
   &[data-type='plain'] {
-    color: get-css(color, text-1);
+    color: get-css(button, color-1);
     background-color: transparent;
     border: color-mix(in srgb, #{get-css(button, color)} 20%, transparent) solid 1px;
 
@@ -84,6 +85,15 @@
     }
 
   }
+
+  &[data-round] {
+    aspect-ratio: 1;
+    border-radius: #{$nums-max}px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
 }
 
 @mixin btn-size() {

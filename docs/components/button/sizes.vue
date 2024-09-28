@@ -1,15 +1,16 @@
 <template>
     <div v-for="t in ['primary','plain','text'] as HButtonType[]">
         <div>
-            <h-button :type="t" size="small">small</h-button>
-            <h-button :type="t" size="normal">normal</h-button>
-            <h-button :type="t" size="large">large</h-button>
-            <h-button :type="t" size="xlarge">xlarge</h-button>
+            <h-button v-for="s in ['small','normal','large','xlarge'] as NamedSize[]"
+                      :size="s"
+                      :type="t">
+                {{ s[0] }}
+            </h-button>
         </div>
         <br>
     </div>
 </template>
 
 <script lang="ts" setup>
-import {HButtonType, HButton} from '@yin-jinlong/h-ui'
+import {HButtonType, HButton, NamedSize} from '@yin-jinlong/h-ui'
 </script>
