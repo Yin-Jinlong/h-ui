@@ -2,8 +2,8 @@
     <div class="side-bar" data-fill-height>
         <div v-for="pg in items">
             <label>{{ pg.label }}</label>
-            <div v-for="i in pg.items">
-                <h-button :type="now===i.name?'primary':'text'" data-fill-width @click="router.push(i.path)">
+            <div v-for="i in pg.items" class="menu-item" data-flex-center>
+                <h-button :type="now===i.name?'link':'text'" data-fill-width @click="router.push(i.path)">
                     {{ i.name }}
                 </h-button>
             </div>
@@ -24,6 +24,10 @@
         width: 100px;
     }
 
+}
+
+.menu-item {
+    height: 2.5em;
 }
 
 </style>
