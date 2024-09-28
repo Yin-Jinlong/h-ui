@@ -20,3 +20,7 @@ title: H-UI-Switch
 [.sizes]
 
 [:api=switch]
+
+## Action内容
+
+[.actions]

@@ -8,7 +8,11 @@
          data-relative
          data-transition
          @click="on = !on">
-
+        <div class="action">
+            <slot :value="on" name="action">
+                <span v-if="actionText">{{ on ? '开' : '关' }}</span>
+            </slot>
+        </div>
     </div>
 </template>
 

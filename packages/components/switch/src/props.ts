@@ -9,7 +9,11 @@ export declare interface HSwitchProps extends BindSize, Disable {
     /**
      * 关闭时颜色
      */
-    offColor?: DefinedNamedColor |String
+    offColor?: DefinedNamedColor | String
+    /**
+     * 显示默认开关文字
+     */
+    actionText?: boolean
 }
 
 
@@ -20,5 +24,6 @@ export default {
     },
     offColor() {
         return ''
-    }
+    },
+    actionText: false
 } as PropsDefaultType<HSwitchProps>
