@@ -108,3 +108,9 @@ pnpm run packages:test
 ```
 
 </details>
+
+## License
+
+[MIT](LICENSE.md)
+
+Copyright (c) 2024-PRESENT Yin-Jinlong@github
