@@ -1,3 +1,5 @@
+@use '@yin-jinlong/h-ui/style/src/tools/fns' as *;
+
 @import '@yin-jinlong/h-ui/style/src/index.scss';
 @import '@yin-jinlong/h-ui/style/src/base-dark.scss';
 
@@ -19,4 +21,15 @@ html, body {
   height: 100vh;
   overflow: hidden;
   width: 100vw;
+}
+
+*::selection {
+  background: get-css(color, primary);
+  color: white;
+}
+
+.bg-dot {
+  backdrop-filter: saturate(50%) blur(4px);
+  background-image: radial-gradient(transparent 1px, get-css(color-background, simple) 1px);
+  background-size: 4px 4px;
 }

@@ -14,6 +14,7 @@
 <style lang="scss" scoped>
 .side-bar {
     box-shadow: rgb(128, 128, 128, 0.4) 0 5px 5px;
+    padding-top: 50px;
     width: 300px;
 
     @media screen and (max-width: 1000px) {

@@ -1,5 +1,5 @@
 <template>
-    <div class="header" data-fill-width data-flex-center data-relative>
+    <div class="header bg-dot" data-fill-width data-flex-center>
         <div style="flex: 1;padding: 0 0.5rem">
             <h2><span @click="goHome">H-UI</span></h2>
         </div>
@@ -23,8 +23,10 @@
 @use '@yin-jinlong/h-ui/style/src/tools/fns' as *;
 
 .header {
+    position: fixed;
     box-shadow: 0 0 5px rgba(128, 128, 128, 0.3);
     height: 50px;
+    z-index: 1;
 
     h2 {
         color: inherit;

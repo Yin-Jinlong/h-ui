@@ -1,6 +1,8 @@
 <template>
     <page-header/>
-    <div v-if="route.path==='/'" data-flex-column style="flex: 1;overflow: hidden;align-items: center">
+    <div v-if="route.path==='/'" data-fill-size
+         data-flex-column
+         style="overflow: hidden;align-items: center;padding-top: 50px">
         <div data-fill-width data-flex-column style="flex:1;max-width: 1000px">
             <div class="main-head">
                 <h1 class="home-title">H UI Docs</h1>
@@ -17,7 +19,7 @@
             </div>
         </div>
     </div>
-    <div v-else data-flex style="flex: 1;overflow: hidden">
+    <div v-else class="content-box" data-fill-size data-flex>
         <side-bar :items="pages" :now="route.name?.toString()"/>
         <div v-loading="loading"
              class="content"
@@ -39,11 +41,18 @@
 </template>
 
 <style lang="scss" scoped>
+
+.content-box {
+    height: 100%;
+    overflow: hidden;
+}
+
 .content {
     flex: 1;
     overflow-x: hidden;
     overflow-y: auto;
     padding-right: 5px;
+    padding-top: 50px;
 }
 
 .main-head {
