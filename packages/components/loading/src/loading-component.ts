@@ -1,5 +1,5 @@
 import {convertColor, cssVar, cssVarName} from '@yin-jinlong/h-ui/utils'
-import {Component, VNode, Transition, createCommentVNode, defineComponent, h, onMounted, ref, withCtx} from 'vue'
+import {Component, createCommentVNode, defineComponent, h, onMounted, ref, Transition, VNode, withCtx} from 'vue'
 import {Circle} from './loading-circle'
 
 import {Running} from './loading-running'
@@ -93,7 +93,7 @@ function Loading(el: HTMLElement, options: HLoadingOptions): VNode {
     ))
 }
 
-export function createLoadingComponent(el: HTMLElement, options: HLoadingOptions): Component {
+export function createLoadingComponent(el: HTMLElement, options: HLoadingOptions, onLeaveEnd: () => void): Component {
 
     function enter(e: Element, done: () => void) {
         (el as LoadingElement)[OVERFLOW_KEY] = el.style.overflow
@@ -109,6 +109,7 @@ export function createLoadingComponent(el: HTMLElement, options: HLoadingOptions
         }, animConfig).onfinish = () => {
             el.style.overflow = (el as LoadingElement)[OVERFLOW_KEY]
             done()
+            onLeaveEnd()
         }
     }
 

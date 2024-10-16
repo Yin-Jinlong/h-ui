@@ -18,16 +18,18 @@ function createInstance(el: HTMLElement, options: HLoadingOptions): HLoadingInst
         parent: options.fullscreen ? document.body : el,
     } as HLoadingInstance
 
+    function leaveEnd() {
+        instance.app?.unmount()
+        instance.app = undefined
+    }
+
     watch(() => options.loading, async (v) => {
         if (v) {
-            let app = createApp(createLoadingComponent(el, options))
+            let app = createApp(createLoadingComponent(el, options, leaveEnd))
             let c = app.mount(document.createElement('div'))
             instance.app = app
             instance.el = c.$el
             instance.parent.append(c.$el)
-        } else {
-            instance.app?.unmount()
-            instance.app = undefined
         }
     }, {
         immediate: true
