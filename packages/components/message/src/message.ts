@@ -138,21 +138,18 @@ function createContainer() {
 const app = createApp(createContainer())
 const div = document.createElement('div')
 
-window.onload = () => {
-    div.setAttribute('h-message-container', '')
-    div.style.position = 'fixed'
-    div.style.top = '0'
-    div.style.left = '0'
-    div.style.width = '100%'
-    div.style.pointerEvents = 'none'
-    div.style.zIndex = '2147483647'
-    app.mount(div)
+div.setAttribute('h-message-container', '')
+div.style.position = 'fixed'
+div.style.top = '0'
+div.style.left = '0'
+div.style.width = '100%'
+div.style.pointerEvents = 'none'
+div.style.zIndex = '2147483647'
+app.mount(div)
 
-    addEventListener('theme-change', (e) => {
-        dark.value = isDark()
-    })
-
-}
+addEventListener('theme-change', (e) => {
+    dark.value = isDark()
+})
 
 function show(msg: string, config?: HMessageConfig): number {
     let id = mid
@@ -173,7 +170,7 @@ function show(msg: string, config?: HMessageConfig): number {
         closeable: config?.closeable ?? true,
     })
 
-    if (contents.length == 1) {
+    if (!div.parentElement) {
         document.body.append(div)
     }
 
