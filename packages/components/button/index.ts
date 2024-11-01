@@ -1,4 +1,4 @@
-import Button from './src/button.vue'
+import Button from './src/h-button.vue'
 
 /**
  * 按钮

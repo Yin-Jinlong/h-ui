@@ -1,17 +1,21 @@
 <template>
-    <button ref="btn"
-            v-disabled="disabled"
-            :data-border="border?'':undefined"
-            :data-round="round?'':undefined"
-            :data-shadow="shadow"
-            :data-size="size"
-            :data-type="type"
-            :tabindex="disabled?-1:0"
-            class="h-button"
-            data-break-line
-            data-pointer
-            data-relative
-            data-transition>
+    <button
+        ref="btn"
+        v-disabled="disabled"
+        :data-border="border?'':undefined"
+        :data-round="round?'':undefined"
+        :data-shadow="shadow"
+        :data-size="size"
+        :data-type="type"
+        :disabled="disabled"
+        :tabindex="disabled?-1:0"
+        class="h-button"
+        data-break-line
+        data-pointer
+        data-relative
+        data-transition
+        type="button"
+        @click.prevent>
         <slot/>
     </button>
 </template>
