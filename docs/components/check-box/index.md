@@ -9,7 +9,7 @@ title: H-UI-Checkbox
 选择框的颜色。可以是已经定义的颜色（如`primary`），
 也可以是有效的`css`颜色值（如`red` `#39e` `var(--my-color-var)`）。
 
-禁用只需加上`disabled`属性即可。
+禁用只需使用`v-disabled`即可。
 
 [.colors]
 

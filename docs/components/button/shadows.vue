@@ -14,19 +14,22 @@
     <br>
     <div v-for="t in types">
         <div>
-            <h-button v-for="(c,i) in DefinedNamedColors"
-                      :border="border"
-                      :color="c"
-                      :disabled="disabled"
-                      :shadow="getShadowType()"
-                      :type="t">
+            <h-button
+                v-for="(c,i) in DefinedNamedColors"
+                v-disabled="disabled"
+                :border="border"
+                :color="c"
+                :shadow="getShadowType()"
+                :type="t">
                 {{ colorTexts[i] }}
             </h-button>
-            <h-button :border="border"
-                      :disabled="disabled"
-                      :shadow="getShadowType()"
-                      :type="t"
-                      color="#39e">
+            <h-button
+                v-disabled="disabled"
+                :border="border"
+                :disabled="disabled"
+                :shadow="getShadowType()"
+                :type="t"
+                color="#39e">
                 自定义
             </h-button>
         </div>
@@ -40,7 +43,8 @@ import {
     HButtonShadowType,
     DefinedNamedColors,
     HButton,
-    HCheckBox
+    HCheckBox,
+    vDisabled
 } from '@yin-jinlong/h-ui'
 import {ref} from 'vue'
 

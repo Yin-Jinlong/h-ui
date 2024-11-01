@@ -6,7 +6,7 @@ title: H-UI-Input
 
 ## 颜色&禁用
 
-禁用只需加上`disabled`属性即可。
+禁用只需使用`v-disabled`即可。
 
 [.colors]
 
@@ -18,6 +18,6 @@ title: H-UI-Input
 
 [.types]
 
-## 边框&禁用
+## 边框
 
 [.borders]

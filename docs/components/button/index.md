@@ -53,7 +53,7 @@ Tip:`size`控制的为内边距。
 - `hover`悬浮时显示阴影。
 - `true`|`always`始终显示阴影。
 
-禁用只需加上`disabled`属性即可。
+禁用只需使用`v-disabled`即可。
 
 [.shadows]
 

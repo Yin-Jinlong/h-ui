@@ -4,18 +4,18 @@
         <div v-for="c in DefinedNamedColors" class="box">
             <h-input v-model="value"
                      :color="c"
-                     :disabled="disabled"
+                     v-disabled="disabled"
                      :placeholder="c"/>
         </div>
         <div class="box">
             <h-input v-model="value"
-                     :disabled="disabled"
+                     v-disabled="disabled"
                      color="#39e"
                      placeholder="自定义"/>
         </div>
         <div class="box">
             <h-input v-model="value"
-                     :disabled="disabled"
+                     v-disabled="disabled"
                      color="#39e"
                      placeholder="自定义+文字颜色"
                      text-color="primary"/>
@@ -31,7 +31,7 @@
 
 <script lang="ts" setup>
 import {ref} from 'vue'
-import {DefinedNamedColors, HCheckBox, HInput} from '@yin-jinlong/h-ui'
+import {DefinedNamedColors, HCheckBox, HInput,vDisabled} from '@yin-jinlong/h-ui'
 
 const disabled = ref(false)
 const value = ref('')
