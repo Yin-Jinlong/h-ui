@@ -1,7 +1,7 @@
-import {BindSize, DefinedNamedColor, Disable} from '@yin-jinlong/h-ui/types'
+import {BindSize, DefinedNamedColor, NamedSize} from '@yin-jinlong/h-ui/types'
 import {PropsDefaultType} from '@yin-jinlong/h-ui/types/props'
 
-export declare interface HSwitchProps extends BindSize, Disable {
+export declare interface HSwitchProps extends BindSize {
     /**
      * 开启时颜色
      */
@@ -14,6 +14,8 @@ export declare interface HSwitchProps extends BindSize, Disable {
      * 显示默认开关文字
      */
     actionText?: boolean
+
+    size?: NamedSize
 }
 
 

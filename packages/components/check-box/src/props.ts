@@ -1,7 +1,7 @@
-import {DefinedNamedColor, Disable, NamedSize} from '@yin-jinlong/h-ui/types'
+import {DefinedNamedColor, NamedSize} from '@yin-jinlong/h-ui/types'
 import {PropsDefaultType} from '@yin-jinlong/h-ui/types/props'
 
-export declare interface HCheckBoxProps extends Disable {
+export declare interface HCheckBoxProps {
     /**
      * 尺寸
      */
@@ -19,10 +19,10 @@ export declare interface HCheckBoxProps extends Disable {
 
 export default {
     size: 'normal',
-    onColor(){
+    onColor() {
         return ''
     },
-    offColor(){
+    offColor() {
         return ''
     }
 } as PropsDefaultType<HCheckBoxProps>

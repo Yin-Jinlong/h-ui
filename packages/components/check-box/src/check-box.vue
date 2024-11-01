@@ -1,6 +1,5 @@
 <template>
     <div ref="checkBoxEle"
-         v-disabled="disabled"
          :data-checked="checked?'':undefined"
          class="h-check-box"
          data-flex-center

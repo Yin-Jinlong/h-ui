@@ -1,9 +1,9 @@
-import {BindSize, DefinedNamedColor, Disable} from '@yin-jinlong/h-ui/types'
+import {BindSize, DefinedNamedColor, NamedSize} from '@yin-jinlong/h-ui/types'
 import {PropsDefaultType} from '@yin-jinlong/h-ui/types/props'
 
 import {HButtonShadowType, HButtonType} from './type'
 
-export declare interface HButtonProps extends Disable, BindSize {
+export declare interface HButtonProps extends BindSize {
     /**
      * 按钮类型
      */
@@ -24,6 +24,8 @@ export declare interface HButtonProps extends Disable, BindSize {
      * 圆形
      */
     round?: boolean
+
+    size?: NamedSize
 }
 
 

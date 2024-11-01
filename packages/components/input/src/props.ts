@@ -1,9 +1,9 @@
-import {BindSize, DefinedNamedColor, Disable} from '@yin-jinlong/h-ui/types'
+import {BindSize, DefinedNamedColor} from '@yin-jinlong/h-ui/types'
 import {PropsDefaultType} from '@yin-jinlong/h-ui/types/props'
 
 import {HInputType} from './type'
 
-export declare interface HInputProps extends Disable, BindSize {
+export declare interface HInputProps extends BindSize {
     placeholder?: string
     color?: DefinedNamedColor | string
     textColor?: DefinedNamedColor | string

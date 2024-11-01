@@ -1,10 +1,8 @@
 <template>
     <input ref="inputEle"
            v-model="value"
-           v-disabled="disabled"
            :data-border="border?'':undefined"
            :data-size="size"
-           :disabled="disabled"
            :maxlength="maxlength"
            :placeholder="placeholder"
            :type="type"
