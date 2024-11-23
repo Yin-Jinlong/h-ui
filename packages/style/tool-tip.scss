@@ -1,0 +1,37 @@
+@use 'tools/fns' as *;
+@use 'var' as *;
+
+@include c(tooltip-box) {
+  box-sizing: border-box;
+  display: inline-block;
+  height: max-content;
+  width: max-content;
+}
+
+@include c(tool-tip) {
+  background-color: get-css(color, black-6);
+  border-radius: 0.4em;
+  color: get-css(color, white);
+  font-size: 0.8em;
+  left: 0;
+  padding: 0.4em;
+  position: fixed;
+  top: 0;
+}
+
+@include dark-theme {
+  @include c(tool-tip) {
+    background-color: get-css(color, white--2);
+    color: get-css(color, black);
+  }
+}
+
+.h-tool-tip-fade-enter-active,
+.h-tool-tip-fade-leave-active {
+  transition: opacity 0.14s ease-out;
+}
+
+.h-tool-tip-fade-enter-from,
+.h-tool-tip-fade-leave-to {
+  opacity: 0;
+}

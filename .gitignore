@@ -12,3 +12,4 @@ gen/
 dist/
 
 !/build-utils/
+/gen.ts
