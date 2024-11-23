@@ -4,7 +4,7 @@ import Token from 'markdown-it/lib/token.mjs'
 import {convertToBigCamel, convertToSmallCamel, filter} from './utils'
 import {VueMdEnv} from './vue-tool'
 
-const CASE_REG = /\[\.(?<name>\w+)]/
+const CASE_REG = /\[\.(?<name>\w+|\w+-\w+)]/
 
 export function mdCaseCardPlugin(md: MarkdownIt): void {
     md.core.ruler.push('case-card', (state) => {
