@@ -5,11 +5,11 @@ export declare interface HSwitchProps extends BindSize {
     /**
      * 开启时颜色
      */
-    onColor?: DefinedNamedColor | String
+    onColor?: DefinedNamedColor | string
     /**
      * 关闭时颜色
      */
-    offColor?: DefinedNamedColor | String
+    offColor?: DefinedNamedColor | string
     /**
      * 显示默认开关文字
      */
@@ -21,11 +21,7 @@ export declare interface HSwitchProps extends BindSize {
 
 export default {
     size: 'normal',
-    onColor() {
-        return ''
-    },
-    offColor() {
-        return ''
-    },
+    onColor: '',
+    offColor: '',
     actionText: false
 } as PropsDefaultType<HSwitchProps>

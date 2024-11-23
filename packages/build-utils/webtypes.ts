@@ -94,9 +94,10 @@ export function getVueComponent(name: string, prefix: string = 'h'): VueComponen
 
         structure.properties?.forEach(p => {
             let docs = getDocStr(p)
+            let typeStr = p.type as string
             props.push({
                 name: p.name,
-                type: p.type as string,
+                type: typeStr.split('|').map(t => t.trim()),
                 description: docs,
                 'doc-url': urlPrefix + name + '?loc=' + p.name
             })

@@ -10,7 +10,7 @@ export declare interface HBadgeProps {
     /**
      * 颜色
      */
-    color?: DefinedNamedColor | String
+    color?: DefinedNamedColor | string
     /**
      * 最小值，小于该值将不显示。类型为number时生效
      */

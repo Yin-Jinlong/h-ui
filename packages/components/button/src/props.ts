@@ -11,7 +11,7 @@ export declare interface HButtonProps extends BindSize {
     /**
      * 按钮颜色
      */
-    color?: DefinedNamedColor | String
+    color?: DefinedNamedColor | string
     /**
      * 边框
      */

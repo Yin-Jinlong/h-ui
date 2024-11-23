@@ -1,6 +1,5 @@
 <template>
     <div ref="switchEle"
-         v-disabled="disabled"
          :data-on="on?'':undefined"
          :data-size="size"
          class="h-switch"

@@ -9,20 +9,16 @@ export declare interface HCheckBoxProps {
     /**
      * 开启时的颜色
      */
-    onColor?: DefinedNamedColor | String
+    onColor?: DefinedNamedColor | string
     /**
      * 关闭时的颜色
      */
-    offColor?: DefinedNamedColor | String
+    offColor?: DefinedNamedColor | string
 }
 
 
 export default {
     size: 'normal',
-    onColor() {
-        return ''
-    },
-    offColor() {
-        return ''
-    }
+    onColor: '',
+    offColor: ''
 } as PropsDefaultType<HCheckBoxProps>
