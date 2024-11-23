@@ -10,7 +10,7 @@ const eventNames: (keyof GlobalEventHandlersEventMap)[] = [
 ]
 
 function updateDisabledStatus<T>(el: HTMLElement, binding: DirectiveBinding<T>) {
-    if (binding.value) {
+    if (binding.value !== false) {
         el.setAttribute('data-disabled', '')
         el.setAttribute('disabled', 'true')
         el.blur()
