@@ -37,11 +37,11 @@ title: H-UI-Loading
 
 [.text]
 
-## 全屏
+## 位置
 
-在指令上添加`fullscreen`修饰符。
+全屏在指令上添加`fullscreen`修饰符，内部加`inner`。
 
-[.fullscreen]
+[.position]
 
 ## 大小
 

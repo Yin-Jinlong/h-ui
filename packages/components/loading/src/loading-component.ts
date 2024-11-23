@@ -34,16 +34,21 @@ function Loading(el: HTMLElement, options: HLoadingOptions): VNode {
     const root = ref<HTMLElement>()
 
     function addStyle(root: HTMLElement) {
-
+        let inner = options.inner
         mergeStyle(root, {
-            backgroundColor: cssVar('loading-modal-color'),
-            color: cssVar('loading-color'),
-            height: '100%',
-            left: `${el.scrollLeft}px`,
-            position: 'absolute',
-            top: `${el.scrollTop}px`,
-            width: '100%',
-            zIndex: '2147483647'
+            alignItems: 'center',
+            backgroundColor: inner ? 'transparent' : cssVar('loading-modal-color'),
+            color: inner ? 'inherit' : cssVar('loading-color'),
+            display: 'inline-flex',
+            flexDirection: 'column',
+            height: inner ? 'max-content' : '100%',
+            justifyContent: 'center',
+            left: inner ? '0' : `${el.scrollLeft}px`,
+            position: inner ? 'relative' : 'absolute',
+            top: inner ? '0' : `${el.scrollTop}px`,
+            verticalAlign: 'middle',
+            width: inner ? 'max-content' : '100%',
+            zIndex: inner ? undefined : '2147483647',
         })
 
         let modal = ((model) => {
@@ -73,12 +78,17 @@ function Loading(el: HTMLElement, options: HLoadingOptions): VNode {
         onMounted(() => {
             addStyle(root.value!)
         })
-        return () => h('div', {
+        return () => h(options.inner ? 'span' : 'div', {
             ref: root,
-            'data-flex-column-center': ''
         }, [
-            h(loadingComponent()),
-            vIf(!!options.text, h('div', {
+            h('div', {
+                style: {
+                    display: 'inline-block',
+                    width: cssVar('loading-size', '30px'),
+                    height: cssVar('loading-size', '30px'),
+                }
+            }, [h(loadingComponent())]),
+            vIf(!!options.text && !options.inner, h('div', {
                     'data-flex-column-center': ''
                 }, [options.text]),
                 'loading-text'

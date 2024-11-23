@@ -3,6 +3,7 @@ import {DefinedNamedColor} from '@yin-jinlong/h-ui/types'
 
 export declare interface HLoadingConfig {
     loading: boolean
+    inner: boolean
     text: string
     component: Component | string
     size: string

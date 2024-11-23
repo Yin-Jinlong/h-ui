@@ -11,10 +11,10 @@ const animConfig = {
 function addStyle(root: HTMLDivElement) {
 
     mergeStyle(root, {
-        height: cssVar('loading-size', '30px'),
+        height: '100%',
         position: 'relative',
-        width: cssVar('loading-size', '30px'),
-        stroke: cssVar('loading-color'),
+        width: '100%',
+        stroke: 'currentColor',
         strokeWidth: cssVar('loading-stroke-width', '10%'),
     })
 

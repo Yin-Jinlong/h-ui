@@ -29,7 +29,10 @@ function createInstance(el: HTMLElement, options: HLoadingOptions): HLoadingInst
             let c = app.mount(document.createElement('div'))
             instance.app = app
             instance.el = c.$el
-            instance.parent.append(c.$el)
+            if (options.inner) {
+                instance.parent.insertBefore(c.$el, instance.parent.firstChild)
+            } else
+                instance.parent.append(c.$el)
         }
     }, {
         immediate: true
@@ -44,9 +47,10 @@ function resolveOptions(raw: DirectiveBinding<boolean | OptionalKey<HLoadingConf
         color: 'primary',
         component: 'circle',
         fullscreen: raw.modifiers.fullscreen ?? false,
+        inner: raw.modifiers.inner ?? false,
         loading: true,
         modal: true,
-        size: '30px',
+        size: raw.modifiers.inner ? '1em' : '30px',
         text: '',
         width: '10%'
     }

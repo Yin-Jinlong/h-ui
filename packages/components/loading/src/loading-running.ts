@@ -9,9 +9,9 @@ import {mergeStyle} from './utils'
 function addStyle(root: HTMLDivElement) {
 
     mergeStyle(root, {
-        height: cssVar('loading-size', '30px'),
+        height: '100%',
         position: 'relative',
-        width: cssVar('loading-size', '30px')
+        width: '100%'
     })
 
     mergeStyle(root.children[0], {

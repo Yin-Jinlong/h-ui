@@ -7,13 +7,15 @@
         </template>
         <template #default>
             <h-button type="primary" @click="load">全屏加载</h-button>
+            <h-button v-loading.inner type="primary">内部</h-button>
+            <h-button v-disabled v-loading.inner type="primary">内部+禁用</h-button>
         </template>
     </h-card>
 </template>
 
 <script lang="ts" setup>
 import {ref} from 'vue'
-import {HButton, HCard, vLoading} from '@yin-jinlong/h-ui'
+import {HButton, HCard, vLoading, vDisabled} from '@yin-jinlong/h-ui'
 
 const loading = ref(false)
 

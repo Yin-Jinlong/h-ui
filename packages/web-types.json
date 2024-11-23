@@ -19,6 +19,18 @@
         {
           "name": "v-loading",
           "description": "加载中",
+          "modifiers": [
+            {
+              "name": "fullscreen",
+              "description": "全屏加载",
+              "type": "boolean"
+            },
+            {
+              "name": "inner",
+              "description": "内部加载",
+              "type": "boolean"
+            }
+          ],
           "source": {
             "symbol": "vLoading"
           }

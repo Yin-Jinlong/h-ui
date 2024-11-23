@@ -1,3 +1,8 @@
+## v0.9.2
+
+- 修复禁用：`v-disabled=undefnied`时也禁用
+- 添加内部加载
+
 ## v0.9.1
 
 - 添加`tool-tip`
