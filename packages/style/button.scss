@@ -4,19 +4,6 @@
 @use 'tools/style' as *;
 @use 'var' as *;
 
-@mixin gen-colors($name) {
-  --h-button-color: #{get-css(color,$name)};
-
-  @for $i from 1 to 7 {
-    @include css-var(button-color-#{$i}, #{get-css(color,#{$name}-#{$i})});
-  }
-
-  @for $i from 1 to 6 {
-    @include css-var(button-color--#{$i}, #{get-css(color,#{$name}--#{$i})});
-  }
-}
-
-
 @mixin btn-type() {
   &[data-type='primary'] {
     background-color: get-css(button, color);
@@ -160,7 +147,6 @@
 
 
 @include c(button) {
-  @include gen-colors(primary);
   background-color: transparent;
   border: 0 none transparent;
   border-radius: get-css(radius, normal);

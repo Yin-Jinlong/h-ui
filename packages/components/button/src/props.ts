@@ -31,6 +31,7 @@ export declare interface HButtonProps extends BindSize {
 
 export default {
     type: '',
+    color: 'primary',
     border: false,
     shadow: false,
     size: 'normal'

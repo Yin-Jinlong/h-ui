@@ -15,7 +15,7 @@ export declare interface HInputProps extends BindSize {
 
 export default {
     size: 'normal',
-    color: '',
+    color: 'primary',
     textColor: '',
     type: 'text',
     border: true

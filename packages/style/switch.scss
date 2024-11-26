@@ -17,7 +17,6 @@
 }
 
 @include c(switch) {
-  @include css-var(switch-on-color, get-css(color, primary));
   @include css-var(switch-off-color, get-css(color, white--4));
   --size: calc(#{get-css(switch, height)} - 4px);
   align-items: center;

@@ -21,7 +21,7 @@ export declare interface HSwitchProps extends BindSize {
 
 export default {
     size: 'normal',
-    onColor: '',
+    onColor: 'primary',
     offColor: '',
     actionText: false
 } as PropsDefaultType<HSwitchProps>
