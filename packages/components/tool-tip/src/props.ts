@@ -17,10 +17,15 @@ export declare interface HToolTipProps {
      * 提示位置，默认auto
      */
     place?: 'top' | 'bottom' | 'left' | 'right' | 'auto'
+    /**
+     * 是否在body上显示，默认false
+     */
+    body?: boolean
 }
 
 export default {
     zIndex: 10000,
     offset: 8,
-    place: 'auto'
+    place: 'auto',
+    body: false
 } as PropsDefaultType<HToolTipProps>

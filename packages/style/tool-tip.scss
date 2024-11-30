@@ -13,10 +13,17 @@
   border-radius: 0.4em;
   color: get-css(color, white);
   font-size: 0.8em;
+  height: max-content;
   left: 0;
   padding: 0.4em;
   position: absolute;
   top: 0;
+  width: max-content;
+
+  &[data-body] {
+    position: fixed;
+  }
+
 }
 
 @include dark-theme {

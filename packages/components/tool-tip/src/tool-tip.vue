@@ -2,10 +2,18 @@
     <div ref="child"
          class="h-tooltip-box"
          data-relative
-         @mouseenter="onMouseIn"
+         @mouseenter="props.body? onMouseInBody($event):onMouseIn($event)"
          @mouseleave="onMouseOut">
         <slot/>
-        <transition name="h-tool-tip-fade">
+        <teleport v-if="body" to="body">
+            <transition name="h-tool-tip-fade">
+                <div v-if="mouseIn" ref="tipEle" :class="['h-tool-tip',tipClass]"
+                     :style="{ zIndex}">
+                    <slot name="tip"/>
+                </div>
+            </transition>
+        </teleport>
+        <transition v-else name="h-tool-tip-fade">
             <div v-show="mouseIn" ref="tipEle" :class="['h-tool-tip',tipClass]" :style="{zIndex}">
                 <slot name="tip"/>
             </div>
@@ -14,6 +22,7 @@
 </template>
 
 <script lang="ts" setup>
+import {packRange} from '@yin-jinlong/h-ui/utils/range'
 import {nextTick, ref} from 'vue'
 import DefaultProps, {HToolTipProps} from './props'
 
@@ -21,6 +30,55 @@ const props = withDefaults(defineProps<HToolTipProps>(), DefaultProps)
 const child = ref<HTMLDivElement>()
 const tipEle = ref<HTMLDivElement>()
 const mouseIn = ref(false)
+
+
+function placeInViewBody(tip: HTMLDivElement, x: number, y: number, w: number, h: number) {
+    let ww = window.innerWidth
+    let wh = window.innerHeight
+    x = packRange(x, 0, ww - w)
+    y = packRange(y, 0, wh - h)
+    tip.style.left = x + 'px'
+    tip.style.top = y + 'px'
+}
+
+function placeTipBody(tip: HTMLDivElement, cr: DOMRect, tr: DOMRect) {
+    let x: number, y: number
+    let wh = window.innerHeight
+    let dw2 = (cr.width - tr.width) / 2
+    let dh2 = (cr.height - tr.height) / 2
+    switch (props.place) {
+        case 'left':
+            x = cr.left - tr.width - props.offset
+            y = cr.top + dh2
+            break
+        case 'right':
+            x = cr.right + props.offset
+            y = cr.top + dh2
+            break
+        case 'top':
+            x = cr.left + dw2
+            y = cr.top - tr.height - props.offset
+            break
+        case 'bottom':
+            x = cr.left + dw2
+            y = cr.bottom + props.offset
+            break
+        default :
+            let up = cr.top + cr.height / 2 >= wh / 2
+            x = cr.left + dw2
+            y = (up ? cr.top : cr.bottom)
+                + (up ? -tr.height - props.offset : props.offset)
+    }
+    placeInViewBody(tip, x, y, tr.width, tr.height)
+}
+
+async function onMouseInBody(e: MouseEvent) {
+    mouseIn.value = true
+    await nextTick()
+    let rect = child.value!.getBoundingClientRect()
+    let tipRect = tipEle.value!.getBoundingClientRect()
+    placeTipBody(tipEle.value!, rect, tipRect)
+}
 
 function placeInView(tip: HTMLDivElement, x: number, y: number, w: number, h: number) {
     let ww = window.innerWidth
