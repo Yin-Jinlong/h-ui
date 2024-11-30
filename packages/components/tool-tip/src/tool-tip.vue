@@ -2,6 +2,7 @@
     <div ref="child"
          class="h-tooltip-box"
          data-relative
+         @mousemove="resetTimeOut"
          @mouseenter="props.body? onMouseInBody($event):onMouseIn($event)"
          @mouseleave="onMouseOut">
         <slot/>
@@ -30,6 +31,7 @@ const props = withDefaults(defineProps<HToolTipProps>(), DefaultProps)
 const child = ref<HTMLDivElement>()
 const tipEle = ref<HTMLDivElement>()
 const mouseIn = ref(false)
+let timeoutId = 0
 
 
 function placeInViewBody(tip: HTMLDivElement, x: number, y: number, w: number, h: number) {
@@ -78,6 +80,7 @@ async function onMouseInBody(e: MouseEvent) {
     let rect = child.value!.getBoundingClientRect()
     let tipRect = tipEle.value!.getBoundingClientRect()
     placeTipBody(tipEle.value!, rect, tipRect)
+    resetTimeOut()
 }
 
 function placeInView(tip: HTMLDivElement, x: number, y: number, w: number, h: number) {
@@ -136,10 +139,18 @@ async function onMouseIn(e: MouseEvent) {
     mouseIn.value = true
     await nextTick()
     placeTip(tipEle.value!, child.value!)
+    resetTimeOut()
 }
 
 function onMouseOut(e: MouseEvent) {
     mouseIn.value = false
+}
+
+function resetTimeOut() {
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(() => {
+        mouseIn.value = false
+    }, props.timeout) as unknown as number
 }
 
 </script>

@@ -20,5 +20,10 @@ Tip: 直接绑定类名，不能使用`scoped`
 
 [.tip-class]
 
+## 显示时间
+
+鼠标不动后多久消失。
+
+[.timeout]
 
 [:api=tool-tip]

@@ -21,11 +21,16 @@ export declare interface HToolTipProps {
      * 是否在body上显示，默认false
      */
     body?: boolean
+    /**
+     * 显示时间，默认2000
+     */
+    timeout?:number
 }
 
 export default {
     zIndex: 10000,
     offset: 8,
     place: 'auto',
-    body: false
+    body: false,
+    timeout: 2000,
 } as PropsDefaultType<HToolTipProps>
