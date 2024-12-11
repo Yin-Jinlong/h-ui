@@ -1,9 +1,11 @@
-## v0.9.7
+## v0.10.0
 
 - 修复`tool-tip` 窗口内显示
 - `tool-tip` 添加延迟消失
 - `message` 内容可以是组件（`vnode`）
 - `message` 鼠标在移动时不消失
+- `message` 添加合并
+- `badge` 使用inline模式
 
 ## v0.9.6
 
