@@ -16,6 +16,12 @@ tip: `Message`依赖于`Card`
 
 [.durations]
 
+## 内容
+
+内容可以是字符串或组件
+
+[.content]
+
 ## 关闭
 
 关闭不存在的id时不会报错。

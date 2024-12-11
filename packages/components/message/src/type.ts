@@ -1,4 +1,5 @@
 import {DefinedNamedColor} from '@yin-jinlong/h-ui/types'
+import {RendererElement, RendererNode, VNode} from 'vue'
 
 /**
  * 消息提示配置
@@ -24,6 +25,10 @@ export interface HMessageConfig {
     onClose?: (id: number) => void
 }
 
+export type MSGContent = string | VNode<RendererNode, RendererElement, {
+    [p: string]: any }
+>
+
 export interface HMessage {
     show(msg: string, config?: HMessageConfig): number
 
@@ -31,18 +36,18 @@ export interface HMessage {
 
     closeAll(): void
 
-    primary(msg: string, config?: HMessageConfig): number
+    primary(msg: MSGContent, config?: HMessageConfig): number
 
-    success(msg: string, config?: HMessageConfig): number
+    success(msg: MSGContent, config?: HMessageConfig): number
 
-    error(msg: string, config?: HMessageConfig): number
+    error(msg: MSGContent, config?: HMessageConfig): number
 
-    danger(msg: string, config?: HMessageConfig): number
+    danger(msg: MSGContent, config?: HMessageConfig): number
 
-    warning(msg: string, config?: HMessageConfig): number
+    warning(msg: MSGContent, config?: HMessageConfig): number
 
-    info(msg: string, config?: HMessageConfig): number
+    info(msg: MSGContent, config?: HMessageConfig): number
 
-    emphasize(msg: string, config?: HMessageConfig): number
+    emphasize(msg: MSGContent, config?: HMessageConfig): number
 
 }

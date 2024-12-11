@@ -1,13 +1,13 @@
-import {HButton, HCard} from '@yin-jinlong/h-ui/components'
+import {HButton, HCard, MSGContent} from '@yin-jinlong/h-ui/components'
 import {changeLight, clampLight, convertColor, isDark} from '@yin-jinlong/h-ui/utils'
-import {defineComponent, h, reactive, ref, TransitionGroup, createApp, Ref, TransitionGroupProps} from 'vue'
+import {defineComponent, h, reactive, ref, TransitionGroup, createApp, Ref, TransitionGroupProps, VNode} from 'vue'
 import {HMessage, HMessageConfig} from './type'
 
 let mid = 0
 
 interface RawMsg {
     id: number
-    msg: string
+    msg: MSGContent
     timer: number
     color: string
     onClose?: (id: number) => void
@@ -58,7 +58,15 @@ function ifOrDef<T>(b: boolean, v: T, def?: T) {
     return b ? v : def
 }
 
-function createMessage(msg: RawMsg) {
+function createContent(msg: MSGContent): VNode {
+    if (typeof msg === 'string') {
+        return h('span', msg)
+    } else {
+        return msg
+    }
+}
+
+function createMessage(msg: RawMsg, resetTimeout: () => void) {
     return h(HCard, {
         key: msg.id,
         style: {
@@ -90,7 +98,7 @@ function createMessage(msg: RawMsg) {
                 style: ifOrDef(msg.closeable, {
                     paddingRight: '0.5em'
                 }, {})
-            }, msg.msg), ifOrDef(msg.closeable, h(HButton, {
+            }, [createContent(msg.msg)]), ifOrDef(msg.closeable, h(HButton, {
                 type: 'link',
                 color: msg.color,
                 style: {
@@ -151,7 +159,7 @@ addEventListener('theme-change', (e) => {
     dark.value = isDark()
 })
 
-function show(msg: string, config?: HMessageConfig): number {
+function show(msg: MSGContent, config?: HMessageConfig): number {
     let id = mid
     let timeOutId = 0
     let dur = config?.duration ?? 3000
@@ -205,37 +213,37 @@ export default {
         closeIds.forEach(id => {
             close(id)
         })
-    }, danger(msg: string, config?: HMessageConfig): number {
+    }, danger(msg: MSGContent, config?: HMessageConfig): number {
         return show(msg, {
             color: 'danger',
             ...config
         })
-    }, emphasize(msg: string, config?: HMessageConfig): number {
+    }, emphasize(msg: MSGContent, config?: HMessageConfig): number {
         return show(msg, {
             color: 'emphasize',
             ...config
         })
-    }, error(msg: string, config?: HMessageConfig): number {
+    }, error(msg: MSGContent, config?: HMessageConfig): number {
         return show(msg, {
             color: 'danger',
             ...config
         })
-    }, info(msg: string, config?: HMessageConfig): number {
+    }, info(msg: MSGContent, config?: HMessageConfig): number {
         return show(msg, {
             color: 'info',
             ...config
         })
-    }, primary(msg: string, config?: HMessageConfig): number {
+    }, primary(msg: MSGContent, config?: HMessageConfig): number {
         return show(msg, {
             color: 'primary',
             ...config
         })
-    }, success(msg: string, config?: HMessageConfig): number {
+    }, success(msg: MSGContent, config?: HMessageConfig): number {
         return show(msg, {
             color: 'success',
             ...config
         })
-    }, warning(msg: string, config?: HMessageConfig): number {
+    }, warning(msg: MSGContent, config?: HMessageConfig): number {
         return show(msg, {
             color: 'warning',
             ...config
