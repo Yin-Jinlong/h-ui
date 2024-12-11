@@ -91,7 +91,7 @@ function placeInView(tip: HTMLDivElement, x: number, y: number, w: number, h: nu
 
     let rect = tip.getBoundingClientRect()
     if (rect.left < 0) {
-        tip.style.left = x + rect.left + 'px'
+        tip.style.left = x - rect.left + 'px'
     } else if (rect.right > ww) {
         tip.style.left = x - (rect.right - ww) + 'px'
     }
