@@ -1,6 +1,17 @@
-import {HButton, HCard, MSGContent} from '@yin-jinlong/h-ui/components'
+import {HBadge, HButton, HCard, MSGContent} from '@yin-jinlong/h-ui/components'
 import {changeLight, clampLight, convertColor, isDark} from '@yin-jinlong/h-ui/utils'
-import {defineComponent, h, reactive, ref, TransitionGroup, createApp, Ref, TransitionGroupProps, VNode} from 'vue'
+import {
+    defineComponent,
+    h,
+    reactive,
+    ref,
+    TransitionGroup,
+    createApp,
+    Ref,
+    TransitionGroupProps,
+    VNode,
+    watch
+} from 'vue'
 import {HMessage, HMessageConfig} from './type'
 
 let mid = 0
@@ -13,6 +24,8 @@ interface RawMsg {
     color: string
     onClose?: (id: number) => void
     closeable: boolean
+    mergeId?: string
+    count: number
 }
 
 let contents: RawMsg[] = []
@@ -37,10 +50,11 @@ function messageLeave(el: HTMLElement, done: () => void) {
     el.style.left = `calc(50% - ${el.offsetWidth / 2}px)`
     let {top} = el.getBoundingClientRect()
     el.style.position = 'absolute'
+    el.style.transformOrigin = 'top center'
     el.style.zIndex = '-1'
     el.animate({
         opacity: [1, 0],
-        top: [`${top}px`, `${top - el.offsetWidth / 2}px`],
+        top: [`${top}px`, `${top - el.offsetHeight / 2}px`],
         scale: ['1 1', '1 0'],
     }, {
         duration: 300,
@@ -116,7 +130,13 @@ function createMessage(msg: RawMsg, resetTimeout: () => void) {
                 default() {
                     return '✕'
                 }
-            }))])
+            })), h(HBadge, {
+                value: msg.count,
+                min: 2,
+                style: {
+                    transform: 'translate(3em,-50%)'
+                }
+            })])
         }
     })
 }
@@ -180,20 +200,40 @@ function show(msg: MSGContent, config?: HMessageConfig): number {
     let timeOutId = 0
     let dur = config?.duration ?? 3000
 
-    if (dur > 0) {
-        timeOutId = setTimeout(() => {
-            close(id)
-        }, dur) as unknown as number
+    let i = config?.mergeId ? contents.findIndex(v => v.mergeId === config.mergeId) : -1
+    if (i >= 0) {
+        let c = contents[i]
+        clearTimeout(c.timer)
+        if (dur > 0) {
+            timeOutId = setTimeout(() => {
+                close(c.id)
+            }, dur) as unknown as number
+        }
+        c.count++
+        c.msg = msg
+        c.timer = timeOutId
+        c.duration = dur
+        c.color = config?.color ?? 'primary'
+        c.onClose = config?.onClose
+        return id
+    } else {
+        if (dur > 0) {
+            timeOutId = setTimeout(() => {
+                close(id)
+            }, dur) as unknown as number
+        }
+        contents.push({
+            id: mid,
+            msg: msg,
+            timer: timeOutId,
+            duration: dur,
+            color: config?.color ?? 'primary',
+            onClose: config?.onClose,
+            closeable: config?.closeable ?? true,
+            mergeId: config?.mergeId,
+            count: 1
+        })
     }
-    contents.push({
-        id: mid,
-        msg: msg,
-        timer: timeOutId,
-        duration: dur,
-        color: config?.color ?? 'primary',
-        onClose: config?.onClose,
-        closeable: config?.closeable ?? true,
-    })
 
     if (!div.parentElement) {
         document.body.append(div)

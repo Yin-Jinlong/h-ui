@@ -23,11 +23,15 @@ export interface HMessageConfig {
      * 关闭时触发
      */
     onClose?: (id: number) => void
+    /**
+     * 合并同id
+     */
+    mergeId?: string
 }
 
 export type MSGContent = string | VNode<RendererNode, RendererElement, {
-    [p: string]: any }
->
+    [p: string]: any
+}>
 
 export interface HMessage {
     show(msg: string, config?: HMessageConfig): number
