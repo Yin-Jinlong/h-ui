@@ -1,3 +1,10 @@
+## v0.9.7
+
+- 修复`tool-tip` 窗口内显示
+- `tool-tip` 添加延迟消失
+- `message` 内容可以是组件（`vnode`）
+- `message` 鼠标在移动时不消失
+
 ## v0.9.6
 
 - `tool-tip` 添加自动消失
