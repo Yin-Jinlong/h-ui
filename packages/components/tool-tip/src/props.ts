@@ -24,7 +24,11 @@ export declare interface HToolTipProps {
     /**
      * 显示时间，默认2000
      */
-    timeout?:number
+    timeout?: number
+    /**
+     * 消失延时，默认200
+     */
+    dismissDelay?: number
 }
 
 export default {
@@ -33,4 +37,5 @@ export default {
     place: 'auto',
     body: false,
     timeout: 2000,
+    dismissDelay: 200,
 } as PropsDefaultType<HToolTipProps>

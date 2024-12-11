@@ -26,4 +26,8 @@ Tip: 直接绑定类名，不能使用`scoped`
 
 [.timeout]
 
+## 延迟消失
+
+[.dismiss]
+
 [:api=tool-tip]

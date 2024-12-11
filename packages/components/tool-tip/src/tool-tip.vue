@@ -32,6 +32,7 @@ const child = ref<HTMLDivElement>()
 const tipEle = ref<HTMLDivElement>()
 const mouseIn = ref(false)
 let timeoutId = 0
+let dismissId = 0
 
 
 function placeInViewBody(tip: HTMLDivElement, x: number, y: number, w: number, h: number) {
@@ -143,7 +144,10 @@ async function onMouseIn(e: MouseEvent) {
 }
 
 function onMouseOut(e: MouseEvent) {
-    mouseIn.value = false
+    clearTimeout(dismissId)
+    dismissId = setTimeout(() => {
+        mouseIn.value = false
+    }, props.dismissDelay) as unknown as number
 }
 
 function resetTimeOut() {
