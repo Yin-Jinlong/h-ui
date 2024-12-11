@@ -9,6 +9,7 @@ interface RawMsg {
     id: number
     msg: MSGContent
     timer: number
+    duration: number
     color: string
     onClose?: (id: number) => void
     closeable: boolean
@@ -88,6 +89,9 @@ function createMessage(msg: RawMsg, resetTimeout: () => void) {
     }, {
         default() {
             return h('div', {
+                onMousemove() {
+                    resetTimeout()
+                },
                 style: {
                     display: 'flex',
                     flexDirection: 'row',
@@ -127,7 +131,19 @@ function createContainer() {
                 let list = []
                 for (let i = 0; i < contents.length; i++) {
                     let msg = contents[i]
-                    list.push(createMessage(msg))
+
+                    function resetTimeout() {
+                        if (!msg.duration)
+                            return
+                        clearTimeout(msg.timer)
+                        if (msg.duration > 0) {
+                            msg.timer = setTimeout(() => {
+                                close(msg.id)
+                            }, msg.duration) as unknown as number
+                        }
+                    }
+
+                    list.push(createMessage(msg, resetTimeout))
                 }
                 return h(TransitionGroup, {
                     moveClass: 'transition-all',
@@ -173,6 +189,7 @@ function show(msg: MSGContent, config?: HMessageConfig): number {
         id: mid,
         msg: msg,
         timer: timeOutId,
+        duration: dur,
         color: config?.color ?? 'primary',
         onClose: config?.onClose,
         closeable: config?.closeable ?? true,
