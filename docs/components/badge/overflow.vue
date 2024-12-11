@@ -1,20 +1,17 @@
 <template>
     <div class="box">
-        <h-badge :value="100">
-            <h-button type="plain">
-                默认
-            </h-button>
-        </h-badge>
-        <h-badge :value="100" overflow="dot">
-            <h-button type="plain">
-                圆点2位
-            </h-button>
-        </h-badge>
-        <h-badge :value="1000" overflow="dot" :max="999">
-            <h-button type="plain">
-                圆点3位
-            </h-button>
-        </h-badge>
+        <h-button type="plain">
+            默认
+            <h-badge :value="100"/>
+        </h-button>
+        <h-button type="plain">
+            圆点2位
+            <h-badge :value="100" overflow="dot"/>
+        </h-button>
+        <h-button type="plain">
+            圆点3位
+            <h-badge :value="1000" overflow="dot" :max="999"/>
+        </h-button>
     </div>
 
 </template>

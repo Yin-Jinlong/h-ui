@@ -1,14 +1,10 @@
 <template>
-    <div :style="{
-        [cssVarName('badge-color')]: convertColor(color?.toString())
-    }" class="h-badge" data-relative>
-        <slot name="default"/>
-        <sup v-if="typeof value==='number'?value>=min:value?.length"
-             :data-dot="dot?'':undefined"
-             class="h-badge-dot">
-            {{ getValue() }}
-        </sup>
-    </div>
+    <sup v-if="typeof value==='number'?value>=min:value?.length"
+         :data-dot="dot?'':undefined"
+         :style="{[cssVarName('badge-color')]: convertColor(color?.toString())}"
+         class="h-badge">
+        {{ getValue() }}
+    </sup>
 </template>
 
 <script lang="ts" setup>

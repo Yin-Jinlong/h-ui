@@ -1,22 +1,18 @@
 <template>
     <div class="box">
-        <h-badge :value="100">
-            <h-button type="plain">
-                默认
-            </h-button>
-        </h-badge>
-        <h-badge :value="100" style="font-size: 12px">
-            <h-button type="plain">
-                小
-            </h-button>
-        </h-badge>
-        <h-badge :value="1000" style="font-size: 30px">
-            <h-button type="plain">
-                大
-            </h-button>
-        </h-badge>
+        <h-button type="plain">
+            默认
+            <h-badge :value="100"/>
+        </h-button>
+        <h-button type="plain">
+            小
+            <h-badge :value="100" style="font-size: 6px"/>
+        </h-button>
+        <h-button type="plain">
+            大
+            <h-badge :value="1000" style="font-size: 16px"/>
+        </h-button>
     </div>
-
 </template>
 
 <style scoped lang="scss">

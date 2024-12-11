@@ -5,22 +5,18 @@
   @include css-var(badge-color, get-css(color, danger));
   @include css-var(badge-text-color, get-css(color, white));
 
-  height: max-content;
-  width: max-content;
-}
-
-@include c(badge-dot) {
   align-items: center;
   background-color: get-css(badge, color);
   border-radius: #{$nums-max}px;
   box-sizing: content-box;
   color: get-css(badge, text-color);
   display: inline-flex;
-  font-size: 0.5em;
+  font-size: 0.6em;
   height: max-content;
   justify-content: center;
-  min-width: 2em;
+  min-width: 1em;
   padding: 0.5em;
+  pointer-events: none;
   position: absolute;
   right: 0;
   top: 0;
@@ -34,7 +30,7 @@
   &[data-dot] {
     aspect-ratio: 1;
     min-width: 0;
-    transform: translate(25%,-25%);
+    transform: translate(25%, -25%);
   }
 
 }
